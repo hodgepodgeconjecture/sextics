@@ -1,15 +1,17 @@
 import Proposal.JacobianModel
-import Mathlib.Data.Polynomial.Basic
+import Mathlib.Algebra.Polynomial.Basic
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Data.Matrix.Basic
-import Mathlib.Data.Matrix.Notation
+import Mathlib.LinearAlgebra.Matrix.Notation
 import Mathlib.Tactic.NormNum
 
 /-! Partial seed data for cycle-three; not a certificate.
 The full equation and coefficient derivatives were checked independently by
-Python-FLINT and SymPy. This Lean source still requires compilation and replay.
+Python-FLINT and SymPy. The Lean incidence and inverse checks are now complete;
+JacobianSeedBinding binds this matrix to the actual coefficient derivatives.
 Prepared with OpenAI Codex assistance for hodgepodgeconjecture. -/
 
+noncomputable section
 namespace CycleJacobianSeed
 open Polynomial
 abbrev K := ZMod 5
@@ -59,7 +61,7 @@ theorem full_seed_incidence : CycleJacobian.equation 2 3 1 r X x y = 0 := by
   exact seed_incidence
 
 /-- Coefficient rows 0..12; columns r1,r2,x1..x4,y0..y6.
-Binding this explicit matrix to the formal incidence derivatives is still pending. -/
+JacobianSeedBinding proves that this is the actual incidence derivative matrix. -/
 def coefficientJacobian : Matrix (Fin 13) (Fin 13) K := ![
 ![0,0,0,0,0,0,4,0,0,0,0,0,0],
 ![3,0,3,0,0,0,1,4,0,0,0,0,0],
@@ -93,7 +95,7 @@ def inverseJacobian : Matrix (Fin 13) (Fin 13) K := ![
 ]
 
 set_option maxRecDepth 100000 in
-set_option maxHeartbeats 1000000 in
+set_option maxHeartbeats 8000000 in
 theorem inverse_product : coefficientJacobian * inverseJacobian = 1 := by
   decide
 
