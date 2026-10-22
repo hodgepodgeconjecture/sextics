@@ -254,7 +254,7 @@ Raw logs and summaries are in [`results/`](results/).
 | Define \(J\) as the Jacobian determinant of \((U,H,\Theta)\) and use the "Weierstrass ODE" \((\partial\xi)^2=36(\xi^3+s_4\xi-s_6/4)\) on \(U=0\) | Lowers degrees, but needs an extra constant-of-derivation argument. Not worth it now that the identity costs about 40 s. |
 | Weierstrass model via a point over a cubic extension (degree-1 map instead of the degree-9 covariant map) | Smaller identities, but the transport layer would have to differentiate the adjoined root. No net gain. |
 | Explicit certificate by linear algebra on a guessed support (at \(q=1\), the reduced support \(D_{\rm red}\) suffices) | The construction's support is not explicit: Hessian, trace, and norm divisors, of degree ≳ 24 in physical coordinates. Systems would have 10⁵–10⁶ unknowns, and \(\deg D\ge7\) is already known. A research direction, not a shortcut. |
-| Macaulay2 / Singular / Sage | Useful for discovery (I used python-flint and Sage's formulas). Nothing computed outside Lean counts toward acceptance, though. What helps is choosing certificates the kernel can check cheaply, such as big-integer arithmetic. |
+| Macaulay2 / Singular / Sage | Useful for discovery, but nothing computed outside Lean counts toward acceptance. What helps is choosing certificates the kernel can check cheaply, such as big-integer arithmetic. See [section 8](#8-can-a-cas-discover-a-better-certificate) for experiments. |
 
 ## 6. Bottlenecks
 
@@ -285,3 +285,69 @@ Raw logs and summaries are in [`results/`](results/).
   - Import the shared `ResidueTransport` modules instead of the local copies.
 - `cycle-q2` (pole order 2) has a different residue character and needs a new
   mechanism. This work does not cover it.
+
+## 8. Can a CAS discover a better certificate?
+
+I tested the three places where Singular or msolve could plausibly replace a
+nonconstructive or expensive step. Scripts are in [`cas/`](cas/); they need python-flint,
+msolve, and Singular.
+
+**A. An explicit curve family on the Jacobian side, to drop the mod-5 seed, lifting, and
+trace.**
+- For fixed \((c_1,c_2)\), each Jacobian surface is a degree-6 hypersurface in
+  \(\mathbb P(1,1,2,3)\), a del Pezzo surface of degree 1 (its anticanonical pencil is
+  the elliptic fibration).
+- The degree-\((2,4,6)\) curves are its anticanonical conics (\(-K\cdot C=2\)), and a
+  degree-1 del Pezzo surface has 2,160 conic classes. So thousands of curves pass through
+  a general base point, and the \(T^0\) equation already forces a square root
+  \(y_0^2=X_0^3-\tfrac{27}{4}R_0^6\).
+- A full Gröbner solve of the 13×13 incidence system did not finish in 20 minutes
+  (Singular, mod 32003).
+- The decisive test uses the 240 minimal sections (\(X\) of degree 2, \(Y\) of degree 3
+  in \(u\)). Their eliminant over \(\mathbb Q\) is **irreducible of degree 240** at
+  \((c_1,c_2)=(2,3)\) and at \((5,7)\) ([`gen_sections.py`](cas/gen_sections.py),
+  [`factor_elim.py`](cas/factor_elim.py)). Specialization can only refine a
+  factorization, so the 240 sections form **one Galois orbit over
+  \(\mathbb Q(c_1,c_2)\)**.
+- Frobenius cycle types modulo 60 primes include \(30^8\) (a Coxeter element),
+  \(24^{10}\), \(20^{12}\), \(15^{16}\), and \(7^{34}1^2\)
+  ([`frobenius.py`](cas/frobenius.py)). This is consistent with the full Weyl group
+  \(W(E_8)\).
+- Consequences: no section, and hence no conic class, is defined over the parameter field.
+  Any explicit curve family lives in an extension of very large degree. The PR's design
+  (one nonsingular seed, étale lifting, normalized trace) is the economical route; a CAS
+  cannot make it explicit cheaply.
+
+**B. Smaller covariants.** In the chart \(z=1\), \(U\) is linear in \(c\), so
+substituting \(c=-(ax^3+by^3+dx^2y+ey^2+fx)\) gives canonical representatives modulo
+\(U\). The sizes barely move: \(H\) 14→19, \(\Theta\) 207→274, \(J\) 1,095→1,047.
+The syzygy then holds exactly with 12,319 terms in \(J^2\)
+([`reduce_mod_u.py`](cas/reduce_mod_u.py)). This is not worth the downstream changes once
+the identity costs about 40 s.
+
+**C. An explicit global certificate \((D,N,Q)\).** At \(q=1\), the prescribed-support
+theorem means only the support of \(D\) has to be guessed; \(N\) and \(Q\) then follow
+by linear algebra. The class to kill, however, lies in the \(E_8\) part of the fibres'
+Néron–Severi lattice: it is orthogonal to the zero section and to the fibre. The Galois
+group acts on that part like \(W(E_8)\), so a support defined over
+\(\mathbb Q(c_1,c_2)\) must, heuristically, contain whole Galois orbits of horizontal
+curves (at least 240 per fibre). That would force a very high-degree \(D\). I have not
+turned this into a lower-bound proof: one subtlety is that part of a class can also be
+killed by exactness in the base directions. Still, it explains two facts: `rbajaj5`'s
+bound \(\deg D\ge 7\), and the failure of the earlier Gauss–Manin ansatz with a
+degree-42 denominator. Explicit certificates are therefore unlikely to be cheaper to check
+in Lean for this instance.
+
+**Where a CAS does help:**
+- Designing and validating kernel-friendly certificates: gradings, digit bounds,
+  coefficient masses, and Horner forms (section 4).
+- Supplying the exact structure of identities: the 13-term syzygy came from Sage's
+  formulas.
+- Finding cheap seeds: msolve finds mod-\(p\) solutions in well under a second, and a
+  seed could be chosen so its inverse matrix is small.
+- Producing cofactors for the remaining slow `ring`/`simp` proofs
+  (`CubicFieldDifferential`, `PhysicalJacobianCoordinates`, `JacobianSeedBinding`), which
+  could then be checked as big-integer certificates.
+
+For other instances, where a small support exists, CAS-driven linear algebra is exactly
+how the short explicit solutions in this repository were found.
