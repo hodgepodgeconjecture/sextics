@@ -1,0 +1,113 @@
+compile-HodgeTarget                      rc=0     17.4s peak= 3.09GiB
+compile-CoordinateIndependence           rc=0      5.6s peak= 3.13GiB
+compile-JacobianModel                    rc=0      3.6s peak= 1.53GiB
+compile-MovingMap                        rc=0      4.4s peak= 2.08GiB
+compile-PhysicalField                    rc=0     11.4s peak= 3.43GiB
+compile-PolynomialDigitCheck             rc=0      4.6s peak= 3.12GiB
+compile-ResidueTransport                 rc=0      2.8s peak= 2.06GiB
+compile-SignedExpressions                rc=0      2.6s peak= 1.55GiB
+compile-CyclicCubic                      rc=0      3.2s peak= 1.54GiB
+compile-JacobianDomain                   rc=0      6.6s peak= 3.40GiB
+compile-JacobianIncidence                rc=0     24.3s peak= 2.53GiB
+compile-JacobianSeed                     rc=0     10.2s peak= 2.16GiB
+compile-NineKronecker                    rc=0      8.4s peak= 3.22GiB
+compile-PhysicalClearing                 rc=0      9.4s peak= 3.44GiB
+compile-CubicCovariants                  rc=0     10.4s peak= 1.66GiB
+compile-JacobianSeedBinding              rc=0     66.4s peak= 2.52GiB
+compile-PhysicalCoordinates              rc=0     10.6s peak= 3.45GiB
+compile-CubicDiagonal                    rc=0      7.8s peak= 1.59GiB
+compile-CubicDifferential                rc=0    324.1s peak= 8.75GiB
+compile-CubicFunctorial                  rc=0     24.3s peak= 1.65GiB
+compile-CubicReflectionData              rc=0     28.7s peak= 1.78GiB
+compile-JacobianLifting                  rc=0      8.8s peak= 3.31GiB
+compile-CubicMap                         rc=0      5.4s peak= 3.15GiB
+compile-CubicPoint                       rc=0      7.0s peak= 3.44GiB
+compile-FullSyzygy                       rc=0     40.5s peak= 5.04GiB
+compile-JacobianFamily                   rc=0     33.3s peak= 3.56GiB
+compile-JacobianParameters               rc=0     14.8s peak= 3.53GiB
+compile-PhysicalChart                    rc=0     10.2s peak= 3.45GiB
+compile-JacobianGeometry                 rc=0     38.9s peak= 4.11GiB
+compile-PhysicalNormalTransport          rc=0     17.8s peak= 3.47GiB
+compile-JacobianEmbedding                rc=0     17.9s peak= 3.55GiB
+compile-PhysicalCubicTangent             rc=0     15.0s peak= 3.46GiB
+compile-CubicFieldDifferential           rc=0     88.6s peak= 3.80GiB
+compile-JacobianDimension                rc=0      9.2s peak= 3.52GiB
+compile-PhysicalCubicVolume              rc=0     13.4s peak= 3.49GiB
+compile-CubicJetCalculus                 rc=0      9.0s peak= 3.48GiB
+compile-JacobianHypersurface             rc=0      9.0s peak= 3.55GiB
+compile-PhysicalJacobianCoordinates      rc=0     68.8s peak= 3.63GiB
+compile-JacobianNormal                   rc=0     54.2s peak= 4.28GiB
+compile-PhysicalCubicJets                rc=0     30.7s peak= 3.47GiB
+compile-JacobianResidue                  rc=0     34.1s peak= 3.55GiB
+compile-JacobianClearing                 rc=0      7.6s peak= 3.53GiB
+compile-JacobianSource                   rc=0      7.7s peak= 3.54GiB
+compile-PhysicalJacobianMap              rc=0     14.1s peak= 3.62GiB
+compile-PhysicalPrimitive                rc=0     10.0s peak= 3.57GiB
+compile-Solution                         rc=0      5.0s peak= 3.56GiB
+compile-HodgeChecked                     rc=0      5.6s peak= 3.54GiB
+kernel-HodgeTarget                       rc=0      9.0s peak= 2.79GiB
+kernel-CoordinateIndependence            rc=0      8.0s peak= 2.78GiB
+kernel-JacobianModel                     rc=0      7.0s peak= 1.31GiB
+kernel-MovingMap                         rc=0      7.2s peak= 1.80GiB
+kernel-PhysicalField                     rc=0      8.2s peak= 3.06GiB
+kernel-PolynomialDigitCheck              rc=0      7.8s peak= 2.78GiB
+kernel-ResidueTransport                  rc=0      6.8s peak= 1.80GiB
+kernel-SignedExpressions                 rc=0      6.6s peak= 1.32GiB
+kernel-CyclicCubic                       rc=0      6.6s peak= 1.31GiB
+kernel-JacobianDomain                    rc=0      8.4s peak= 3.03GiB
+kernel-JacobianIncidence                 rc=0      9.6s peak= 2.08GiB
+kernel-JacobianSeed                      rc=0     10.4s peak= 1.81GiB
+kernel-NineKronecker                     rc=0      9.0s peak= 2.80GiB
+kernel-PhysicalClearing                  rc=0      8.4s peak= 3.06GiB
+kernel-CubicCovariants                   rc=0      6.6s peak= 1.31GiB
+kernel-JacobianSeedBinding               rc=0      8.8s peak= 2.04GiB
+kernel-PhysicalCoordinates               rc=0      8.4s peak= 3.06GiB
+kernel-CubicDiagonal                     rc=0      7.2s peak= 1.33GiB
+kernel-CubicDifferential                 rc=0     71.0s peak= 5.13GiB
+kernel-CubicFunctorial                   rc=0      7.4s peak= 1.36GiB
+kernel-CubicReflectionData               rc=0      8.2s peak= 1.32GiB
+kernel-JacobianLifting                   rc=0      8.4s peak= 2.96GiB
+kernel-CubicMap                          rc=0      8.4s peak= 2.79GiB
+kernel-CubicPoint                        rc=0      8.4s peak= 3.06GiB
+kernel-FullSyzygy                        rc=0     40.2s peak= 4.63GiB
+kernel-JacobianFamily                    rc=0     10.2s peak= 3.13GiB
+kernel-JacobianParameters                rc=0     10.0s peak= 3.14GiB
+kernel-PhysicalChart                     rc=0      8.8s peak= 3.07GiB
+kernel-JacobianGeometry                  rc=0      9.2s peak= 3.14GiB
+kernel-PhysicalNormalTransport           rc=0      9.0s peak= 3.08GiB
+kernel-JacobianEmbedding                 rc=0     10.0s peak= 3.16GiB
+kernel-PhysicalCubicTangent              rc=0      9.0s peak= 3.08GiB
+kernel-CubicFieldDifferential            rc=0     13.2s peak= 3.24GiB
+kernel-JacobianDimension                 rc=0      8.4s peak= 3.14GiB
+kernel-PhysicalCubicVolume               rc=0      8.4s peak= 3.09GiB
+kernel-CubicJetCalculus                  rc=0      8.2s peak= 3.08GiB
+kernel-JacobianHypersurface              rc=0      8.6s peak= 3.15GiB
+kernel-PhysicalJacobianCoordinates       rc=0      9.6s peak= 3.10GiB
+kernel-JacobianNormal                    rc=0      9.6s peak= 3.16GiB
+kernel-PhysicalCubicJets                 rc=0      9.0s peak= 3.09GiB
+kernel-JacobianResidue                   rc=0     10.8s peak= 3.15GiB
+kernel-JacobianClearing                  rc=0      8.7s peak= 3.15GiB
+kernel-JacobianSource                    rc=0      8.2s peak= 3.15GiB
+kernel-PhysicalJacobianMap               rc=0      9.2s peak= 3.19GiB
+kernel-PhysicalPrimitive                 rc=0      8.3s peak= 3.19GiB
+kernel-Solution                          rc=0      8.0s peak= 3.19GiB
+kernel-HodgeChecked                      rc=0      8.2s peak= 3.19GiB
+theorem-audit                            rc=0     90.9s peak= 9.17GiB
+{
+  "instance": "cycle-three",
+  "modules": 45,
+  "leanSourceBytes": 495403,
+  "compileSeconds": 1164.0,
+  "compilePeakGiB": 8.75,
+  "replaySeconds": 499.6,
+  "replayPeakGiB": 5.13,
+  "audit": {
+    "axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ],
+    "theorem": "HodgeSubmission.checked",
+    "witnessChecked": false
+  }
+}

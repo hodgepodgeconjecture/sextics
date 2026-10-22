@@ -1,0 +1,18 @@
+{
+  "instance": "cycle-three",
+  "modules": 45,
+  "leanSourceBytes": 507151,
+  "compileSeconds": 916.6,
+  "compilePeakGiB": 5.12,
+  "replaySeconds": 442.5,
+  "replayPeakGiB": 4.7,
+  "audit": {
+    "axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ],
+    "theorem": "HodgeSubmission.checked",
+    "witnessChecked": false
+  }
+}
