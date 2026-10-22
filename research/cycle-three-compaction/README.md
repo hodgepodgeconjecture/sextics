@@ -1,4 +1,4 @@
-# `cycle-three` (PR #165): what it does, why it is 2.1 MB, and a 4× smaller version
+# `cycle-three` (PR #165): what it does, why it is 2.1 MB, and a 4× smaller, faster version
 
 Research notes for `hodgepodgeconjecture`. Nothing here is a solve PR; the
 accepted proof in `data/cycle-three/` is unchanged.
@@ -14,7 +14,7 @@ accepted proof in `data/cycle-three/` is unchanged.
   cubic, plus the scaffolding used to check it. The 1.59 MB `CubicIdentityData.lean`
   contains no numerical witness. It writes out, coefficient by coefficient, the
   products that 190 separate `decide` theorems refer to.
-- **The same identity can be proved from about 26 KB of Lean in about 30 seconds.**
+- **The same identity can be proved from about 26 KB of Lean in under a minute.**
   The idea is to encode the whole identity as one big-integer equation. Lean's kernel
   does big-number arithmetic with GMP, so it only has to perform a few dozen large
   multiplications. The resulting `full_syzygy` has exactly the original type, so it is
@@ -23,7 +23,9 @@ accepted proof in `data/cycle-three/` is unchanged.
 - **End to end:** I built a variant `cycle-three` proof with both replacements. It has
   45 modules and 507 KB, against 60 modules and 2.14 MB. It passes the same compile,
   `leanchecker` replay, and audit steps as the protected verifier, with the same final
-  theorem and the same three axioms. Measurements are in [Results](#results).
+  theorem and the same three axioms. Measured with identical settings, it compiles in
+  917 s instead of 2,188 s and replays in 443 s instead of 1,506 s. Its compile peak
+  is 5.1 GB instead of 8.9 GB. Details are in [Results](#results).
 
 ---
 
@@ -113,8 +115,9 @@ The instance is
    a nonsingular solution mod 5 and lifts it to characteristic 0 with an étale-lifting
    theorem.
 
-   The original surfaces are not like this. Their \(\mu_3\)-quotient is a Dolgachev-type
-   surface: \(p_g=q=0\), but Kodaira dimension 1 (\(K\equiv F/3\), two triple fibres).
+   The original surfaces are not like this. By my calculation, their \(\mu_3\)-quotient is
+   a Dolgachev-type surface: \(p_g=q=0\), but Kodaira dimension 1 (\(K\equiv F/3\), two
+   triple fibres).
    Such a surface has no families of rational curves, which is why the proof must go
    through the Jacobian. The Jacobian of a Dolgachev surface is a rational elliptic
    surface.
@@ -199,16 +202,47 @@ of that time is the small `ring` bridge lemmas, not the certificate.
 
 ## Results
 
-End-to-end check of a variant `cycle-three` folder. It is the accepted files with the
-syzygy layer swapped in `PhysicalCubicJets.lean` (one import and one theorem name) and
-with modules unreachable from `Solution.lean` pruned. The run used
+End-to-end check of a variant `cycle-three` folder. It is built from the accepted files
+in three steps. First, the new `FullSyzygy` replaces the old syzygy layer; its only
+consumer, `PhysicalCubicJets.lean`, changes one import and one theorem name. Second, in
+v2 only, the new `CubicDifferential.lean` replaces the old one. Third, modules no longer
+reachable from `Solution.lean` are pruned. The run used
 [`scripts/verify_local.py`](scripts/verify_local.py), which repeats
 `scripts/proposals/sandbox.verify` step for step: the same `lean -j 2 -M 14336` compile
 of every module in import order, a fresh `leanchecker --verbose` per module, and the
 trusted `Audit.lean`. Docker isolation was left out because no Docker daemon was
 available.
 
-RESULTS_TABLE
+| | Original PR #165 | Variant v1 (new syzygy) | Variant v2 (+ new differential identity) |
+| --- | ---: | ---: | ---: |
+| Lean modules / source | 60 / 2,137,959 B | 45 / 495,403 B | **45 / 507,151 B** |
+| Compile, sum over modules | 2,188 s | 1,164 s\* | **917 s** |
+| Compile peak (largest process) | 8.92 GB (`CubicDifferential`) | 8.75 GB (`CubicDifferential`) | **5.12 GB** (`FullSyzygy`) |
+| `leanchecker` replay, sum over modules | 1,506 s | 500 s\* | **443 s** |
+| Replay peak | 5.20 GB | 5.13 GB | 4.70 GB |
+| Trusted audit | `HodgeSubmission.checked`; `propext`, `Quot.sound`, `Classical.choice` | same | same |
+
+\*v1 overlapped with other compiles on the machine. The original and v2 were measured
+alone, one after the other, with identical settings. The audit step loads the whole
+environment and peaks near 9 GB in every run (original 70 s, v2 52 s); that cost does
+not depend on the proof.
+
+Overall, v2 has **4.2× less source**, **compiles 2.4× faster**, **replays 3.4× faster**,
+and has a **43% lower compile peak**.
+
+The heaviest modules shift as follows:
+
+- **Original.** `CubicDifferential` compiles in 317 s. The coefficient files C, D, and E
+  take about 175 s each to compile, and about 180 s each again in replay.
+  `CubicIdentityData` takes 136 s.
+- **v2.** No module takes more than 110 s: `CubicDifferential` (110 s, mostly `ring`
+  bridge lemmas), `CubicFieldDifferential` (93 s), `PhysicalJacobianCoordinates`
+  (67 s), `JacobianSeedBinding` (65 s). The largest replay is 33 s (`FullSyzygy`).
+
+Raw logs and summaries are in [`results/`](results/).
+
+**Reproduce:** `scripts/make_variant.sh <repo> <dir>`, then
+`python3 scripts/verify_local.py cycle-three <dir> <copy of formal/lean with the Mathlib cache> <out>`.
 
 ## 5. Other ideas I evaluated
 
@@ -245,7 +279,7 @@ RESULTS_TABLE
   removes 1.57 MB from the shared library.
 - **Use the technique in new cubic-fibration solves.** A revision of the accepted
   `cycle-three` proof needs separate owner review, so ask before proposing one.
-- **Further trimming of the variant** (495 KB):
+- **Further trimming of the variant** (507 KB):
   - `CubicReflectionData.lean` (193 KB) and `CubicCovariants.lean` (71 KB) hold two
     copies of the same formulas; one compact copy would do.
   - Import the shared `ResidueTransport` modules instead of the local copies.
