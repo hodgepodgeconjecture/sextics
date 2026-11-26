@@ -1,9 +1,8 @@
+import HodgeComputer.Sextic
 import Proposal.NumericDenominatorLink
 import Proposal.GenericLineSpecialization
 import Proposal.CubicDenominatorEvaluation
 
-set_option maxRecDepth 100000
-set_option maxHeartbeats 2000000
 noncomputable section
 namespace QuadricContactGenericDenominator
 open Polynomial QuadricContactRatioInverse QuadricContactRatioDenominator
@@ -82,7 +81,7 @@ theorem activeDenominator_fiber :
 /-- Homogeneous coefficient clearing need only establish its scalar factor on
 the fiber. The generic line algebra and the complete finite inverse witness
 are concrete and kernel verified in the preceding links. -/
-theorem denominator_legal (D : HodgeComputer.Poly) (κ : ℂ) (hκ : κ ≠ 0)
+theorem denominator_legal (D : HodgeComputer.Sextic.Poly) (κ : ℂ) (hκ : κ ≠ 0)
     (hD : (QuadricContactDenominator.toUni D).map QuadricContactDenominator.specialize =
       Polynomial.C κ * genericNormFiber) :
     IsRelPrime QuadricContactDenominator.targetF D := by
@@ -91,7 +90,7 @@ theorem denominator_legal (D : HodgeComputer.Poly) (κ : ℂ) (hκ : κ ≠ 0)
 
 /-- A directly usable version for simultaneous homogeneous clearing of the
 actual generic determinant and its numerator coefficients. -/
-theorem denominator_legal_of_active_fiber (D : HodgeComputer.Poly) (κ : ℂ) (hκ : κ ≠ 0)
+theorem denominator_legal_of_active_fiber (D : HodgeComputer.Sextic.Poly) (κ : ℂ) (hκ : κ ≠ 0)
     (hD : (QuadricContactDenominator.toUni D).map QuadricContactDenominator.specialize =
       Polynomial.C κ * MvPolynomial.eval₂Hom (Polynomial.C.comp coefficientToComplex)
         ![(2 : Polynomial ℂ) * Polynomial.X ^ 2, 0, 1, 1] activeDenominator) :

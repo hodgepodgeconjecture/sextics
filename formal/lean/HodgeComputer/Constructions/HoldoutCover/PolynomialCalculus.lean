@@ -24,7 +24,7 @@ theorem pderiv_commute (i j : σ) (p : MvPolynomial σ R) :
     rfl
   ext m
   simp only [coeff_pderiv, Finsupp.add_apply, Finsupp.single_apply,
-    if_neg hij, if_neg (Ne.symm hij), add_zero]
+    ite_eq_right hij, ite_eq_right (Ne.symm hij), add_zero]
   rw [show m+Finsupp.single i 1+Finsupp.single j 1 =
     m+Finsupp.single j 1+Finsupp.single i 1 by abel]
   ring
@@ -107,7 +107,7 @@ theorem derivation_eval₂_chain
     have hdelta : (∑ i, MvPolynomial.eval₂Hom φ x p *
         MvPolynomial.eval₂Hom φ x (MvPolynomial.pderiv i (MvPolynomial.X j))*D (x i)) =
       MvPolynomial.eval₂Hom φ x p*D (x j) := by
-      simp [MvPolynomial.pderiv_X, Pi.single_apply, apply_ite, mul_ite, ite_mul]
+      simp [MvPolynomial.pderiv_X, Pi.single_apply, apply_ite, ite_mul]
     rw [hdelta]
     ring
 

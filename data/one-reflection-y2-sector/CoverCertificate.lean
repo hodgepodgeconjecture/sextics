@@ -1,9 +1,9 @@
-/- Adapted for the instance `one-reflection-y2-sector` from the accepted holdout proof by `fqlx` (hodge-computer/sextics PR #128, prepared with OpenAI ChatGPT assistance); the target-specific source, companion and trace data are replaced, all other modules are unchanged. Adaptation prepared with Claude Code assistance for `DiamondJM`. -/
+/- Adapted for the instance `one-reflection-y2-sector` from the accepted holdout proof by `fqlx` (prepared with OpenAI ChatGPT assistance); the target-specific source, companion and trace data are replaced, all other modules are unchanged. Adaptation prepared with Claude Code assistance for `DiamondJM`. -/
 import Proposal.CoverDeckField
 import Proposal.CoverQuotientCompatibility
 import Proposal.CoverSourceBinding
 import Proposal.HoldoutCertificateClosure
-import Proposal.ResiduePiolaPullback
+import HodgeComputer.Constructions.HoldoutCover.ResiduePiolaPullback
 
 /- Source component: CoverCertificate -/
 section
@@ -18,7 +18,6 @@ OpenAI ChatGPT assistance for a contribution through GitHub account fqlx.
 
 noncomputable section
 
-set_option maxHeartbeats 1000000
 
 namespace HoldoutConstruction
 
@@ -69,7 +68,7 @@ theorem holdout_hasCertificate_of_quotient_residue
     (hq : coverQuotientNormalSource +
       residueDivergence (quotientTangent (genericBaseAlpha ℂ) (genericBaseAlpha ℂ))
         coverQuotientNormal wq = 0) :
-    HodgeComputer.HasCertificate holdoutSextic holdoutSource 1 := by
+    HodgeComputer.HasCertificate holdoutSextic 1 holdoutSource := by
   let w : Fin 5 → CommonCoverFunctionField :=
     Fin.lastCases 0 (fun i => quotientCoverFieldMap (wq i))
   let v : Fin 5 → CommonCoverFunctionField :=
@@ -115,7 +114,7 @@ theorem holdout_hasCertificate_of_quotient_divergence
         -(ρq (integerPartial 0 coverQuotientSource)/ρq (integerPartial 0 G) -
           ρq coverQuotientSource*ρq (integerPartial 0 (integerPartial 0 G)) /
             (ρq (integerPartial 0 G))^2)) :
-    HodgeComputer.HasCertificate holdoutSextic holdoutSource 1 := by
+    HodgeComputer.HasCertificate holdoutSextic 1 holdoutSource := by
   apply holdout_hasCertificate_of_quotient_residue wq
   change coverQuotientNormalSource +
     residueDivergence (quotientTangent (genericBaseAlpha ℂ) (genericBaseAlpha ℂ))

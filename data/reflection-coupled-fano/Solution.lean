@@ -16,21 +16,18 @@ assistance. See solution.md for the construction, limits, and prior credit.
 -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency true
-set_option maxRecDepth 4096
-set_option maxHeartbeats 1000000
 
 namespace Submission
 open ReflectionCoupledFano
 
 theorem certificate :
-    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q := by
+    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A := by
   obtain ⟨I, hI, hfinite, _⟩ := Arithmetic.exists_generic_field
   letI : I.IsMaximal := hI
   letI : Module.Finite Arithmetic.GenericEndpoint (Arithmetic.CoefficientField I) := hfinite
   have h := physical_certificate_of_quartic_family (Arithmetic.arithmeticFamily I)
   rw [protected_F, protected_A, protected_q]
-  simpa only [Arithmetic.complexMap_coupling] using h
+  simpa only [Arithmetic.complexMap_coupling, HodgeSubmission.d] using h
 
 end Submission
 

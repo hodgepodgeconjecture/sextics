@@ -55,8 +55,8 @@ Irreducibility, coordinate nonvanishing, finite descent, legal denominator clear
 AD^2-D\sum_iN_iF_i+
  F\left(D\sum_i\partial_iN_i-\sum_iN_i\partial_iD\right)=F^2Q.
 \]
-[Solution](Solution.lean) binds this existential certificate to the immutable target. No expanded witness or denominator-degree bound is exported.
+[Solution](Solution.lean) binds this existential certificate to the protected target. No expanded witness or denominator-degree bound is exported.
 
 ## Attribution
 
-The transitive-cubic construction and covariant identities are due to `fqlx`'s [mixed-biweight submission](https://github.com/hodge-computer/sextics/pull/170), building on `hodgepodgeconjecture`'s [cyclic construction](https://github.com/hodge-computer/sextics/pull/165). The classical invariant theory follows Tom Fisher and SageMath. Arithmetic lifting, polynomial integration, trace, residue transport, and homogeneous clearing use the maintained constructions of `fqlx` and the project collaborators, together with Mathlib. This coefficient specialization, its new modular seed, and the target binding were prepared for `benediamond` with OpenAI Codex assistance. The shared library avoids duplicating the covariant coefficient proofs in this submission.
+The transitive-cubic construction and covariant identities are due to `fqlx`'s [mixed-biweight submission](../mixed-biweight/solution.md), building on `hodgepodgeconjecture`'s [cyclic construction](../cycle-three/solution.md). The classical invariant theory follows Tom Fisher and SageMath. Arithmetic lifting, polynomial integration, trace, residue transport, and homogeneous clearing use the maintained constructions of `fqlx` and the project collaborators, together with Mathlib. This coefficient specialization, its new modular seed, and the target binding were prepared for `benediamond` with OpenAI Codex assistance. The shared library avoids duplicating the covariant coefficient proofs in this submission.

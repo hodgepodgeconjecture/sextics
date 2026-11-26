@@ -8,13 +8,11 @@ import Mathlib.Tactic.Ring
 /-!
 Weighted-line incidence for the cyclic triple-cover quotient, in order
 Y0,Y1,X0,X1,Y2,Z. The seed curve is due to rbajaj5 (discussion #112).
-The incidence, normal, and descent architecture is adapted from fqlx's PR #150.
+The incidence, normal, and descent architecture is adapted from fqlx's reflection-coupled-fano proof.
 This module fixes six positive coefficients, with Y1 advancing at unit speed.
 -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 0
 
 namespace CyclicTriple
 
@@ -105,8 +103,7 @@ def coefficientDeriv (i : Index) : Derivation R (CurvePoly R) (CurvePoly R) :=
 
 @[simp] theorem coefficientDeriv_C (i : Index) (f : Coeff R) :
     coefficientDeriv i (Polynomial.C f) = Polynomial.C (MvPolynomial.pderiv i f) := by
-  apply Polynomial.ext
-  intro n
+  ext n
   by_cases hn : n = 0 <;> simp [coefficientDeriv_coeff, Polynomial.coeff_C, hn]
 
 @[simp] theorem coefficientDeriv_X (i : Index) :
@@ -249,12 +246,11 @@ theorem eq_constant_of_positive_coefficients (f : Polynomial R)
     (hdegree : f.natDegree ≤ 6)
     (hpositive : ∀ i : Index, f.coeff (equationDegree i) = 0) :
     f = Polynomial.C (f.coeff 0) := by
-  apply Polynomial.ext
-  intro n
+  ext n
   by_cases hn : n = 0
   · subst n
     simp
-  · rw [Polynomial.coeff_C, if_neg hn]
+  · rw [Polynomial.coeff_C, ite_eq_right hn]
     by_cases h6 : n ≤ 6
     · obtain ⟨i, hi⟩ := equationDegree_covers (Nat.pos_of_ne_zero hn) h6
       rw [← hi]

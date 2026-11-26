@@ -91,8 +91,6 @@ end
 section
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 400000
 namespace CrossedPhysicalChart
 open MvPolynomial Polynomial HoldoutConstruction
 open scoped BigOperators
@@ -176,8 +174,6 @@ end
 section
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 400000
 namespace CrossedPhysicalChart
 open MvPolynomial CrossedCompatibleFractions
 
@@ -235,7 +231,6 @@ end
 section
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 namespace CrossedPhysicalChart
 open CrossedCompatibleFractions
 
@@ -304,7 +299,6 @@ end
 section
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 namespace CrossedCompatibleFractions
 open MvPolynomial HoldoutConstruction
 open scoped BigOperators
@@ -378,7 +372,6 @@ end
 section
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 namespace CrossedPhysicalChart
 open HoldoutConstruction CrossedCompatibleFractions
 
@@ -395,7 +388,7 @@ theorem normalized_data : ∃ D : Poly,∃ W : Fin 6 → Poly,∃ Q : Poly,
     (transportedVector_relation W) (divergenceQuotient_relation W)
     (transported_normal W) (transported_divergence W hW)
 
-theorem physical_certificate : HodgeComputer.HasCertificate physicalF physicalA 1 := by
+theorem physical_certificate : HodgeComputer.HasCertificate physicalF 1 physicalA := by
   obtain ⟨D,W,Q,hd,hlegal,hnormal,hdiv⟩ := normalized_data
   exact hasCertificate_of_normalized physicalF physicalA D W Q physicalF_homogeneous physicalA_homogeneous
     physicalF_irreducible.prime hlegal

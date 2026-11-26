@@ -1,6 +1,5 @@
 {
   "seed": 4017115667,
-  "resolution": 96,
   "phaseSigns": [
     1,
     1,
@@ -47,13 +46,15 @@
       0.08930386177627485
     ]
   ],
-  "mesh": "meshes/slice-diagonal-permutation-4c1bea96465c.json",
-  "triangleCount": 129880,
-  "validated": true,
+  "centerOriginal": [
+    0.19888822277335655,
+    0.21430237576749778,
+    0.26362347262016506
+  ],
+  "displayScale": 2.971731324376062,
+  "complexScale": 0.3884438128299186,
   "camera": {
-    "yaw": 26.39959552701518,
-    "pitch": 0.04167873242257783,
-    "distance": 3.45,
+    "distance": 2.69106,
     "center": [
       0,
       0,

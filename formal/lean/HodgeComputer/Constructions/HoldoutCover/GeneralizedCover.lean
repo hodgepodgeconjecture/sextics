@@ -1,8 +1,9 @@
+import HodgeComputer.Sextic
 import HodgeComputer.Constructions.HoldoutCover.ConicResidue
 import HodgeComputer.Constructions.HoldoutCover.CoverCertificate
 
 /-!
-Target-linear extension of fqlx's accepted Fermat-cover construction (PR #128).
+Target-linear extension of fqlx's accepted Fermat-cover construction.
 The geometric family, finite traces, and legal homogeneous clearing are unchanged.
 This module separates the two target identities from that shared construction.
 Prepared with OpenAI Codex assistance for benediamond, crediting fqlx and the
@@ -10,8 +11,6 @@ prior mathematical and formal sources acknowledged in the accepted proof.
 -/
 
 noncomputable section
-set_option maxHeartbeats 200000
-set_option maxRecDepth 10000
 
 namespace HoldoutGeneralization
 open HoldoutConstruction HoldoutConicIncidence MvPolynomial
@@ -96,7 +95,7 @@ theorem trace_inverse_square :
     (algebraMap ℂ HoldoutFunctionField z) (nontrivial_square z hz4)
     coverT (physicalDeckAlgHom_T z hz hz0)
 
-def normalSource (A : HodgeComputer.Poly) : HoldoutFunctionField :=
+def normalSource (A : HodgeComputer.Sextic.Poly) : HoldoutFunctionField :=
   (ρp (integerPartial 0 A)*physicalNormal -
     ρp A*ρp (integerPartial 0 (integerPartial 0 holdoutSextic)))/physicalNormal^2
 
@@ -115,7 +114,7 @@ local instance : Algebra ℤ CommonCoverFunctionField := Ring.toIntAlgebra _
 local instance : Algebra ℤ GenericQuotientField := Ring.toIntAlgebra _
 
 theorem certificate_of_source_pair
-    (A C : HodgeComputer.Poly)
+    (A C : HodgeComputer.Sextic.Poly)
     (B : MvPolynomial (Fin 5) (FermatCoefficientField ℂ))
     (t : CommonCoverFunctionField)
     (hA : A.IsHomogeneous 6)
@@ -125,7 +124,7 @@ theorem certificate_of_source_pair
     (hpartial : actualCoverJacobian.det*quotientCoverFieldMap (ρq (integerPartial 0 B)) =
       physicalCoverFieldMap (ρp (integerPartial 0 A))-
         physicalCoverFieldMap (ρp (integerPartial 0 C))*t) :
-    HodgeComputer.HasCertificate holdoutSextic A 1 := by
+    HodgeComputer.HasCertificate holdoutSextic 1 A := by
   obtain ⟨p⟩ := HoldoutConic.exists_seed
   obtain ⟨wq,hq⟩ : ∃ wq : Fin 4 → GenericQuotientField,
       residueDivergence (quotientTangent (genericBaseAlpha ℂ) (genericBaseBeta ℂ))
@@ -203,15 +202,13 @@ theorem certificate_of_source_pair
   apply hasCertificate_of_normalized holdoutSextic A D (Fin.cases N₀ N) Q
     holdoutSextic_isHomogeneous hA (holdoutSextic_irreducible Complex.I hi).prime hlegal
     ?_ ?_ 0 holdoutSextic_not_dvd_pderiv_zero
-  · set_option backward.isDefEq.respectTransparency false in
-    simpa only [HodgeTestbed.directional, Fin.sum_univ_succ,
-      Fin.cases_zero, Fin.cases_succ, integerPartial, Derivation.restrictScalars_apply,
-      Derivation.coeFn_coe, mul_comm] using hnormal
-  · set_option backward.isDefEq.respectTransparency false in
-    simpa only [HodgeTestbed.divergenceNumerator, HodgeTestbed.divergence,
+  · simp only [HodgeTestbed.directional, Fin.sum_univ_succ,
+      Fin.cases_zero, Fin.cases_succ, integerPartial, mul_comm] at hnormal ⊢
+    exact hnormal
+  · simp only [HodgeTestbed.divergenceNumerator, HodgeTestbed.divergence,
       HodgeTestbed.directional, residueDivNum, Fin.sum_univ_succ,
-      Fin.cases_zero, Fin.cases_succ, integerPartial, Derivation.restrictScalars_apply,
-      Derivation.coeFn_coe, mul_comm] using hdiv
+      Fin.cases_zero, Fin.cases_succ, integerPartial, mul_comm] at hdiv ⊢
+    exact hdiv
 
 end HoldoutGeneralization
 

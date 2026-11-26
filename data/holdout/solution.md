@@ -1,6 +1,6 @@
 # The holdout certificate from a Fermat cover and a moving conic
 
-This submission proves the exact existential `HodgeComputer.HasCertificate` statement for the protected `holdout` instance, with \((F,q,A)\) unchanged. The proof is a finite algebraic construction based on an exact conic, polynomial integration, and trace between function fields.
+This solution proves the existential `HodgeComputer.HasCertificate` statement for the fixed `holdout` instance. The proof is a finite algebraic construction based on an exact conic, polynomial integration, and trace between function fields.
 
 ## 1. The fixed statement and the form of the answer
 
@@ -40,7 +40,7 @@ AD^2-DN(F)+FB_D(N)=F^2Q.
 \qquad\text{(3)}
 \]
 
-A final finite extraction makes \(D\) homogeneous of some degree \(d\), and each \(N_i\) homogeneous of degree \(d+1\), while preserving (2), \(D\ne0\), and relative primality of \(F,D\). The quotient \(Q\) is allowed to be nonzero.
+A final finite extraction makes \(D\) homogeneous and each \(N_i\) homogeneous of degree \(\deg(D)+1\), while preserving (2), \(D\ne0\), and relative primality of \(F,D\). The quotient \(Q\) is allowed to be nonzero.
 
 The construction introduces a Fermat-curve cover on which a reflection becomes available. Its quotient has a moving polynomial conic. An exact nonsingular conic seed supplies a finite algebraic family through the generic point; along this family the residue equation becomes integration of a polynomial in one variable. Finite trace descends the solution, and a deck character isolates the exact source \(A\). All these operations construct a certificate for (1); they do not replace the protected input by another instance.
 
@@ -462,46 +462,139 @@ Finally, \(H_p=h^p\) is nonzero and homogeneous of degree \(pe\), each \(M_i\) i
 
 ## 11. Correspondence with the Lean proof
 
-The submission has 59 Lean source files. Small generic components are grouped into shared files; the two large determinant calculations remain separate to control compilation memory. The tables below link the main mathematical steps to the supplied filenames. Additional polynomial, field, and derivation helpers are connected by their explicit imports. Declaration names are unchanged by this grouping.
+The construction is maintained in the shared [HoldoutCover library](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/README.md), imported by this instance’s `Solution.lean`. The two large determinant calculations remain separate to control compilation memory. The tables below link the mathematical steps to their shared modules; declaration names and attribution are retained.
 
 ### The quotient primitive
 
 | Mathematical step | Supplied sources and declarations |
 | --- | --- |
-| Fixed equations and domains, Sections 1 and 9 | [HypersurfaceCoordinates.lean](HypersurfaceCoordinates.lean): `holdoutSextic`, `weightedHypersurface`, `holdoutSextic_irreducible`; [HomogeneousCertificate.lean](HomogeneousCertificate.lean): `holdoutSource` |
-| Legal normal charts | [QuotientDerivatives.lean](QuotientDerivatives.lean): `quotient_normal_ne_zero`; [PhysicalDerivations.lean](PhysicalDerivations.lean): `physical_normal_ne_zero` |
-| Exact complex conic, Section 3 | [CurveSeed.lean](CurveSeed.lean): `HoldoutConic.exists_seed`, `Seed.curve`, `Seed.base_relation`, `gEven_pos`, `gOdd_pos` |
-| Exact determinant blocks and coefficient Jacobian | [CurveJacobianStaged.lean](CurveJacobianStaged.lean): `even_core_det`, `odd_core_det`; [CurveSeedIncidence.lean](CurveSeedIncidence.lean): `seed_equations`, `seedJacobian_nonsingular` |
-| Polynomial coefficient equations | [CurveFamily.lean](CurveFamily.lean): `equations_pderiv`, `systemPoly_eq_constant`; [FermatIncidenceSeed.lean](FermatIncidenceSeed.lean): `fermat_incidence_nontrivial` |
-| Étale algebra and finite coefficient field, Section 4 | [GenericIncidence.lean](GenericIncidence.lean): `square_system_jacobian_etale`, `genericEtale_exists_fieldFactor`; [ConicCoefficientField.lean](ConicCoefficientField.lean): `conicCoefficientFactor_exists`, `conicCoefficients_jacobian` |
-| Actual family and finite target embedding | [ConicPolynomialFamily.lean](ConicPolynomialFamily.lean): `conicCurve_equation`, `conicCurve_jacobian`; [ConicEmbedding.lean](ConicEmbedding.lean): `conicTargetRingMap_injective`, `conicTargetFieldMap` |
-| Polynomial normal vector and tangent matrix, Section 5 | [ConicNormal.lean](ConicNormal.lean): `exists_polynomial_normal`; [ConicSourceDerivations.lean](ConicSourceDerivations.lean): `conicNormal_pairing`, `conicSourceDerivations_commute`, `conicEvaluationMatrix_det_ne_zero` |
-| Determinant and residue identities, Section 6 | [Piola.lean](Piola.lean): `piola_divergence`; [NormalDensity.lean](NormalDensity.lean): `normal_density_formula`; [PolynomialFamily.lean](PolynomialFamily.lean): `residue_solution_of_polynomial_family` |
-| Complete derivative compatibility and polynomial integration | [PolynomialFamilyBridge.lean](PolynomialFamilyBridge.lean): `finite_quotient_tangent_chain`, `residue_solution_from_polynomial_curve` |
-| Quotient residue solution and finite trace | [ConicResidue.lean](ConicResidue.lean): `conic_target_residue_solution`; [FiniteTrace.lean](FiniteTrace.lean): `residue_solution_descends_finite` |
+| Fixed equations and domains, Sections 1 and 9 | [HypersurfaceCoordinates.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HypersurfaceCoordinates.lean): `holdoutSextic`, `weightedHypersurface`, `holdoutSextic_irreducible`; [HomogeneousCertificate.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HomogeneousCertificate.lean): `holdoutSource` |
+| Legal normal charts | [QuotientDerivatives.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/QuotientDerivatives.lean): `quotient_normal_ne_zero`; [PhysicalDerivations.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/PhysicalDerivations.lean): `physical_normal_ne_zero` |
+| Exact complex conic, Section 3 | [CurveSeed.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CurveSeed.lean): `HoldoutConic.exists_seed`, `Seed.curve`, `Seed.base_relation`, `gEven_pos`, `gOdd_pos` |
+| Exact determinant blocks and coefficient Jacobian | [CurveJacobianStaged.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CurveJacobianStaged.lean): `even_core_det`, `odd_core_det`; [CurveSeedIncidence.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CurveSeedIncidence.lean): `seed_equations`, `seedJacobian_nonsingular` |
+| Polynomial coefficient equations | [CurveFamily.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CurveFamily.lean): `equations_pderiv`, `systemPoly_eq_constant`; [FermatIncidenceSeed.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/FermatIncidenceSeed.lean): `fermat_incidence_nontrivial` |
+| Étale algebra and finite coefficient field, Section 4 | [GenericIncidence.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/GenericIncidence.lean): `square_system_jacobian_etale`, `genericEtale_exists_fieldFactor`; [ConicCoefficientField.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ConicCoefficientField.lean): `conicCoefficientFactor_exists`, `conicCoefficients_jacobian` |
+| Actual family and finite target embedding | [ConicPolynomialFamily.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ConicPolynomialFamily.lean): `conicCurve_equation`, `conicCurve_jacobian`; [ConicEmbedding.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ConicEmbedding.lean): `conicTargetRingMap_injective`, `conicTargetFieldMap` |
+| Polynomial normal vector and tangent matrix, Section 5 | [ConicNormal.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ConicNormal.lean): `exists_polynomial_normal`; [ConicSourceDerivations.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ConicSourceDerivations.lean): `conicNormal_pairing`, `conicSourceDerivations_commute`, `conicEvaluationMatrix_det_ne_zero` |
+| Determinant and residue identities, Section 6 | [Piola.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/Piola.lean): `piola_divergence`; [NormalDensity.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/NormalDensity.lean): `normal_density_formula`; [PolynomialFamily.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/PolynomialFamily.lean): `residue_solution_of_polynomial_family` |
+| Complete derivative compatibility and polynomial integration | [PolynomialFamilyBridge.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/PolynomialFamilyBridge.lean): `finite_quotient_tangent_chain`, `residue_solution_from_polynomial_curve` |
+| Quotient residue solution and finite trace | [ConicResidue.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ConicResidue.lean): `conic_target_residue_solution`; [FiniteTrace.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/FiniteTrace.lean): `residue_solution_descends_finite` |
 
 ### The return to the exact physical source
 
 | Mathematical step | Supplied sources and declarations |
 | --- | --- |
-| Actual physical and common fields, Section 7 | [CoverFields.lean](CoverFields.lean): `physicalCoverFieldMap`, `commonCoverFunctionField_finite`; [QuotientCoverField.lean](QuotientCoverField.lean): `quotientCoverFieldMap`; [CoverCoordinates.lean](CoverCoordinates.lean): `coverAlpha_ne_zero`, `coverT_ne_zero`, `cover_square_difference_ne_zero` |
-| Full physical coordinate Jacobian | [CoverDifferentials.lean](CoverDifferentials.lean): `actualCoverJacobian_det`, `actualCoverJacobian_det_ne_zero`, `coverQuotientTangent` |
-| Compatibility on the entire quotient field | [FermatCoefficientDerivations.lean](FermatCoefficientDerivations.lean): `fermatCoefficient_derivation_zero`; [CoverQuotientCompatibility.lean](CoverQuotientCompatibility.lean): `coverQuotientTangent_base`, `coverQuotientTangent_compatible` |
-| Exact source, normal, and sign identities | [CoverSourceBinding.lean](CoverSourceBinding.lean): `coverQuotientSource`, `cover_source_binding`, `cover_normal_binding`, `cover_normal_source_binding` |
-| Deck automorphism and vanishing trace | [CoverDeckField.lean](CoverDeckField.lean): `commonDeckFieldEquiv_fixes_physical`, `commonCover_trace_inverse_fourth` |
-| Residue Piola pullback and exact cover assembly | [ResiduePiolaPullback.lean](ResiduePiolaPullback.lean): `residue_solution_piola_pullback`; [CoverCertificate.lean](CoverCertificate.lean): `holdout_hasCertificate_of_quotient_divergence` |
-| Legal polynomial clearing, Section 8 | [ResidueClearing.lean](ResidueClearing.lean): `residue_common_representatives`, `residue_divergence_identity`, `residue_solution_clearing`; [FiniteResidueClearing.lean](FiniteResidueClearing.lean): `finite_residue_solution_clearing_value` |
-| Finite homogeneous extraction, Section 10 | [HomogeneousIdeal.lean](HomogeneousIdeal.lean): `exists_legal_initial_representative`; [HomogeneousField.lean](HomogeneousField.lean): `homogeneous_data_from_initial_denominator`; [HomogeneousCertificate.lean](HomogeneousCertificate.lean): `homogeneous_data_of_normalized`, `holdout_hasCertificate_of_normalized` |
-| Trace, clearing, and homogeneity composed | [HoldoutCertificateClosure.lean](HoldoutCertificateClosure.lean): `holdout_hasCertificate_of_cover_residue` |
+| Actual physical and common fields, Section 7 | [CoverFields.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverFields.lean): `physicalCoverFieldMap`, `commonCoverFunctionField_finite`; [QuotientCoverField.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/QuotientCoverField.lean): `quotientCoverFieldMap`; [CoverCoordinates.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverCoordinates.lean): `coverAlpha_ne_zero`, `coverT_ne_zero`, `cover_square_difference_ne_zero` |
+| Full physical coordinate Jacobian | [CoverDifferentials.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverDifferentials.lean): `actualCoverJacobian_det`, `actualCoverJacobian_det_ne_zero`, `coverQuotientTangent` |
+| Compatibility on the entire quotient field | [FermatCoefficientDerivations.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/FermatCoefficientDerivations.lean): `fermatCoefficient_derivation_zero`; [CoverQuotientCompatibility.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverQuotientCompatibility.lean): `coverQuotientTangent_base`, `coverQuotientTangent_compatible` |
+| Exact source, normal, and sign identities | [CoverSourceBinding.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverSourceBinding.lean): `coverQuotientSource`, `cover_source_binding`, `cover_normal_binding`, `cover_normal_source_binding` |
+| Deck automorphism and vanishing trace | [CoverDeckField.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverDeckField.lean): `commonDeckFieldEquiv_fixes_physical`, `commonCover_trace_inverse_fourth` |
+| Residue Piola pullback and exact cover assembly | [ResiduePiolaPullback.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ResiduePiolaPullback.lean): `residue_solution_piola_pullback`; [CoverCertificate.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/CoverCertificate.lean): `holdout_hasCertificate_of_quotient_divergence` |
+| Legal polynomial clearing, Section 8 | [ResidueClearing.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/ResidueClearing.lean): `residue_common_representatives`, `residue_divergence_identity`, `residue_solution_clearing`; [FiniteResidueClearing.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/FiniteResidueClearing.lean): `finite_residue_solution_clearing_value` |
+| Finite homogeneous extraction, Section 10 | [HomogeneousIdeal.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HomogeneousIdeal.lean): `exists_legal_initial_representative`; [HomogeneousField.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HomogeneousField.lean): `homogeneous_data_from_initial_denominator`; [HomogeneousCertificate.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HomogeneousCertificate.lean): `homogeneous_data_of_normalized`, `holdout_hasCertificate_of_normalized` |
+| Trace, clearing, and homogeneity composed | [HoldoutCertificateClosure.lean](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HoldoutCertificateClosure.lean): `holdout_hasCertificate_of_cover_residue` |
 
 The final source [Solution.lean](Solution.lean) contains the closed wrapper:
 
 ```lean
 theorem Submission.certificate :
-    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q
+    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A
 ```
 
 Its proof selects the checked complex seed, applies `conic_target_residue_solution` to the positive `coverQuotientSource`, and invokes `holdout_hasCertificate_of_quotient_divergence`. The verifier supplies the protected definitions, which are matched to (1). Classical choice selects roots and finite field factors only after their existence and properties have been proved. `Submission.certificate` is a closed theorem with no hypotheses or unproved placeholders. Compilation and kernel replay establish its proof using only the permitted axioms `propext`, `Classical.choice`, and `Quot.sound`. The detailed build and submission-check results accompany the proposal.
+
+## Geometric scope of the Fermat cover
+
+The accepted Lean proof above constructs the fixed \(q=1\) certificate in (1). The following geometric consequence of `fqlx`'s cover was prepared for `benediamond` with OpenAI ChatGPT assistance. It uses the book's support theorems, whose general geometric inputs are not formalized by that certificate.
+
+**Fixed-variety theorem.** For the sextic \(F\) in (1), every \(Y\)-odd homogeneous target of degree \(6q\), for every positive \(q\), has a certificate.
+
+### The supported quotient of the cover
+
+On the cover (5), the commuting involutions
+\[
+r:(y,T)\mapsto(-y,-T),\qquad
+\sigma:(y,T)\mapsto(T,y)
+\]
+have quotient (6). Its projective fibers over the Fermat curve are degree-six hypersurfaces in \(\mathbb P(1,1,1,2,2)\).
+
+The generic fiber is quasismooth. Since quasismoothness is open, it suffices to check the fiber \((\alpha,\beta)=(0,1)\). A nonzero common zero of its five affine partials would satisfy
+\[
+X_0=0,\qquad S^2=P^2,\qquad
+X_1^3X_2=6SP,\qquad
+3X_1^2(2X_1^3+PX_2)=0,\qquad
+6X_2^5+PX_1^3=0.
+\]
+If either \(X_1\) or \(X_2\) is zero, all coordinates are zero. Otherwise put \(S=\varepsilon P\), \(\varepsilon^2=1\). The equations give
+\[
+P=-2X_1^3/X_2,\qquad
+X_1^6=3X_2^6,\qquad
+X_2^3=24\varepsilon X_1^3.
+\]
+Squaring the last equality contradicts the preceding one.
+
+The possible ambient quotient singularities lie at \(X_0=X_1=X_2=0\), where the equation is \(S(S^2-3P^2)=0\). These are three distinct points of local type \(\frac12(1,1,1)\). Weighted adjunction gives \(-K=\mathcal O(1)\), so the generic fiber is a normal \(\mathbb Q\)-Fano threefold. The normal-Fano theorem in [Chapter 3, §3.2][support] supplies covering rational curves. Curves in the fibers make the total fourfold uniruled even though its base curve has positive genus. A smooth projective model therefore has divisor-supported fourth cohomology. Quotient transfer, including the boundaries of the rational presentation, supports the \(r,\sigma\)-invariant part on a smooth model of the cover.
+
+### The physical diagonal quotient and descent
+
+Fix a primitive sixth root \(\zeta\). The deck transformation and its exchange conjugate are
+\[
+\begin{aligned}
+d:(y,T,\alpha,\beta)&\mapsto
+   (y,\zeta T,\zeta^{-1}\alpha,\zeta^{-1}\beta),\\
+e=\sigma d\sigma:(y,T,\alpha,\beta)&\mapsto
+   (\zeta y,T,\zeta^{-1}\alpha,\zeta^{-1}\beta).
+\end{aligned}
+\]
+They preserve (4) and (5), commute, have order six, and satisfy \(r=d^3e^3\); \(\sigma\) interchanges \(d,e\). Thus the group they generate with \(\sigma\) is finite, a quotient of \((\mu_6\times\mu_6)\rtimes\mathbb Z/2\).
+
+Take a smooth equivariant projective model \(Z\) resolving the cover and its projection to \(X=V(F)\). The resulting proper generically finite map \(p:Z\to X\) satisfies
+\[
+pd=p,\qquad pe=gp,\qquad pr=\tau p,
+\]
+where the physical diagonal automorphism \(g\) has weights \((0,0,0,5,1,5)\) modulo six. These identities hold in the displayed coordinates and hence on the projective models.
+
+The automorphism \(g\) fixes \(F\). At a fixed point with only \(Y_0,Y_2\) nonzero and \(Y_0^6+Y_2^6=0\), its tangent weights are \((1,1,1,2)/6\), of age \(5/6\). The finite-quotient theorem in [Chapter 3, §3.3][support] therefore supports the \(g\)-invariant fourth cohomology. The two supported quotients now satisfy [the deck/exchange descent criterion](../../docs/03-geometric-support.md#descent-through-a-deck-action-and-an-exchange). Consequently
+\[
+H^4(X,\mathbb Q)^\tau\subseteq N^1H^4(X,\mathbb Q).
+\]
+The [certificate correspondence][certificates] and the all-pole reduction in [Chapter 3, §3.5][support] give the fixed-variety theorem. This argument reaches the entire invariant fourth cohomology, including its middle Hodge component.
+
+### Target characters and the polynomial-source boundary
+
+For an odd sextic monomial \(A=M(X)Y_0^aY_1^bY_2^c\), put \(m=a+c+1\), \(e=b-m\), and \(C=M(X)Y_0^aY_2^cY_1^m\). On the common coordinate open, the unnormalized invariant sum in [Chapter 2, §2.7][constructions] has density \(A-CT^e\). The deck trace removes the correction if \(e\not\equiv0\pmod6\). Otherwise the physical residue is \(g\)-invariant, since its character is
+\[
+5(a+1)+(b+1)+5(c+1)\equiv b-a-c-1=e\pmod6.
+\]
+The global argument supplies the support conclusion without assuming that an arbitrary rational form on the coordinate open extends to a global class.
+
+There are 226 odd sextic monomials. The cover criterion serves 158, and the diagonal quotient serves the complementary 68. The eighteen odd Jacobian generators \(Z_j\partial_iF\), with \(i,j\) in opposite parity blocks, each have a unique leading monomial \(6Z_i^5Z_j\); their mixed terms have all exponents at most four. Hence the 208 odd sextic monomials with exponents at most four form a basis of the primitive target space. The cover and diagonal quotient account for 149 and 59 basis elements respectively. The complementary basis elements split into 47 with \(e=0\) and twelve with \(e=-6\). These exact counts can be reproduced by:
+
+```python
+from itertools import product
+
+raw = {e for e in product(range(7), repeat=6)
+       if sum(e) == 6 and sum(e[3:]) % 2 == 1}
+basis = {e for e in raw if max(e) <= 4}
+
+def cover(e):
+    return (e[4]-e[3]-e[5]-1) % 6 != 0
+
+assert len(raw) == 226 and len(basis) == 208
+assert sum(map(cover, raw)) == 158
+assert sum(map(cover, basis)) == 149
+assert len(raw) - sum(map(cover, raw)) == 68
+assert len(basis) - sum(map(cover, basis)) == 59
+assert sum(e[4]-e[3]-e[5]-1 == 0 for e in raw) == 50
+assert sum(e[4]-e[3]-e[5]-1 == 0 for e in basis) == 47
+assert sum(e[4]-e[3]-e[5]-1 == -6 for e in basis) == 12
+```
+
+The polynomial-source construction on the complementary quotient in [Chapter 2, §2.8][constructions] serves the \(e=0\) sources, giving a finite-algebraic route to 196 of the 208 primitive basis directions together with the cover. The twelve \(e=-6\) densities have a fiber denominator and lie outside that polynomial-integration theorem. Their geometric support follows from the theorem above.
+
+These counts concern the displayed source maps. Coordinate transport supplies further polynomial presentations: \(F\) is unchanged by exchanging \(X_2,Y_2\), which carries \(X_2Y_0^2Y_2^3\) to the cover-served \(X_2^3Y_0^2Y_2\). The same exchange serves \(X_iY_0Y_2^4\) and \(X_iY_0^3Y_2^2\), for \(i=0,1\). The constructions and their exchanged copies therefore span at least 201 primitive basis directions. A fiber pole in one presentation is not an obstruction to all finite-algebraic constructions.
+
+The [character-separating bundle](../holdout-bundle/why.md), formalized by `fqlx`, combines the cover source \(X_0^3Y_0^3\) with the complementary polynomial source \(X_0^3Y_0Y_1^2\). These concrete certificates and the geometric all-target theorem have different scopes; neither asserts an expanded common denominator. The theorem is for the fixed sextic (1), and supplies no family dominating the space of all even sextics.
 
 ## 12. Context and attribution
 
@@ -536,15 +629,15 @@ f(r)={}&r^{23}-14r^{22}+86r^{21}-290r^{20}+520r^{19}-199r^{18}\\
 
 Clearing the nonzero denominators in (8) shows that \(f(r)=0\) implies the base relation used in (9). The proof only needs a root in \((7,8)\); it does not require an assertion that this polynomial is irreducible.
 
-[formal-contract]: https://github.com/hodge-computer/sextics/blob/main/formal/README.md
-[contributing]: https://github.com/hodge-computer/sextics/blob/main/CONTRIBUTING.md
+[formal-contract]: ../../formal/README.md
+[contributing]: ../../CONTRIBUTING.md
 [discussion]: https://github.com/hodge-computer/sextics/discussions/44
-[certificates]: https://github.com/hodge-computer/sextics/blob/main/docs/01-certificates.md
-[constructions]: https://github.com/hodge-computer/sextics/blob/main/docs/02-explicit-constructions.md
-[support]: https://github.com/hodge-computer/sextics/blob/main/docs/03-geometric-support.md
-[frontier]: https://github.com/hodge-computer/sextics/blob/main/docs/04-known-locus-and-frontier.md
-[diamond]: https://arxiv.org/html/2603.29157v2#S2
+[certificates]: ../../docs/01-certificates.md
+[constructions]: ../../docs/02-explicit-constructions.md
+[support]: ../../docs/03-geometric-support.md
+[frontier]: ../../docs/04-known-locus-and-frontier.md
+[diamond]: https://arxiv.org/html/2603.29157#S2
 [hidden-reflections]: https://github.com/hodge-computer/sextics/discussions/54#discussioncomment-18986773
-[one-reflection]: https://github.com/hodge-computer/sextics/blob/main/data/one-reflection/solution.md
-[quadric-pr]: https://github.com/hodge-computer/sextics/pull/122
-[fraction-derivation]: https://github.com/hodge-computer/sextics/blob/main/data/quadric-contact-broken/FractionDerivation.lean
+[one-reflection]: ../one-reflection/solution.md
+[quadric-pr]: ../quadric-contact-broken/solution.md
+[fraction-derivation]: ../../formal/lean/HodgeComputer/Constructions/FiniteAlgebra/FractionDerivation.lean

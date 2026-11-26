@@ -10,7 +10,7 @@ The coefficients are arbitrary. The library proves polynomial identities for thi
 
 ## Entry points
 
-Import `HodgeComputer.Constructions.TransitiveCubic`, or an individual module below.
+Import `HodgeComputer.Constructions.TransitiveCubic` for the covariant library, or an individual module below.
 
 - `Cubic` defines the equation and invariants `s4`, `s6`.
 - `Covariants` defines integral `H`, `Theta`, and `J`.
@@ -18,7 +18,7 @@ Import `HodgeComputer.Constructions.TransitiveCubic`, or an individual module be
 - `Map` supplies the invariant-differential identity for the rational map `xi=Theta/H²`, `eta=−J/(2H³)`, with its nonzero-denominator hypotheses.
 - `Functorial` transports the polynomial covariants through ring homomorphisms; `Diagonal` provides a useful diagonal specialization.
 
-`ReflectionData`, `IdentityData`, `IdentityProducts`, `IdentityEvaluation`, `CoefficientsA`–`CoefficientsH`, and `Differential` contain the exact coefficient proofs. `Kronecker`, `GradeCheck`, `EncodingCheck`, `SignedExpressions`, `BivariateExpressions`, `BivariateDifferentiation`, and `PolynomialDigitCheck` justify their finite polynomial encodings. These are proof infrastructure for the stated identities, not numerical samples or additional geometric assumptions.
+`ReflectionData`, `IdentityData`, `IdentityProducts`, `IdentityEvaluation`, `CoefficientsA`–`CoefficientsH`, and `Differential` contain the exact coefficient proofs. `Kronecker`, `GradeCheck`, and `EncodingCheck`, together with the shared [PolynomialEncoding](../PolynomialEncoding/README.md) modules, justify their finite polynomial encodings. These are proof infrastructure for the stated identities, not numerical samples or additional geometric assumptions.
 
 The normalization is
 
@@ -31,6 +31,6 @@ An application still constructs the relevant Jacobian family, a primitive on it,
 
 ## Attribution and applications
 
-Extracted from `fqlx`'s accepted [mixed-biweight construction](https://github.com/hodge-computer/sextics/pull/170), which adapts the cubic machinery and polynomial encodings of `hodgepodgeconjecture`'s [cyclic construction](https://github.com/hodge-computer/sextics/pull/165). The classical covariant normalization follows Tom Fisher and SageMath, as credited in those constructions. Both submissions were prepared with OpenAI Codex assistance. The shared copy uses `Transitive…` namespaces to distinguish this family from the directed cyclic family.
+Extracted from `fqlx`'s accepted [mixed-biweight construction](../../../../../data/mixed-biweight/solution.md), which adapts the cubic machinery and polynomial encodings of `hodgepodgeconjecture`'s [cyclic construction](../../../../../data/cycle-three/solution.md). The classical covariant normalization follows Tom Fisher and SageMath, as credited in those constructions. Both submissions were prepared with OpenAI Codex assistance. The shared copy uses `Transitive…` namespaces to distinguish this family from the directed cyclic family.
 
-The accepted files under `data/mixed-biweight/` are preserved. Future applications import these maintained modules rather than copying the coefficient tables.
+The accepted mixed-biweight application imports these modules directly. Its physical equation, incidence construction, coefficient specializations, and certificate closure remain in `data/mixed-biweight/`.

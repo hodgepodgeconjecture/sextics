@@ -7,7 +7,7 @@ import Mathlib.Tactic
 /-!
 Target-independent algebra extracted from the accepted crossed-ternary proof
 by GitHub contributor `1337isnot1337`. Original declarations and namespaces
-are retained. The accepted source files remain unchanged.
+are retained. The accepted application imports the maintained shared modules.
 
 The source explanation credits fqlx's moving-conic/Fermat-cover construction,
 Benjamin Diamond's maintained library extraction, the project contributors,
@@ -37,7 +37,7 @@ lemma fermat_relation : (a (K := K))^3+(b (K := K))^3+1=0 := by
 lemma delta_x : delta (K := K) (x K) = -y K/3 := by
   simp [delta,time_x]
 lemma delta_y : delta (K := K) (y K) = -(x K)^2/2 := by
-  simp only [delta,Derivation.smul_apply,smul_eq_mul,time_y]
+  simp only [delta,smul_apply,smul_eq_mul,time_y]
   field_simp [y_ne_zero (K := K)]
 
 lemma delta_a : delta (K := K) (a (K := K)) = (b (K := K))^2 := by
@@ -89,7 +89,8 @@ variable (K : Type*) [Field K]
 
 lemma equation_natDegree : (equation K).natDegree = 2 := by
   rw [equation_eq]
-  compute_degree <;> simp
+  compute_degree
+  simp
 
 def basis : Module.Basis (Fin 2) (RatFunc K) (E K) :=
   (AdjoinRoot.powerBasis' (equation_monic K)).basis.reindex (finCongr (equation_natDegree K))
@@ -128,7 +129,7 @@ lemma trace_y : Algebra.trace (RatFunc K) (E K) (y K) = 0 := by
   rw [h]
   rw [Polynomial.nextCoeff,equation_natDegree]
   norm_num [equation_eq]
-  rw [← map_pow,Polynomial.coeff_C,if_neg (by decide)]
+  rw [← map_pow,Polynomial.coeff_C,ite_eq_right (by decide)]
 
 lemma trace_expansion (f : E K) : Algebra.trace (RatFunc K) (E K) f = 2*first K f := by
   conv_lhs => rw [first_second_expansion K f]
@@ -136,7 +137,7 @@ lemma trace_expansion (f : E K) : Algebra.trace (RatFunc K) (E K) f = 2*first K 
   have hm : algebraMap (RatFunc K) (E K) (second K f)*y K = (second K f) • y K :=
     (Algebra.smul_def _ _).symm
   rw [hm,map_smul,trace_y,smul_zero,add_zero]
-  simp [smul_eq_mul]
+  simp
 
 end CrossedElliptic
 end
@@ -168,13 +169,14 @@ def translatedY (x y u v : L) : L := -y+slope x y u v*(x-translatedX x y u v)
 lemma translatedX_fraction (x y u v : L) (h : x-u≠0) :
     translatedX x y u v=xNumerator x y u v/(x-u)^2 := by
   unfold translatedX slope xNumerator
-  field_simp <;> ring
+  field_simp
+  ring
 
 lemma translatedY_fraction (x y u v : L) (h : x-u≠0) :
     translatedY x y u v=yNumerator x y u v/(x-u)^3 := by
   rw [translatedY,translatedX_fraction x y u v h]
   unfold slope yNumerator
-  field_simp <;> ring
+  field_simp
 
 lemma translated_curve (x y u v : L) (h : x-u≠0)
     (hp : y^2=x^3-432) (hq : v^2=u^3-432) :
@@ -192,7 +194,8 @@ lemma inverse_slope (x y u v : L) (h : x-u≠0)
     (h' : translatedX x y u v-u≠0) :
     slope (translatedX x y u v) (translatedY x y u v) u (-v)= -slope x y u v := by
   unfold translatedY slope
-  field_simp <;> ring
+  field_simp
+  ring
 
 lemma inverse_x (x y u v : L) (h : x-u≠0)
     (h' : translatedX x y u v-u≠0) :
@@ -215,7 +218,6 @@ end
 section
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 namespace CrossedElliptic
 open Polynomial CrossedRationalResidue
 variable (K : Type*) [Field K]

@@ -1,3 +1,4 @@
+import HodgeComputer.Sextic
 import Proposal.BundleAssembly
 import HodgeComputer.Constructions.HoldoutCover.ResiduePiolaPullback
 import HodgeComputer.Constructions.HoldoutCover.ResidueClearing
@@ -10,9 +11,6 @@ The parameter component may be zero while other components depend on it.
 -/
 
 noncomputable section
-set_option maxRecDepth 10000
-set_option maxHeartbeats 1000000
-set_option backward.isDefEq.respectTransparency false
 
 namespace HoldoutBundle
 
@@ -27,18 +25,18 @@ local instance : CharZero HoldoutFunctionField :=
   charZero_of_injective_ringHom (f := algebraMap ℂ HoldoutFunctionField)
     (algebraMap ℂ HoldoutFunctionField).injective
 
-def physicalSourceFor (A : HodgeComputer.Poly) : HoldoutFunctionField :=
+def physicalSourceFor (A : HodgeComputer.Sextic.Poly) : HoldoutFunctionField :=
   (physicalResidueMap (integerPartial 0 A) * physicalNormal -
     physicalResidueMap A *
       physicalResidueMap (integerPartial 0 (integerPartial 0 holdoutSextic))) /
         physicalNormal^2
 
 theorem physical_certificate_of_residue
-    (A : HodgeComputer.Poly) (hA : A.IsHomogeneous 6)
+    (A : HodgeComputer.Sextic.Poly) (hA : A.IsHomogeneous 6)
     (w : Fin 5 → HoldoutFunctionField)
     (equation : physicalSourceFor A +
       residueDivergence physicalTangent physicalNormal w = 0) :
-    HodgeComputer.HasCertificate holdoutSextic A 1 := by
+    HodgeComputer.HasCertificate holdoutSextic 1 A := by
   have hi : (Complex.I : ℂ)^6 = -1 := by
     rw [show (6 : ℕ) = 2*3 by decide, pow_mul, Complex.I_sq]
     norm_num
@@ -54,7 +52,7 @@ theorem physical_certificate_of_residue
     simpa only [physicalSourceFor, physicalNormal, residueDivergence,
       fieldDivergence, Finset.sum_sub_distrib, div_eq_mul_inv, Finset.sum_mul]
       using equation
-  have hreps : ∃ d : HodgeComputer.Poly, ∃ n : Fin 5 → HodgeComputer.Poly,
+  have hreps : ∃ d : HodgeComputer.Sextic.Poly, ∃ n : Fin 5 → HodgeComputer.Sextic.Poly,
       physicalResidueMap d ≠ 0 ∧
       ∀ i, physicalResidueMap (n i) = physicalResidueMap d * w i := by
     exact residue_common_representatives physicalProjection
@@ -69,13 +67,15 @@ theorem physical_certificate_of_residue
   apply hasCertificate_of_normalized holdoutSextic A D (Fin.cases N₀ N) Q
     holdoutSextic_isHomogeneous hA (holdoutSextic_irreducible Complex.I hi).prime
     hlegal ?_ ?_ 0 holdoutSextic_not_dvd_pderiv_zero
-  · simpa only [HodgeTestbed.directional, Fin.sum_univ_succ,
+  · simp only [HodgeTestbed.directional, Fin.sum_univ_succ,
       Fin.cases_zero, Fin.cases_succ, integerPartial, Derivation.restrictScalars_apply,
-      Derivation.coeFn_coe, mul_comm] using hnormal
-  · simpa only [HodgeTestbed.divergenceNumerator, HodgeTestbed.divergence,
+      Derivation.coeFn_coe, mul_comm] at hnormal ⊢
+    exact hnormal
+  · simp only [HodgeTestbed.divergenceNumerator, HodgeTestbed.divergence,
       HodgeTestbed.directional, residueDivNum, Fin.sum_univ_succ,
       Fin.cases_zero, Fin.cases_succ, integerPartial, Derivation.restrictScalars_apply,
-      Derivation.coeFn_coe, mul_comm] using hdiv
+      Derivation.coeFn_coe, mul_comm] at hdiv ⊢
+    exact hdiv
 
 theorem residue_source_map_append_zero
     {R K : Type*} [Field R] [Field K] {n : ℕ}
@@ -133,7 +133,7 @@ source identities.  This theorem performs their complete residue transport
 and the legal homogeneous certificate extraction. -/
 theorem physical_certificate_of_diagonal_residue
     {R : Type*} [Field R]
-    (A : HodgeComputer.Poly) (hA : A.IsHomogeneous 6)
+    (A : HodgeComputer.Sextic.Poly) (hA : A.IsHomogeneous 6)
     (φ : R →+* HoldoutFunctionField)
     (Dq : Fin 4 → Derivation ℤ R R)
     (E : Fin 5 → Derivation ℤ HoldoutFunctionField HoldoutFunctionField)
@@ -146,7 +146,7 @@ theorem physical_certificate_of_diagonal_residue
     (equation : rq + residueDivergence Dq gq wq = 0)
     (normal : φ gq = physicalNormal)
     (source : M.det * φ rq = physicalSourceFor A) :
-    HodgeComputer.HasCertificate holdoutSextic A 1 := by
+    HodgeComputer.HasCertificate holdoutSextic 1 A := by
   let w : Fin 5 → HoldoutFunctionField := Fin.lastCases 0 (fun i => φ (wq i))
   have hw : φ rq + residueDivergence E (φ gq) w = 0 :=
     residue_source_map_append_zero φ Dq E compatible gq rq wq equation

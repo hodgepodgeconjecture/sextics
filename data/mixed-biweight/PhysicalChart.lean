@@ -1,5 +1,6 @@
+import Proposal.JacobianModel
 import Proposal.CubicPoint
-import Proposal.CubicFunctorial
+import HodgeComputer.Constructions.TransitiveCubic.Functorial
 import Mathlib.RingTheory.Localization.Away.Basic
 
 /-! A localization lets an exact point certify nonvanishing of the covariants
@@ -9,10 +10,8 @@ this explicitly specified open chart and uses the kernel (F).
 Original cycle-three work prepared with OpenAI Codex assistance for hodgepodgeconjecture.
 Adapted to mixed-biweight for fqlx with OpenAI Codex assistance. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 2000000
 namespace CyclePhysicalChart
-open CyclePhysical CyclePhysicalCoordinates CycleCovariants
+open CyclePhysical CyclePhysicalCoordinates TransitiveCovariants
 local notation "X" => (MvPolynomial.X : Fin 6 → Ambient)
 def denominator : Ambient := X 0*X 1*X 2*X 3
 abbrev Chart := Localization.Away denominator

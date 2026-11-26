@@ -1,6 +1,5 @@
 /* The optional WebGL view lives off the page's UI thread. */
 'use strict';
-importScripts('divisor.js', 'renderer.js');
 
 const view = new EventTarget(), page = new EventTarget();
 let renderer, canvas, stopped = false;
@@ -12,6 +11,11 @@ function fatal(message) {
 function dispatch(target, name, properties = {}) {
   target.dispatchEvent(Object.assign(new Event(name, {cancelable:true}), properties));
 }
+function present() {
+  if (stopped) return;
+  const frame = canvas.transferToImageBitmap();
+  postMessage({type:'frame', value:frame}, [frame]);
+}
 function resize(size) {
   Object.assign(view, size);
   canvas.clientWidth = size.width; canvas.clientHeight = size.height;
@@ -22,12 +26,14 @@ function resize(size) {
 setInterval(() => send('pulse', renderer?.getCamera()), 500);
 onerror = event => { event.preventDefault(); fatal(event.message || 'Surface worker failed.'); };
 onunhandledrejection = event => { event.preventDefault(); fatal(event.reason?.message || 'Surface worker failed.'); };
-onmessage = ({data}) => {
+function handleMessage({data}) {
   if (stopped) return;
   try {
     switch (data.type) {
       case 'init':
-        canvas = data.canvas;
+        // A worker-owned canvas, not a transferred placeholder: iOS Safari showed
+        // a transferred canvas at low resolution and with distorted proportions.
+        canvas = new OffscreenCanvas(data.size.pixelWidth, data.size.pixelHeight);
         page.hidden = data.hidden;
         resize(data.size);
         renderer = HodgeSurfaceCore.create(canvas, {
@@ -35,7 +41,8 @@ onmessage = ({data}) => {
           onStatus:value => send('status', value),
           onModeChange:value => send('mode', value),
           onLabel:value => send('label', value),
-          onFatal:fatal
+          onFatal:fatal,
+          onFrame:present
         });
         send('initialized');
         break;
@@ -54,3 +61,18 @@ onmessage = ({data}) => {
     }
   } catch (error) { fatal(error.message || String(error)); }
 };
+
+// Fetch dependencies asynchronously: the heartbeat must remain live while the
+// network is slow. Queue controls until the renderer is available.
+const pending = [];
+onmessage = event => pending.push(event);
+send('booting');
+Promise.all([import('./divisor.js'), import('./mesh.js'), import('./slice-mesh.js'), import('./renderer.js')]).then(() => {
+  if (stopped) return;
+  onmessage = handleMessage;
+  for (const event of pending) {
+    if (stopped) break;
+    handleMessage(event);
+  }
+  pending.length = 0;
+}).catch(error => fatal(error.message || 'The renderer could not be downloaded.'));

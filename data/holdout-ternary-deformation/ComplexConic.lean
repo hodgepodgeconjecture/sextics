@@ -1,9 +1,7 @@
 import Proposal.DeformedConic
-import Proposal.ConicLifting
+import HodgeComputer.Constructions.PolynomialCurves.ComplexPoint
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 800000
 namespace DeformedConic
 open HoldoutConstruction
 local instance complexConic_local_1 : Fact (Nat.Prime 5) := ⟨by decide⟩

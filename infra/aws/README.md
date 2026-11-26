@@ -26,15 +26,20 @@ python3 scripts/build-content.py
 python3 scripts/validate-records.py
 python3 scripts/check-content.py
 npm ci --prefix server --ignore-scripts
-node --test server/*.test.mjs
 python3 infra/aws/package.py --site . --output /tmp/sextics-release
 ```
 
-The packager uses an explicit public-file allowlist. It never copies the whole
+The packager uses the public roots and file types in
+`public-files.json`; content link checks use the same boundary. Top-level and nested
+symlinks are refused. The public package includes only meshes selected by the atlas
+and saved homepage, plus their referenced buffers. Unused mesh files fail packaging
+and must be removed from the checkout; earlier versions remain in Git history.
+It never copies the whole
 repository, `.git`, credentials, server sources, dependencies, or local caches
 into the public website. The Lambda archive contains only the runtime modules,
-pinned dependencies, instance catalogue, and discussion mapping. Its SHA-256
-and the public-file counts are recorded in `build.json`. Do not put credentials
+pinned dependencies, instance catalogue, discussion mapping, and
+the shared route parser. Its SHA-256
+and the exact public file list and counts are recorded in `build.json`. Do not put credentials
 in either package.
 
 ## Deploy
@@ -56,9 +61,17 @@ that it succeeded.
 The outputs identify the website bucket, CloudFront distribution, API, session
 table, and app secret. Upload the public package to the website bucket with
 `Cache-Control: public,max-age=60`; use a CloudFront invalidation for immediate
-rollout. Upload assets and content before `index.html` and `data/revision.json`
-so a polling client discovers the new revision after its files are available.
-Retain older content-addressed meshes while existing tabs may still need them.
+rollout. Upload assets and content before `index.html`.
+After uploading the new public files, run `retire.py --bucket <bucket> --manifest
+<release>/build.json`. It removes files absent from the new release that were
+recorded by `deployment/public-files.json`. It also lists the `assets/meshes/`
+prefix and deletes every unselected mesh, including versions published before
+release manifests existed. It never deletes notification state or inventories
+unrelated storage prefixes. Other public files require the prior manifest as
+ownership evidence. Open tabs still requesting an old mesh may need a reload.
+
+Apply the updated `publisher.json` IAM policy before deploying the workflow with
+retirement; it grants deletion within public roots, including obsolete meshes.
 
 Copy the existing GitHub App configuration directly from its private local
 file into the named Secrets Manager secret, without printing it or writing it
@@ -81,6 +94,8 @@ push workflow. The deployment workflow therefore handles successful
 pushes to `main`. It always checks out current `main`, never the submitted proof
 branch or its artifacts. It does not run Lean again. Lambda code and new
 discussion mappings require an owner-operated backend deployment separately.
+Profile lookup reads accepted contributor IDs from the published `assets/atlas/index.json`,
+so accepting a new solver does not require a backend deployment.
 
 ## Discord announcements
 
@@ -96,7 +111,7 @@ the commenter and links directly to the comment on hodge.computer; discussions
 outside the atlas link to GitHub. Comment bodies are not copied into the feed.
 Edits and deletions do not send alerts, and enabling this workflow does not replay
 old comments. The webhook's configured name and avatar are used for all messages.
-This workflow does not rebuild the website or require a running preview.
+This workflow does not rebuild the website.
 
 Comment delivery records live separately at
 `notifications/discussion-comments/<comment-id>.json` in the website bucket.
@@ -105,13 +120,12 @@ posting the same comment twice. Each comment has its own concurrency group and
 storage key, so a burst of comments does not cancel pending alerts or overwrite
 another comment's record. The workflow reuses the existing publishing identity;
 no new secret, AWS permission, GitHub App webhook, or backend deployment is needed.
-Run **Announce discussion comments** manually to check tests, secret presence,
-and storage access without sending a message. Retry failed comment deliveries
-through their original workflow run, subject to the delivery caveat below.
+Retry failed comment deliveries through their original workflow run, subject
+to the delivery caveat below.
 
 Before the first deployment with this secret, the workflow initializes its baseline
 from the existing hosted atlas. It does not announce historical results. After upload,
-it waits for the new revision to be visible, then sends any pending announcements.
+it waits for the published atlas to match the new build, then sends any pending announcements.
 The website bucket's `notifications/discord-state.json` records announced instance
 and solve IDs, using the publisher's existing S3 permissions; it contains no secrets.
 Keep this state when redeploying or rolling back to avoid duplicate announcements.
@@ -136,9 +150,8 @@ changing DNS. Website infrastructure changes must not alter email routing.
 Check the homepage, a rendered surface, technical content, and an instance's
 discussion panel. Check `/api/session`, disabled `/auth/setup`, and inaccessible
 `/.git/config` and `/server/` paths. API responses and redirects must remain
-uncached, and cookies must be Secure, HttpOnly, and SameSite=Lax. Perform a real
-sign-in/sign-out test. Use the local discussion fixture for posting tests that
-must not create public comments or notifications.
+uncached, and cookies must be Secure, HttpOnly, and SameSite=Lax. Verify sign-in and sign-out. Posting a comment creates public activity and may
+notify subscribers.
 Private GitHub discussions must remain unavailable to anonymous visitors.
 
 DynamoDB TTL is eventual cleanup, not the authorization boundary. Application

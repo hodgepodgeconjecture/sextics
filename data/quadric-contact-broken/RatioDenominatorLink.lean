@@ -1,10 +1,9 @@
+import HodgeComputer.Sextic
 import Proposal.RatioMatrixInverse
 import Proposal.DenominatorAssembly
 import Mathlib.RingTheory.AdjoinRoot
 import Mathlib.LinearAlgebra.Matrix.ToLin
 
-set_option maxRecDepth 100000
-set_option maxHeartbeats 400000
 noncomputable section
 namespace QuadricContactRatioDenominator
 open Polynomial QuadricContactRatioInverse
@@ -70,7 +69,7 @@ theorem actual_polynomial_matrix_inverse :
 /-- The actual auxiliary denominator is admissible for the original sextic,
 provided the generic clearing construction specializes to this norm. All
 matrix data and the inverse are defined and proved above, not hypotheses. -/
-theorem denominator_legal (D : HodgeComputer.Poly) (κ : ℂ) (hκ : κ ≠ 0)
+theorem denominator_legal (D : HodgeComputer.Sextic.Poly) (κ : ℂ) (hκ : κ ≠ 0)
     (hD : (QuadricContactDenominator.toUni D).map QuadricContactDenominator.specialize =
       Polynomial.C κ *
       ((2 * Polynomial.X ^ 2 : Polynomial ℂ) •

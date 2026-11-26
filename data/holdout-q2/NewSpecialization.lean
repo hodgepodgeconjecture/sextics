@@ -1,11 +1,9 @@
-import Proposal.CheckedPolynomialLists
-import Proposal.CheckedPolynomialListDegree
+import HodgeComputer.Constructions.FiniteAlgebra.CheckedPolynomialLists
+import HodgeComputer.Constructions.FiniteAlgebra.CheckedPolynomialListDegree
 import Mathlib.RingTheory.AdjoinRoot
 import Mathlib.Tactic.NormNum
 
 /-! Exact rational good-fiber data. Every numerical identity is checked by the Lean kernel. -/
-set_option maxRecDepth 100000
-set_option maxHeartbeats 0
 noncomputable section
 namespace HoldoutQ2.NewSpecialization
 open Polynomial CheckedPolynomialLists

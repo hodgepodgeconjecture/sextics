@@ -1,5 +1,6 @@
+import Proposal.CyclicCubic
 import Proposal.CubicPoint
-import Proposal.CubicFunctorial
+import Proposal.CyclicCubicFunctorial
 import Mathlib.RingTheory.Localization.Away.Basic
 
 /-! A localization lets an exact point certify nonvanishing of the covariants
@@ -8,8 +9,6 @@ does not evaluate arbitrary rational functions at a point: it first works in
 this explicitly specified open chart and uses the kernel (F).
 Prepared with OpenAI Codex assistance for hodgepodgeconjecture. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 2000000
 namespace CyclePhysicalChart
 open CyclePhysical CyclePhysicalCoordinates CycleCovariants
 local notation "X" => (MvPolynomial.X : Fin 6 → Ambient)

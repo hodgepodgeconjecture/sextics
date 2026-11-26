@@ -1,11 +1,9 @@
-import Proposal.CheckedPolynomialLists
+import HodgeComputer.Constructions.FiniteAlgebra.CheckedPolynomialLists
 import Mathlib.Algebra.Polynomial.Roots
 import Mathlib.Algebra.CharZero.Infinite
 import Mathlib.Data.Matrix.Basic
 import Mathlib.Tactic.Ring
 
-set_option maxHeartbeats 0
-set_option maxRecDepth 100000
 noncomputable section
 namespace GenericSpecialization
 open Polynomial

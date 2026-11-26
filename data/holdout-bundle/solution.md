@@ -312,8 +312,8 @@ It retains all six components when passing to the certificate.
 The chart denominators, normal denominator, and traced coefficients
 are nonzero in the actual sextic function field. The trusted residue
 clearing and finite homogeneous extraction theorems therefore produce
-some finite \(d\), a nonzero homogeneous \(D\) coprime to \(F\) over
-\(\mathbb C\), six homogeneous \(N_j\) of degree \(d+1\), and \(Q\)
+a nonzero homogeneous \(D\) coprime to \(F\) over
+\(\mathbb C\), six homogeneous \(N_j\) of degree \(\deg(D)+1\), and \(Q\)
 with
 
 \[
@@ -342,8 +342,7 @@ protected target. The exported theorem is
 
 ```lean
 Submission.certificate :
-  HodgeComputer.HasCertificate
-    HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q
+  HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A
 ```
 
 `BundleCertificate.lean` assembles the new quotient primitive and the
@@ -365,7 +364,7 @@ physical transport for the missing summand.
 
 Geometric existence for both summands was already known, as recorded in
 the repository authors' Chapter 4, Section 4.6 and the instance's
-[mathematical context](#case/holdout-bundle). The contribution here is the closed Lean
+[mathematical context](why.md). The contribution here is the closed Lean
 certificate for this fixed bundle.
 
 The protected workflow checks the exact existential statement by compiling the submitted modules, replaying their declarations with `leanchecker`, and auditing their axiom dependencies. The accepted theorem uses only `propext`, `Classical.choice`, and `Quot.sound`. No expanded polynomial witness is supplied; the result establishes existence over complex coefficients with unrestricted finite denominator degree and a general quotient remainder.

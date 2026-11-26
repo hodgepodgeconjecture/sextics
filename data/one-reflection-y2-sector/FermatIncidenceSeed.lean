@@ -1,8 +1,8 @@
-import Proposal.CurveFamily
+import HodgeComputer.Constructions.HoldoutCover.CurveFamily
 import Proposal.CurveSeedIncidence
-import Proposal.EndpointFields
-import Proposal.FermatFields
-import Proposal.GenericIncidence
+import HodgeComputer.Constructions.HoldoutCover.EndpointFields
+import HodgeComputer.Constructions.HoldoutCover.FermatFields
+import HodgeComputer.Constructions.HoldoutCover.GenericIncidence
 
 /- Source component: FermatIncidenceSeed -/
 section
@@ -11,7 +11,6 @@ Fermat endpoint coordinate ring nontrivial. The seed is evaluated before
 passing to any fraction field. -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 
 namespace HoldoutConicIncidence
 

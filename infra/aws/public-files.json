@@ -1,0 +1,31 @@
+{
+  "roots": [
+    "assets",
+    "data",
+    "discussions",
+    "docs"
+  ],
+  "files": [
+    "index.html"
+  ],
+  "extensions": [
+    ".html",
+    ".js",
+    ".css",
+    ".json",
+    ".md",
+    ".rec",
+    ".lean",
+    ".svg",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".webp",
+    ".ico",
+    ".woff",
+    ".woff2",
+    ".ttf",
+    ".gz",
+    ".txt"
+  ]
+}

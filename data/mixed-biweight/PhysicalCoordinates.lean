@@ -1,5 +1,6 @@
+import Proposal.JacobianModel
 import Proposal.PhysicalField
-import Proposal.CyclicCubic
+import HodgeComputer.Constructions.TransitiveCubic.Cubic
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Algebra.MvPolynomial.NoZeroDivisors
 
@@ -9,8 +10,6 @@ one half, and the transitive term of coefficient one third. All coordinate denom
 nonzero. Original cycle-three work prepared with OpenAI Codex assistance for hodgepodgeconjecture.
 Adapted to mixed-biweight for fqlx with OpenAI Codex assistance. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 2000000
 namespace CyclePhysicalCoordinates
 open CyclePhysical
 def coordinate (i : Fin 6) : FunctionField := residueMap (MvPolynomial.X i)
@@ -56,13 +55,13 @@ lemma ratio_ne_zero : ratio ≠ 0 := div_ne_zero (coordinate_ne_zero 3) (coordin
 lemma t_ne_zero : t ≠ 0 := pow_ne_zero _ ratio_ne_zero
 
 lemma cubic_equation :
-    CycleCubic.cubic coeffA coeffB coeffC coeffD coeffE coeffF x y 1=0 := by
+    TransitiveCubic.cubic coeffA coeffB coeffC coeffD coeffE coeffF x y 1=0 := by
   have h0 := coordinate_ne_zero 0
   have h1 := coordinate_ne_zero 1
   have h2 := coordinate_ne_zero 2
   have h3 := coordinate_ne_zero 3
   have he := equation_zero
-  simp only [CycleCubic.cubic,coeffA,coeffB,coeffC,coeffD,coeffE,coeffF,
+  simp only [TransitiveCubic.cubic,coeffA,coeffB,coeffC,coeffD,coeffE,coeffF,
     x,y,radial,t,cOne,cTwo,ratio]
   field_simp
   linear_combination he

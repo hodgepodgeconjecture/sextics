@@ -53,10 +53,7 @@ def derivationLinearCombination (D : ι → Derivation ℤ L L) (a : ι → L) :
 theorem derivationLinearCombination_apply (D : ι → Derivation ℤ L L)
     (a : ι → L) (x : L) :
     derivationLinearCombination D a x = ∑ i, a i*D i x := by
-  change Derivation.coeFnAddMonoidHom (∑ i, a i • D i) x = _
-  rw [map_sum]
-  simp only [Finset.sum_apply, Derivation.coeFnAddMonoidHom_apply,
-    Derivation.smul_apply, smul_eq_mul]
+  simp only [derivationLinearCombination, sum_apply, smul_apply, smul_eq_mul]
 
 end DerivationCombination
 
@@ -105,6 +102,7 @@ def finiteQuotientEvaluation (π : MvPolynomial (Fin (n+1)) R →+* Q) :
     MvPolynomial (Fin (n+1)) R →+* L :=
   (algebraMap K L).comp ((algebraMap Q K).comp π)
 
+omit [IsDomain Q] in
 /-- The full tangent-coordinate identities determine the derivation on
 the entire finite function-field extension, not just on coordinate images. -/
 theorem finite_quotient_tangent_chain
@@ -160,6 +158,7 @@ variable [Field K] [CharZero K] [Algebra Q K] [IsFractionRing Q K]
 variable [Field L] [CharZero L] [Algebra K L] [FiniteDimensional K L]
 variable [CommRing T] {n : ℕ}
 
+omit [IsDomain Q] in
 /-- An actual polynomial family on the hypersurface produces the residue
 equation needed by legal denominator clearing. All remaining matrix,
 Hessian, and polynomiality hypotheses are derived from the stated data. -/

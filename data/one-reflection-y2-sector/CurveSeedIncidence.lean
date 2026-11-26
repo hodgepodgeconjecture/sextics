@@ -1,6 +1,6 @@
 import Mathlib.Algebra.Polynomial.Roots
-import Proposal.CurveGradientBlocks
-import Proposal.CurveJacobianScaling
+import HodgeComputer.Constructions.HoldoutCover.CurveGradientBlocks
+import HodgeComputer.Constructions.HoldoutCover.CurveJacobianScaling
 import Proposal.CurveSeed
 
 /- Source component: CurveJacobianSeed -/
@@ -131,8 +131,6 @@ section
 coefficient Jacobian is the two explicit nonsingular parity blocks. -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 0
 
 namespace HoldoutConicIncidence
 

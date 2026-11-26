@@ -19,10 +19,10 @@ $$
 The second displayed summand is exactly the instance's second ternary polynomial, with its variables ordered to match the first. No coefficient, variable, or numerator is changed. The theorem [Submission.certificate](Solution.lean) proves the verifier-generated statement
 
 ```lean
-HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q
+HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A
 ```
 
-The proof is an existence construction using finite algebraic extensions, rational functions, and classical choice. It does not export an expanded polynomial witness or a claimed small denominator degree. Its conclusion includes all of the verifier's requirements: a nonzero homogeneous denominator \(D\) of some finite degree \(d\), six homogeneous numerators \(N_i\) of degree \(d+1\), relative primality of \(F,D\), and a polynomial \(Q\) satisfying
+The proof is an existence construction using finite algebraic extensions, rational functions, and classical choice. It does not export an expanded polynomial witness or a claimed small denominator degree. For the nonzero sextic \(F\) and homogeneous degree-six target \(A\), it supplies a nonzero homogeneous denominator \(D\), six homogeneous numerators \(N_i\) of degree \(\deg(D)+1\), relative primality of \(F,D\), and a polynomial \(Q\) satisfying
 
 $$
 AD^2-D\sum_iN_i\partial_iF+
@@ -54,7 +54,7 @@ $$
 
 It is obtained by constructing primitives on an elliptic companion for each block and contracting their elliptic factors through rational residues. Multiplication by \(u^4v^2\) and normalized trace then give a weighted divergence equation over the original rational function field \(\mathbb C(x,a,r,z)\). An explicit change of coordinates turns that equation into a rational vector field for the physical sextic. A separate hypersurface evaluation proves that clearing its denominators preserves legality.
 
-The Lean sources are grouped into thirteen flat helpers to keep the submission below the repository's file limit. Each helper identifies its original source components in comments; the mathematical namespaces and declarations remain descriptive.
+The Lean proof imports the shared [elliptic companion library](../../formal/lean/HodgeComputer/Constructions/EllipticCompanions/README.md). The companion equations, incidence seeds, scalar sources and physical certificate closure remain in this instance’s helper modules; comments identify their mathematical components.
 
 ## A polynomial family on the companion cone
 
@@ -171,7 +171,7 @@ These are the checked `first_scalar_primitive` and `second_scalar_primitive` the
 
 Translate the first primitive and its accompanying functions by an independent generic elliptic point. The translation is an actual field homomorphism, preserves the invariant derivation, and commutes with the coefficient derivatives because the generic point is constant for those derivatives.
 
-[EllipticTranslation.lean](EllipticTranslation.lean) proves more than a finite numerical avoidance test: at each affine point over the old coefficient field, the translated functions specialize to translation of the old functions by that point. The resulting field images are nonzero whenever the original functions are nonzero. Simultaneous specialization on both branches proves regularity on the whole old finite fibre, including fibres with a zero \(y_e\) coordinate.
+[Translation.lean](../../formal/lean/HodgeComputer/Constructions/EllipticCompanions/Translation.lean) proves more than a finite numerical avoidance test: at each affine point over the old coefficient field, the translated functions specialize to translation of the old functions by that point. The resulting field images are nonzero whenever the original functions are nonzero. Simultaneous specialization on both branches proves regularity on the whole old finite fibre, including fibres with a zero \(y_e\) coordinate.
 
 Finite splitting fields then supply the old poles, the needed elliptic points above them, and the finite residue supports after translation. The chosen residue functional \(R\) sums finite residues over fibres containing nonzero residues of \(f\theta\) and excludes the three theta fibres. It satisfies
 
@@ -215,7 +215,7 @@ R(f\theta)=3\alpha-\operatorname{div}_{x,a}\xi,
 \xi_i=\sum_{r^3=1728}C_i(r,-36)+B(C_i).
 $$
 
-[InfinityPairing.lean](InfinityPairing.lean) contains the local and infinity calculations. [EllipticContraction.lean](EllipticContraction.lean) constructs the pole sets and completes the global pairing and contraction.
+[Infinity.lean](../../formal/lean/HodgeComputer/Constructions/EllipticCompanions/Infinity.lean) contains the local and infinity calculations. [Contraction.lean](../../formal/lean/HodgeComputer/Constructions/EllipticCompanions/Contraction.lean) constructs the pole sets and completes the global pairing and contraction.
 
 ### The product divergence and descent
 
@@ -306,9 +306,9 @@ Finally, [Solution.lean](Solution.lean) identifies the polynomial definitions wi
 
 ## Prior work and assistance
 
-The companion and translated elliptic contraction strategy comes from the sextics project's [Chapter 3A, §§3A.2–3A.3](https://github.com/hodge-computer/sextics/blob/main/docs/03a-split-and-k3.md), including its discussion of involution-stable ternary decompositions. That geometric argument explains why the crossed target should be accessible. The present proof establishes the needed algebraic identities and existence constructions directly.
+The companion and translated elliptic contraction strategy comes from the sextics project's [Chapter 3A, §§3A.2–3A.3](../../docs/03a-split-and-k3.md), including its discussion of involution-stable ternary decompositions. That geometric argument explains why the crossed target should be accessible. The present proof establishes the needed algebraic identities and existence constructions directly.
 
-Ben Burns, GitHub `fqlx`, developed the accepted moving-conic/Fermat-cover proof in [PR #128](https://github.com/hodge-computer/sextics/pull/128). Benjamin Diamond, GitHub `benediamond`, extracted its reusable machinery in [PR #134](https://github.com/hodge-computer/sextics/pull/134). This submission imports that maintained library for generic incidence and field-factor arguments, polynomial normal vectors, finite derivation extension and trace, polynomial-family residue transport, and homogeneous certificate normalization. Its underlying notices also credit the earlier accepted `quadric-contact-broken` contribution for the quotient-rule construction. The target-specific family, scalar conversion, elliptic residue contraction with its infinity correction, and physical transport are supplied here; no complete accepted proof package is copied into this folder.
+Ben Burns, GitHub `fqlx`, developed the accepted moving-conic/Fermat-cover [holdout proof](../holdout/solution.md). Benjamin Diamond, GitHub `benediamond`, extracted its reusable machinery into the shared library. This submission imports that maintained library for generic incidence and field-factor arguments, polynomial normal vectors, finite derivation extension and trace, polynomial-family residue transport, and homogeneous certificate normalization. Its underlying notices also credit the earlier accepted `quadric-contact-broken` contribution for the quotient-rule construction. The target-specific family, scalar conversion, elliptic residue contraction with its infinity correction, and physical transport are supplied here; no complete accepted proof package is copied into this folder.
 
 The rational residue theorem, Weierstrass addition formulas, and trace identities are classical algebraic tools; the particular formulas and boundary calculations used here are proved in the submitted Lean sources. The Lean and mathlib contributors supply the proof assistant and the imported algebraic foundations.
 

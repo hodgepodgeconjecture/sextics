@@ -1,6 +1,5 @@
 {
   "seed": 213075,
-  "resolution": 128,
   "phaseSigns": [
     1,
     1,
@@ -47,13 +46,15 @@
       0.9200465623430978
     ]
   ],
-  "mesh": "meshes/slice-quadratic-cubic-pullback-213075.json",
-  "triangleCount": 251664,
-  "validated": true,
+  "centerOriginal": [
+    -0.29134285239896196,
+    -0.09144726530045368,
+    0.09229873262093646
+  ],
+  "displayScale": 2.8018593934756453,
+  "complexScale": 0.41133502517793447,
   "camera": {
-    "yaw": 45.5993013648444,
-    "pitch": -0.6751315329370317,
-    "distance": 3.45,
+    "distance": 2.87167,
     "center": [
       0,
       0,

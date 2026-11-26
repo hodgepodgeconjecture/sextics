@@ -1,8 +1,7 @@
-import HodgeComputer.Verify
+import HodgeComputer.Sextic
+import HodgeComputer.Constructions.Explicit
 
-set_option maxHeartbeats 2000000
 
-set_option maxRecDepth 1000
 
 set_option linter.unusedTactic false
 
@@ -16,7 +15,7 @@ noncomputable section
 
 namespace HodgeComputer.Instances.FamilyShear
 
-open MvPolynomial HodgeTestbed
+open MvPolynomial HodgeTestbed HodgeComputer.Sextic
 
 def F : Poly := (MvPolynomial.C (1 : ℂ)) * (MvPolynomial.X 0)^6 +
     (MvPolynomial.C (2 : ℂ)) * (MvPolynomial.X 0)^4 * (MvPolynomial.X 3)^2 +
@@ -53,85 +52,13 @@ def N5 : Poly := (MvPolynomial.C (-5 / 3 : ℂ)) * (MvPolynomial.X 1) * (MvPolyn
 
 def N : Fin 6 → Poly := fun i => if i.val = 0 then N0 else if i.val = 1 then N1 else if i.val = 2 then N2 else if i.val = 3 then N3 else if i.val = 4 then N4 else N5
 
-private theorem derivative_0_0 : pderiv (0 : Fin 6) (X 0 : Poly) = 1 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_0_1 : pderiv (0 : Fin 6) (X 1 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_0_2 : pderiv (0 : Fin 6) (X 2 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_0_3 : pderiv (0 : Fin 6) (X 3 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_0_4 : pderiv (0 : Fin 6) (X 4 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_0_5 : pderiv (0 : Fin 6) (X 5 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_1_0 : pderiv (1 : Fin 6) (X 0 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_1_1 : pderiv (1 : Fin 6) (X 1 : Poly) = 1 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_1_2 : pderiv (1 : Fin 6) (X 2 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_1_3 : pderiv (1 : Fin 6) (X 3 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_1_4 : pderiv (1 : Fin 6) (X 4 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_1_5 : pderiv (1 : Fin 6) (X 5 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_2_0 : pderiv (2 : Fin 6) (X 0 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_2_1 : pderiv (2 : Fin 6) (X 1 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_2_2 : pderiv (2 : Fin 6) (X 2 : Poly) = 1 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_2_3 : pderiv (2 : Fin 6) (X 3 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_2_4 : pderiv (2 : Fin 6) (X 4 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_2_5 : pderiv (2 : Fin 6) (X 5 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_3_0 : pderiv (3 : Fin 6) (X 0 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_3_1 : pderiv (3 : Fin 6) (X 1 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_3_2 : pderiv (3 : Fin 6) (X 2 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_3_3 : pderiv (3 : Fin 6) (X 3 : Poly) = 1 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_3_4 : pderiv (3 : Fin 6) (X 4 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_3_5 : pderiv (3 : Fin 6) (X 5 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_4_0 : pderiv (4 : Fin 6) (X 0 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_4_1 : pderiv (4 : Fin 6) (X 1 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_4_2 : pderiv (4 : Fin 6) (X 2 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_4_3 : pderiv (4 : Fin 6) (X 3 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_4_4 : pderiv (4 : Fin 6) (X 4 : Poly) = 1 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_4_5 : pderiv (4 : Fin 6) (X 5 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_5_0 : pderiv (5 : Fin 6) (X 0 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_5_1 : pderiv (5 : Fin 6) (X 1 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_5_2 : pderiv (5 : Fin 6) (X 2 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_5_3 : pderiv (5 : Fin 6) (X 3 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_5_4 : pderiv (5 : Fin 6) (X 4 : Poly) = 0 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
-private theorem derivative_5_5 : pderiv (5 : Fin 6) (X 5 : Poly) = 1 := by norm_num [pderiv_X, Pi.single_apply, Fin.ext_iff]
-
 theorem e1 : (1 : Poly) * directional F N = A*D := by
 
   simp only [directional, Fin.sum_univ_succ, Fin.sum_univ_zero, add_zero]
 
   change (1:Poly) * (pderiv (0 : Fin 6) F * N0 + (pderiv (1 : Fin 6) F * N1 + (pderiv (2 : Fin 6) F * N2 + (pderiv (3 : Fin 6) F * N3 + (pderiv (4 : Fin 6) F * N4 + (pderiv (5 : Fin 6) F * N5)))))) = A*D
 
-  simp only [F,A,D,N0,N1,N2,N3,N4,N5,map_zero,map_add,pderiv_C,pderiv_mul,pderiv_pow,derivative_0_0, derivative_0_1, derivative_0_2, derivative_0_3, derivative_0_4, derivative_0_5, derivative_1_0, derivative_1_1, derivative_1_2, derivative_1_3, derivative_1_4, derivative_1_5, derivative_2_0, derivative_2_1, derivative_2_2, derivative_2_3, derivative_2_4, derivative_2_5, derivative_3_0, derivative_3_1, derivative_3_2, derivative_3_3, derivative_3_4, derivative_3_5, derivative_4_0, derivative_4_1, derivative_4_2, derivative_4_3, derivative_4_4, derivative_4_5, derivative_5_0, derivative_5_1, derivative_5_2, derivative_5_3, derivative_5_4, derivative_5_5]
+  simp only [F,A,D,N0,N1,N2,N3,N4,N5,map_zero,map_add,pderiv_C,pderiv_mul,pderiv_pow,pderiv_X, Pi.single_apply, Fin.ext_iff]
 
   apply MvPolynomial.funext; intro x
 
@@ -143,7 +70,7 @@ theorem e2 : divergenceNumerator D N = F^1*Q := by
 
   change D * (pderiv (0 : Fin 6) N0 + (pderiv (1 : Fin 6) N1 + (pderiv (2 : Fin 6) N2 + (pderiv (3 : Fin 6) N3 + (pderiv (4 : Fin 6) N4 + (pderiv (5 : Fin 6) N5)))))) - (pderiv (0 : Fin 6) D * N0 + (pderiv (1 : Fin 6) D * N1 + (pderiv (2 : Fin 6) D * N2 + (pderiv (3 : Fin 6) D * N3 + (pderiv (4 : Fin 6) D * N4 + (pderiv (5 : Fin 6) D * N5)))))) = F^1*Q
 
-  simp only [F,D,Q,N0,N1,N2,N3,N4,N5,map_zero,map_add,pderiv_C,pderiv_mul,pderiv_pow,derivative_0_0, derivative_0_1, derivative_0_2, derivative_0_3, derivative_0_4, derivative_0_5, derivative_1_0, derivative_1_1, derivative_1_2, derivative_1_3, derivative_1_4, derivative_1_5, derivative_2_0, derivative_2_1, derivative_2_2, derivative_2_3, derivative_2_4, derivative_2_5, derivative_3_0, derivative_3_1, derivative_3_2, derivative_3_3, derivative_3_4, derivative_3_5, derivative_4_0, derivative_4_1, derivative_4_2, derivative_4_3, derivative_4_4, derivative_4_5, derivative_5_0, derivative_5_1, derivative_5_2, derivative_5_3, derivative_5_4, derivative_5_5]
+  simp only [F,D,Q,N0,N1,N2,N3,N4,N5,map_zero,map_add,pderiv_C,pderiv_mul,pderiv_pow,pderiv_X, Pi.single_apply, Fin.ext_iff]
 
   apply MvPolynomial.funext; intro x
 
@@ -306,9 +233,7 @@ theorem fiber_coprime : IsCoprime fFiber dFiber := by
 
 theorem denominator_legal : IsRelPrime F D := by
 
-  apply relPrime_of_retract toUni fromUni retract
-
-  apply relPrime_of_specialization specialize
+  apply relPrime_of_chart_specialization toUni fromUni retract specialize
 
   · rw [toUni_F, fUni_lc]
 
@@ -316,7 +241,7 @@ theorem denominator_legal : IsRelPrime F D := by
 
   · rw [fiber_F, fiber_D]
 
-    exact fiber_coprime.isRelPrime
+    exact fiber_coprime
 
 theorem denominator_ne_zero : D ≠ 0 := by
 
@@ -326,19 +251,24 @@ theorem denominator_ne_zero : D ≠ 0 := by
 
   norm_num [D, show (![1,1,1,1,1,1] : Fin 6 → ℂ) 0 = 1 from rfl, show (![1,1,1,1,1,1] : Fin 6 → ℂ) 1 = 1 from rfl, show (![1,1,1,1,1,1] : Fin 6 → ℂ) 2 = 1 from rfl, show (![1,1,1,1,1,1] : Fin 6 → ℂ) 3 = 1 from rfl, show (![1,1,1,1,1,1] : Fin 6 → ℂ) 4 = 1 from rfl, show (![1,1,1,1,1,1] : Fin 6 → ℂ) 5 = 1 from rfl] at he
 
-theorem certificate : Verify F A 1 6 D N Q where
+theorem hypersurface_ne_zero : F ≠ 0 := by
+  intro h
+  have he := congrArg (MvPolynomial.eval (fun _ : Fin 6 => (1 : ℂ))) h
+  norm_num [F] at he
 
-  denominator_ne_zero := denominator_ne_zero
+theorem hypersurface_homogeneous : F.IsHomogeneous 6 := by
+  simpa only [F] using (((((((((isHomogeneous_C (σ := Fin 6) (1 : ℂ)).mul ((isHomogeneous_X ℂ (0 : Fin 6)).pow 6)).add (((isHomogeneous_C (σ := Fin 6) (2 : ℂ)).mul ((isHomogeneous_X ℂ (0 : Fin 6)).pow 4)).mul ((isHomogeneous_X ℂ (3 : Fin 6)).pow 2))).add (((isHomogeneous_C (σ := Fin 6) (3 : ℂ)).mul ((isHomogeneous_X ℂ (0 : Fin 6)).pow 2)).mul ((isHomogeneous_X ℂ (3 : Fin 6)).pow 4))).add (((isHomogeneous_C (σ := Fin 6) (1 : ℂ)).mul (isHomogeneous_X ℂ (0 : Fin 6))).mul ((isHomogeneous_X ℂ (2 : Fin 6)).pow 5))).add ((isHomogeneous_C (σ := Fin 6) (1 : ℂ)).mul ((isHomogeneous_X ℂ (1 : Fin 6)).pow 6))).add ((isHomogeneous_C (σ := Fin 6) (1 : ℂ)).mul ((isHomogeneous_X ℂ (3 : Fin 6)).pow 6))).add ((isHomogeneous_C (σ := Fin 6) (1 : ℂ)).mul ((isHomogeneous_X ℂ (4 : Fin 6)).pow 6))).add ((isHomogeneous_C (σ := Fin 6) (1 : ℂ)).mul ((isHomogeneous_X ℂ (5 : Fin 6)).pow 6)))
 
-  denominator_homogeneous := denominator_homogeneous
+theorem source_homogeneous : A.IsHomogeneous 6 := by
+  simpa only [A] using ((((isHomogeneous_C (σ := Fin 6) (-10 : ℂ)).mul (isHomogeneous_X ℂ (1 : Fin 6))).mul ((isHomogeneous_X ℂ (2 : Fin 6)).pow 4)).mul (isHomogeneous_X ℂ (4 : Fin 6)))
 
-  numerator_homogeneous := numerator_homogeneous
+theorem certificate : Verify F A 6 1 D N Q :=
+  Verify.of_normalized hypersurface_ne_zero hypersurface_homogeneous
+    (by simpa using Homogeneous.of_isHomogeneous source_homogeneous)
+    denominator_ne_zero denominator_homogeneous numerator_homogeneous (by norm_num)
+    denominator_legal (by simpa using e1) e2
 
-  denominator_legal := denominator_legal
-
-  identity := normalized_identity (by simpa using e1) e2
-
-theorem solved : HasCertificate F A 1 := ⟨6, D, N, Q, certificate⟩
+theorem solved : HasCertificate F 1 A := certificate.hasCertificate
 
 end HodgeComputer.Instances.FamilyShear
 

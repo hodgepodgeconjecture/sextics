@@ -2,11 +2,8 @@ import Proposal.CompanionThetaBridge
 
 /-! The actual first-companion scalar primitive. The evaluated-jet conversion
 uses the maintained generic construction from the accepted proof by
-1337isnot1337 (PR #149). Prepared with OpenAI Codex assistance for fqlx. -/
+1337isnot1337. Prepared with OpenAI Codex assistance for fqlx. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1500000
-set_option maxRecDepth 10000
 open scoped BigOperators
 namespace SplitFElliptic
 open Polynomial HoldoutConstruction CrossedElliptic SplitFCompanion

@@ -1,7 +1,11 @@
+import HodgeComputer.Sextic
+import HodgeComputer.CoordinateChanges
 import HodgeTarget
 import Mathlib.Analysis.Complex.Basic
 import Mathlib.Analysis.Real.Sqrt
 import Mathlib.Tactic.Ring
+
+open HodgeComputer.Sextic
 
 /-!
 # A strict certificate for the protected one-reflection instance
@@ -18,187 +22,12 @@ The protected polynomial F, numerator A, and pole order q are imported exclusive
 from HodgeTarget. The final declaration is Submission.certificate.
 -/
 
-/-! ## CertificateConstruction -/
-
+/-! ## Reflection sectors -/
 section CertificateConstructionSection
-
-/-!
-# Constructive operations on exact certificates
-
-Developmental helper lemmas for the fixed one-reflection search. These do not
-supply a certificate for that instance. Prepared with OpenAI ChatGPT assistance
-for a contribution through GitHub account fqlx.
-
-The hidden P/M reflections and target decomposition are credited to fringewidth
-in data/one-reflection/why.md and instance discussion #54. The constructions here
-show how to assemble a future sector witness using the exact Verify predicate.
--/
-
 noncomputable section
-
 namespace HodgeComputer.Construction
-
 open MvPolynomial HodgeTestbed
 open scoped BigOperators
-
-theorem directional_add (P : Poly) (N M : Fin 6 → Poly) :
-    directional P (fun i => N i + M i) = directional P N + directional P M := by
-  simp [directional, mul_add, Finset.sum_add_distrib]
-
-theorem divergence_add (N M : Fin 6 → Poly) :
-    divergence (fun i => N i + M i) = divergence N + divergence M := by
-  simp [divergence, map_add, Finset.sum_add_distrib]
-
-theorem divergenceNumerator_add (D : Poly) (N M : Fin 6 → Poly) :
-    divergenceNumerator D (fun i => N i + M i) =
-      divergenceNumerator D N + divergenceNumerator D M := by
-  simp only [divergenceNumerator, divergence_add, directional_add]
-  ring
-
-theorem defect_add_same_denominator (F A B D : Poly) (q : ℕ)
-    (N M : Fin 6 → Poly) :
-    defect F (A+B) D q (fun i => N i + M i) =
-      defect F A D q N + defect F B D q M := by
-  simp only [defect, directional_add, divergenceNumerator_add]
-  ring
-
-theorem defect_scale_denominator (F A D H : Poly) (q : ℕ)
-    (N : Fin 6 → Poly) :
-    defect F A (H*D) q (fun i => H*N i) = H^2 * defect F A D q N := by
-  simp only [defect, HodgeTestbed.directional_mul, HodgeTestbed.divergenceNumerator_mul]
-  ring
-
-/-- Add rational fields using the product of their denominators. The quotient
-contains both old remainders; neither certificate has to be strict. -/
-theorem defect_add (F A B D E : Poly) (q : ℕ) (N M : Fin 6 → Poly) :
-    defect F (A+B) (D*E) q (fun i => E*N i + D*M i) =
-      E^2 * defect F A D q N + D^2 * defect F B E q M := by
-  rw [defect_add_same_denominator]
-  conv_lhs => lhs; rw [mul_comm D E]
-  rw [defect_scale_denominator, defect_scale_denominator]
-
-/-- Construct an exact certificate for the sum of targets at pole parameter one.
-The new denominator degree is the sum of the original degrees. -/
-theorem Verify.add_q1 {F A B D E Q R : Poly} {d e : ℕ}
-    {N M : Fin 6 → Poly}
-    (h : Verify F A 1 d D N Q) (k : Verify F B 1 e E M R) :
-    Verify F (A+B) 1 (d+e) (D*E) (fun i => E*N i + D*M i)
-      (E^2*Q + D^2*R) where
-  denominator_ne_zero := mul_ne_zero h.denominator_ne_zero k.denominator_ne_zero
-  denominator_homogeneous := h.denominator_homogeneous.mul k.denominator_homogeneous
-  numerator_homogeneous := by
-    intro i
-    have hn := k.denominator_homogeneous.mul (h.numerator_homogeneous i)
-    have hm := h.denominator_homogeneous.mul (k.numerator_homogeneous i)
-    have hnd : e + (d + 6*1 - 5) = (d+e) + 6*1 - 5 := by omega
-    have hmd : d + (e + 6*1 - 5) = (d+e) + 6*1 - 5 := by omega
-    rw [hnd] at hn
-    rw [hmd] at hm
-    exact hn.add hm
-  denominator_legal := h.denominator_legal.mul_right k.denominator_legal
-  identity := by
-    rw [defect_add, h.identity, k.identity]
-    ring
-
-theorem HasCertificate.add_q1 {F A B : Poly}
-    (h : HasCertificate F A 1) (k : HasCertificate F B 1) :
-    HasCertificate F (A+B) 1 := by
-  obtain ⟨d, D, N, Q, h⟩ := h
-  obtain ⟨e, E, M, R, k⟩ := k
-  exact ⟨d+e, D*E, (fun i => E*N i + D*M i), E^2*Q+D^2*R, Verify.add_q1 h k⟩
-
-def signChange (s : Fin 6 → ℂ) : Poly →+* Poly :=
-  MvPolynomial.eval₂Hom MvPolynomial.C (fun i => C (s i) * X i)
-
-@[simp] theorem signChange_C (s : Fin 6 → ℂ) (c : ℂ) :
-    signChange s (C c) = C c := by simp [signChange]
-
-@[simp] theorem signChange_X (s : Fin 6 → ℂ) (i : Fin 6) :
-    signChange s (X i) = C (s i) * X i := by simp [signChange]
-
-theorem signChange_involutive (s : Fin 6 → ℂ) (hs : ∀ i, s i * s i = 1) :
-    (signChange s).comp (signChange s) = RingHom.id Poly := by
-  apply MvPolynomial.ringHom_ext
-  · intro c; simp
-  · intro i
-    simp only [RingHom.comp_apply, RingHom.id_apply, signChange_X, map_mul, signChange_C]
-    rw [← mul_assoc, ← map_mul, hs, map_one, one_mul]
-
-@[simp] theorem signChange_twice (s : Fin 6 → ℂ) (hs : ∀ i, s i * s i = 1) (p : Poly) :
-    signChange s (signChange s p) = p :=
-  DFunLike.congr_fun (signChange_involutive s hs) p
-
-theorem pderiv_signChange (s : Fin 6 → ℂ) (i : Fin 6) (p : Poly) :
-    pderiv i (signChange s p) = C (s i) * signChange s (pderiv i p) := by
-  induction p using MvPolynomial.induction_on with
-  | C c => simp
-  | add p q hp hq => simp [hp, hq, mul_add]
-  | mul_X p j hp =>
-    simp only [map_mul, signChange_X, pderiv_mul, pderiv_C, hp, map_add]
-    by_cases hj : j = i
-    · subst j; simp only [pderiv_X_self, map_one]; ring
-    · simp only [pderiv_X_of_ne hj, map_zero]; ring
-
-def signField (s : Fin 6 → ℂ) (N : Fin 6 → Poly) : Fin 6 → Poly :=
-  fun i => C (s i) * signChange s (N i)
-
-theorem directional_signChange (s : Fin 6 → ℂ) (hs : ∀ i, s i * s i = 1)
-    (p : Poly) (N : Fin 6 → Poly) :
-    directional (signChange s p) (signField s N) = signChange s (directional p N) := by
-  simp only [directional, signField, pderiv_signChange, map_sum, map_mul]
-  apply Finset.sum_congr rfl
-  intro i _
-  rw [show C (s i) * signChange s (pderiv i p) *
-      (C (s i) * signChange s (N i)) =
-      C (s i * s i) * (signChange s (pderiv i p) * signChange s (N i)) by
-        rw [map_mul]; ring, hs, map_one, one_mul]
-
-theorem divergence_signField (s : Fin 6 → ℂ) (hs : ∀ i, s i * s i = 1)
-    (N : Fin 6 → Poly) :
-    divergence (signField s N) = signChange s (divergence N) := by
-  simp only [divergence, signField, pderiv_C_mul, pderiv_signChange, map_sum]
-  apply Finset.sum_congr rfl
-  intro i _
-  rw [← mul_assoc, ← map_mul, hs, map_one, one_mul]
-
-theorem divergenceNumerator_signChange (s : Fin 6 → ℂ) (hs : ∀ i, s i * s i = 1)
-    (D : Poly) (N : Fin 6 → Poly) :
-    divergenceNumerator (signChange s D) (signField s N) =
-      signChange s (divergenceNumerator D N) := by
-  simp only [divergenceNumerator, divergence_signField s hs,
-    directional_signChange s hs, map_sub, map_mul]
-
-theorem signChange_homogeneous (s : Fin 6 → ℂ) {p : Poly} {d : ℕ}
-    (h : p.IsHomogeneous d) : (signChange s p).IsHomogeneous d := by
-  simpa only [signChange, coe_eval₂Hom, one_mul] using
-    h.eval₂ C (fun i => C (s i) * X i)
-      (fun c => isHomogeneous_C (Fin 6) c)
-      (fun i => isHomogeneous_C_mul_X (s i) i)
-
-/-- Pull a certificate through a diagonal sign involution. Polynomial
-substitution alone is insufficient: every field component also receives its
-coordinate's sign, which is necessary for both derivative identities. -/
-theorem Verify.sign_change (s : Fin 6 → ℂ) (hs : ∀ i, s i * s i = 1)
-    {F A D Q : Poly} {q d : ℕ} {N : Fin 6 → Poly}
-    (h : Verify F A q d D N Q) :
-    Verify (signChange s F) (signChange s A) q d (signChange s D)
-      (signField s N) (signChange s Q) where
-  denominator_ne_zero := by
-    intro hz
-    have ht := congrArg (signChange s) hz
-    rw [signChange_twice s hs, map_zero] at ht
-    exact h.denominator_ne_zero ht
-  denominator_homogeneous := signChange_homogeneous s h.denominator_homogeneous
-  numerator_homogeneous := by
-    intro i
-    exact (signChange_homogeneous s (h.numerator_homogeneous i)).C_mul (s i)
-  denominator_legal := by
-    apply relPrime_of_retract (signChange s) (signChange s) (signChange_involutive s hs)
-    simpa only [signChange_twice s hs] using h.denominator_legal
-  identity := by
-    have hi := congrArg (signChange s) h.identity
-    simpa only [defect, directional_signChange s hs,
-      divergenceNumerator_signChange s hs, map_add, map_sub, map_mul, map_pow, map_natCast] using hi
 
 namespace OneReflection
 
@@ -238,28 +67,28 @@ theorem target_decomposition : HodgeSubmission.A = Aplus + Aminus := by
 /-- One certificate for each hidden reflection sector suffices for the exact
 protected statement. This is conditional: no sector witness is asserted here. -/
 theorem certificate_of_reflection_sectors
-    (hp : HasCertificate HodgeSubmission.F Aplus 1)
-    (hm : HasCertificate HodgeSubmission.F Aminus 1) :
-    HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q := by
+    (hp : HasCertificate HodgeSubmission.F 1 Aplus)
+    (hm : HasCertificate HodgeSubmission.F 1 Aminus) :
+    HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A := by
   rw [HodgeSubmission.q, target_decomposition]
-  exact HasCertificate.add_q1 hp hm
+  exact HasCertificate.add hp hm
 
 /-- The involution changing the signs of X₁ and Y₁ preserves the exact F and
 interchanges the two hidden-reflection sectors. Only one sector witness is
 therefore needed. The conclusion remains conditional on that witness. -/
 theorem certificate_of_one_reflection_sector
-    (hp : HasCertificate HodgeSubmission.F Aplus 1) :
-    HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q := by
+    (hp : HasCertificate HodgeSubmission.F 1 Aplus) :
+    HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A := by
   apply certificate_of_reflection_sectors hp
-  obtain ⟨d, D, N, Q, h⟩ := hp
+  obtain ⟨D, N, Q, h⟩ := hp
   have hm := Verify.sign_change signs signs_square h
   rw [signChange_F, signChange_Aplus] at hm
-  exact ⟨d, signChange signs D, signField signs N, signChange signs Q, hm⟩
+  exact hm.hasCertificate
 
 end OneReflection
 
-#print axioms Verify.add_q1
-#print axioms HasCertificate.add_q1
+#print axioms Verify.add
+#print axioms HasCertificate.add
 #print axioms OneReflection.certificate_of_reflection_sectors
 #print axioms Verify.sign_change
 #print axioms OneReflection.certificate_of_one_reflection_sector
@@ -274,8 +103,6 @@ end CertificateConstructionSection
 
 section OneReflectionDivergenceCoreSection
 
-set_option maxHeartbeats 12000000
-set_option maxRecDepth 6000
 noncomputable section
 
 namespace OneReflectionDivergenceCore
@@ -464,8 +291,6 @@ The only algebraic constant is the positive real square root of 3, cast to ℂ.
 The rational-coordinate and Sylvester trace derivation is recorded separately.
 -/
 
-set_option maxHeartbeats 8000000
-set_option maxRecDepth 4000
 noncomputable section
 namespace OneReflectionPhysical
 open MvPolynomial HodgeComputer HodgeTestbed
@@ -572,8 +397,6 @@ end OneReflectionDenominatorSection
 
 section OneReflectionDifferentiationSection
 
-set_option maxHeartbeats 4000000
-set_option maxRecDepth 4000
 noncomputable section
 namespace OneReflectionPhysical
 open MvPolynomial HodgeComputer HodgeTestbed
@@ -753,8 +576,6 @@ end OneReflectionDifferentiationSection
 
 section OneReflectionFirstIdentitySection
 
-set_option maxHeartbeats 8000000
-set_option maxRecDepth 4000
 noncomputable section
 
 namespace OneReflectionPhysical
@@ -965,11 +786,30 @@ noncomputable section
 namespace OneReflectionPhysical
 open MvPolynomial HodgeComputer HodgeTestbed HodgeComputer.Construction
 
+theorem targetF_homogeneous : HodgeSubmission.F.IsHomogeneous 6 := by
+  simpa only [HodgeSubmission.F, MvPolynomial.map_ofNat] using (((((((((MvPolynomial.isHomogeneous_X ℂ (0 : Fin 6)).pow 6).add (((((MvPolynomial.isHomogeneous_X ℂ (0 : Fin 6)).pow 3).mul (MvPolynomial.isHomogeneous_X ℂ (1 : Fin 6))).mul (MvPolynomial.isHomogeneous_X ℂ (3 : Fin 6))).mul (MvPolynomial.isHomogeneous_X ℂ (4 : Fin 6)))).add ((MvPolynomial.isHomogeneous_X ℂ (1 : Fin 6)).pow 6)).add (((((MvPolynomial.isHomogeneous_X ℂ (1 : Fin 6)).pow 3).mul (MvPolynomial.isHomogeneous_X ℂ (2 : Fin 6))).mul (MvPolynomial.isHomogeneous_X ℂ (3 : Fin 6))).mul (MvPolynomial.isHomogeneous_X ℂ (4 : Fin 6)))).add ((MvPolynomial.isHomogeneous_X ℂ (2 : Fin 6)).pow 6)).add ((MvPolynomial.isHomogeneous_X ℂ (3 : Fin 6)).pow 6)).add ((MvPolynomial.isHomogeneous_X ℂ (4 : Fin 6)).pow 6)).add ((MvPolynomial.isHomogeneous_X ℂ (5 : Fin 6)).pow 6))
+
+theorem targetF_ne_zero : HodgeSubmission.F ≠ 0 := by
+  intro h
+  have he := congrArg (MvPolynomial.eval (fun _ : Fin 6 => (1 : ℂ))) h
+  norm_num [HodgeSubmission.F] at he
+
+theorem Aplus_homogeneous : Aplus.IsHomogeneous 6 := by
+  simpa only [Aplus, mul_assoc] using ((isHomogeneous_X_pow (0 : Fin 6) 3).mul S_homogeneous).C_mul (1/2 : ℂ)
+
 theorem sector_verify (second_identity : divergenceNumerator D N = 0) :
-    Verify HodgeSubmission.F Aplus 1 30 D N 0 where
+    Verify HodgeSubmission.F Aplus 6 1 D N 0 where
+  hypersurface_ne_zero := targetF_ne_zero
+  hypersurface_homogeneous := targetF_homogeneous
+  source_homogeneous := by simpa using Homogeneous.of_isHomogeneous Aplus_homogeneous
   denominator_ne_zero := D_ne_zero
-  denominator_homogeneous := D_homogeneous
-  numerator_homogeneous := N_homogeneous
+  denominator_homogeneous := by
+    rw [D_homogeneous.totalDegree D_ne_zero]
+    exact D_homogeneous
+  numerator_homogeneous := by
+    intro i
+    rw [D_homogeneous.totalDegree D_ne_zero]
+    simpa using Homogeneous.of_isHomogeneous (N_homogeneous i)
   denominator_legal := D_legal
   identity := by
     apply normalized_identity
@@ -1000,23 +840,23 @@ def fullD : Poly := D * sigma D
 def fullN : Fin 6 → Poly := fun i => sigma D * N i + D * reflectedN i
 
 theorem full_verify (second_identity : divergenceNumerator D N = 0) :
-    Verify HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q 60 fullD fullN 0 := by
+    Verify HodgeSubmission.F HodgeSubmission.A HodgeSubmission.d HodgeSubmission.q fullD fullN 0 := by
   have hp := sector_verify second_identity
-  have hm := HodgeComputer.Construction.Verify.sign_change
+  have hm := HodgeComputer.Verify.sign_change
     HodgeComputer.Construction.OneReflection.signs
     HodgeComputer.Construction.OneReflection.signs_square hp
   rw [HodgeComputer.Construction.OneReflection.signChange_F] at hm
-  have hsum := HodgeComputer.Construction.Verify.add_q1 hp hm
-  change Verify HodgeSubmission.F (Aplus + sigma Aplus) 1 (30+30)
+  have hsum := HodgeComputer.Verify.add hp hm
+  change Verify HodgeSubmission.F (Aplus + sigma Aplus) 6 1
     (D*sigma D) (fun i => sigma D*N i+D*reflectedN i)
     ((sigma D)^2*0+D^2*sigma 0) at hsum
-  change Verify HodgeSubmission.F HodgeSubmission.A 1 (30+30)
+  change Verify HodgeSubmission.F HodgeSubmission.A 6 1
     (D*sigma D) (fun i => sigma D*N i+D*reflectedN i) 0
   simpa only [target_sum, map_zero, mul_zero, add_zero] using hsum
 
 theorem certificate_from_second_identity (second_identity : divergenceNumerator D N = 0) :
-    HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q :=
-  ⟨60, fullD, fullN, 0, full_verify second_identity⟩
+    HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A :=
+  (full_verify second_identity).hasCertificate
 
 end OneReflectionPhysical
 
@@ -1031,8 +871,6 @@ end OneReflectionCertificateSection
 
 section OneReflectionSecondIdentitySection
 
-set_option maxHeartbeats 8000000
-set_option maxRecDepth 6000
 noncomputable section
 namespace OneReflectionPhysical
 open MvPolynomial HodgeComputer HodgeTestbed
@@ -1196,7 +1034,7 @@ section FinalCertificateSection
 /-! A strict degree-60 certificate for the exact protected one-reflection target. -/
 
 theorem Submission.certificate :
-    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q :=
+    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A :=
   OneReflectionPhysical.certificate_from_second_identity
     OneReflectionPhysical.second_identity
 

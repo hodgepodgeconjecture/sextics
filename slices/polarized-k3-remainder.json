@@ -1,6 +1,5 @@
 {
   "seed": 170030481,
-  "resolution": 104,
   "phaseSigns": [
     1,
     1,
@@ -47,17 +46,25 @@
       0.42936794972186476
     ]
   ],
-  "mesh": "meshes/slice-polarized-k3-remainder.json",
-  "triangleCount": 381332,
-  "validated": true,
+  "centerOriginal": [
+    0.15711753745461982,
+    -0.014203506956601383,
+    0.011962997234112246
+  ],
+  "displayScale": 6.435233568637812,
+  "complexScale": 0.3547674507701461,
   "camera": {
-    "yaw": 2.399963229728653,
-    "pitch": -0.9561891039177737,
-    "distance": 3.35,
+    "distance": 3.35368,
     "center": [
       0,
       0,
       0
+    ],
+    "orientation": [
+      -0.07993027113162661,
+      0.8137964450488846,
+      -0.22165117336215276,
+      -0.5312412400499452
     ]
   }
 }

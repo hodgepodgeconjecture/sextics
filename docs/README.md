@@ -1,31 +1,28 @@
 # Sextic fourfolds with an involution
 
-These chapters develop the generalized Hodge conjecture for the involution-invariant middle cohomology of a smooth sextic fourfold. The certificate equation gives an explicit way to construct and check divisor support. Geometric arguments can establish the same support directly, and the two approaches often explain one another.
+These chapters study the generalized Hodge conjecture for the involution-invariant middle cohomology of a smooth sextic fourfold. The central question is whether that cohomology is supported on a divisor. Rational differential forms turn the support condition into an algebraic certificate equation; correspondences and quotient geometry establish it for several families.
 
-The case of a Zariski-general globally \(Y\)-even sextic remains open. The chapters distinguish family-wide results from constructions for particular targets. The atlas presents concrete instances and, where a construction is available, explains how it works.
+The treatment is organized around general mechanisms and their hypotheses. Examples illustrate those mechanisms, while the case of a general globally \(Y\)-even sextic remains the motivating open problem.
 
 ## Reading order
 
-The intended reader knows basic algebraic geometry, differential forms and Hodge decomposition. For constructing a certificate, start with Chapters 1, 2 and 5. For the geometric approach and its scope, continue through Chapters 3, 3a and 4. Foundational results from the literature are cited where they enter; the accompanying arguments explain their application to this problem.
+The intended reader knows basic algebraic geometry, differential forms and Hodge decomposition. Chapter 1 identifies the geometric and algebraic formulations. Chapter 2 develops the algebraic calculus of rational primitives, and Chapter 2A works out the relation between binary contacts and Jacobian torsion. Chapters 3–3D establish geometric support theorems and their applications to complete families. Chapter 4 studies coefficient spaces, finite symmetries and deformation. Chapter 5 develops exact coefficient methods, strictification, rational integration tests and a normal form for cubic currents. Foundational results from the literature are cited where they enter.
 
-| Chapter | Purpose |
+| Chapter | Subject |
 | --- | --- |
-| [1. From invariant cohomology to rational certificates](#technical-information/certificates) | The geometric target, key equation, Euler normalization, support, pole multiplicity and coefficient descent |
-| [2. Explicit constructions](#technical-information/explicit-constructions) | Cofactor transport, cubic-surface target spanning, finite-cover integration, and moving cubic maps |
-| [2a. Binary blocks](#technical-information/binary-blocks) | Universal binary contact, target spanning and assembly for arbitrary same-parity binary blocks |
-| [3. Geometric support](#technical-information/geometric-support) | Gysin maps, finite transfer, bounded covering curves, reflection quotients and weighted Fano maps |
-| [3a. Split sextics and K3 surfaces](#technical-information/split-and-k3) | Elliptic companions, quotient resolutions, polarized splitting and the Clifford/Kuga–Satake support argument |
-| [4. The known locus and the open frontier](#technical-information/known-locus) | Coverage dimensions, all-target support on the chain example, and the generic-target frontier |
-| [5. Computing and checking certificates](#technical-information/computation) | Complete coefficient systems, numerical discovery, exact identities and Lean acceptance |
+| [1. From invariant cohomology to rational certificates](01-certificates.md) | The key equation, normalization, prescribed support, trace and coefficient descent, pencils and specialization |
+| [2. Algebraic constructions and residue transport](02-explicit-constructions.md) | Cofactor transport, cyclic suspension, closed currents and variation of rational primitives |
+| [2A. Binary sextics and torsion contacts](02a-binary-blocks.md) | Genus-two three-torsion, Wronskian spanning theorems and a binary-block construction |
+| [3. Geometric support](03-geometric-support.md) | Gysin maps, normal-bundle trace pairings, finite quotients, Fano and surface fibrations, and supported projectors |
+| [3A. Split sextics and K3 surfaces](03a-split-and-k3.md) | Elliptic companions, polarized splitting and the algebraic Kuga–Satake criterion |
+| [3B. Weighted threefolds and two-reflection sextics](03b-weighted-threefolds.md) | Norm-contact curves, Abel–Jacobi residues, finite-jet spanning, two-reflection support, binary summands, and moving lines on cubic threefolds |
+| [3C. Quadratic nets and pair correspondences](03c-quadratic-nets.md) | Finite-cover incidence, discriminant conics, Fano threefolds and support without extra reflections |
+| [3D. Hodge loci of surface sections](03d-hodge-loci.md) | Invariant sections, trace formulas for moving curves, a Higgs-field criterion, order-three weighted sextics and split quadric sections on a paired-exchange family |
+| [4. Families, representations and deformation](04-known-locus-and-frontier.md) | Invariant sectors, coefficient families, generic-target reduction, curve incidence and interpolation |
+| [5. Computing and checking certificates](05-computation.md) | Strictification, exact coefficient systems, rational integration, cubic currents, factored Kronecker-grid checks, and algebraic residue evaluation |
 
-Chapters 2 and 3 approach the same question from opposite starting points. An explicit field supplies a residue and a supporting correspondence; a geometric support supplies a finite numerator problem. Chapter 4 explains where these mechanisms apply and what a general theorem still needs.
+The geometric constructions combine supported images of algebraic correspondences. Chapter 3 also detects such images through two-forms on curve parameter spaces; Chapter 4 explains how dominance over the even coefficient space amplifies one nonzero invariant image. In Chapter 3B, Fano reflection quotients and norm-contact curves on weighted threefolds serve complementary sectors. In Chapter 3C, a finite map defined by three ternary quadrics and the six joining lines of its four-point fibers recover the entire invariant cohomology. The diagonal net gives the three-reflection case as a corollary. The two-reflection theorem also covers crossed ternary splittings. For a sextic with a binary summand, the Wronskians of Chapter 2A, finite Fano pullbacks and an order-three quotient support the negative eigenspace of the binary sign. Together with the reflection theorems this gives divisor support for \(H^4(X)^\tau\) on every even sextic with an additive \(4+2\) splitting. Chapter 4 applies deck/exchange descent to the full cyclic-six coefficient family.
 
 ## Notation
 
-We use \(Z=(X_{0},X_{1},X_{2},Y_{0},Y_{1},Y_{2}), \tau (X,Y)=(X,-Y)\), and \(X=V(F)\subset \mathbb P^{5}\) for the fourfold. “\(Y\)-even” refers to total \(Y\)-degree, unless individual coordinate reflections are explicitly stated. The numerator \(A\) is \(Y\)-odd because the projective volume form changes sign under \(\tau \). The target parameter \(q\) and the denominator degree \(d\) are different quantities.
-
-## Reading the atlas
-
-Each instance specifies \((F,q,A)\). “Why this instance matters” describes the target; the solved badge opens its construction explanation. A construction for one instance does not establish a general family theorem. Likewise, failure in a restricted denominator search does not rule out other certificates.
-
-Acceptance requires a checked Lean theorem for the protected instance statement. Chapter 5 explains the passage from an explicit field to that theorem.
+We use \(Z=(X_0,X_1,X_2,Y_0,Y_1,Y_2)\), \(\tau(X,Y)=(X,-Y)\), and \(X=V(F)\subset\mathbb P^5\) for the fourfold. “\(Y\)-even” means even total degree in the three \(Y\) variables, unless individual coordinate reflections are stated. A residue numerator \(A\) is \(Y\)-odd because the projective volume form changes sign under \(\tau\). In the general certificate equation, \(n\) is the ambient projective dimension and \(d=\deg F\); here \(n=5,d=6\). The pole parameter \(q\) is distinct from the denominator degree \(\deg D\).

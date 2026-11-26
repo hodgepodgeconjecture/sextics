@@ -11,8 +11,6 @@ from the proved finite incidence construction.
 -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1000000
 
 namespace HoldoutBundle
 open HoldoutConstruction
@@ -34,11 +32,11 @@ theorem quotient_density_residue_solution :
   rw [hw]
   exact fraction_source_identity _ _ _ _ quotient_normal_ne_zero
 
-theorem star_certificate : HodgeComputer.HasCertificate holdoutSextic Astar 1 := by
+theorem star_certificate : HodgeComputer.HasCertificate holdoutSextic 1 Astar := by
   obtain ⟨w, hw⟩ := quotient_density_residue_solution
   exact certificate_of_quotient_residue physicalDiagonalFieldMap w hw
 
-theorem bundle_certificate : HodgeComputer.HasCertificate holdoutSextic Abundle 1 :=
+theorem bundle_certificate : HodgeComputer.HasCertificate holdoutSextic 1 Abundle :=
   bundle_certificate_of_star star_certificate
 
 end HoldoutBundle

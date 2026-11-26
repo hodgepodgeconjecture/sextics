@@ -9,8 +9,6 @@ HoldoutCover proofs credited to fqlx and the project collaborators. All three
 cyclic couplings are present with their prescribed coefficient one half.
 Prepared with OpenAI Codex assistance for hodgepodgeconjecture. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 1000000
 namespace CyclePhysical
 open HoldoutConstruction Polynomial
 abbrev Ambient := MvPolynomial (Fin 6) ℂ
@@ -141,7 +139,7 @@ theorem certificate_of_normalized
     (legal : IsRelPrime sextic D)
     (normal : HodgeTestbed.directional sextic N=source*D)
     (divergence : HodgeTestbed.divergenceNumerator D N=sextic*Q) :
-    HodgeComputer.HasCertificate sextic source 1 :=
+    HodgeComputer.HasCertificate sextic 1 source :=
   hasCertificate_of_normalized sextic source D N Q sextic_homogeneous source_homogeneous
     sextic_irreducible.prime legal normal divergence 0 normal_legal
 

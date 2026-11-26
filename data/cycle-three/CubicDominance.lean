@@ -1,4 +1,5 @@
-import Proposal.CubicMap
+import Proposal.CyclicCubic
+import Proposal.CyclicCubicMap
 import Mathlib.FieldTheory.Separable
 import Mathlib.RingTheory.Algebraic.Defs
 import Mathlib.RingTheory.Derivation.Basic

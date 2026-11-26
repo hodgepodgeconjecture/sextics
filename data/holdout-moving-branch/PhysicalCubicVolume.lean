@@ -6,8 +6,6 @@ rational function, without expanding that function's covariants.
 Original cycle-three construction prepared with OpenAI Codex assistance.
 The transitive-cubic adaptation is due to fqlx. Adapted here to holdout-moving-branch for benediamond with OpenAI Codex assistance. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 3000000
 namespace CyclePhysicalCubicVolume
 open HoldoutConstruction CyclePhysical CyclePhysicalCoordinates
 open CyclePhysicalNormalTransport CyclePhysicalCubicTangent
@@ -68,25 +66,15 @@ lemma volume_direction (z : FunctionField) :
   simp only [volume_vector_identity,Fin.sum_univ_succ,velocity,
     Matrix.cons_val_zero,Matrix.cons_val_succ,Fin.reduceSucc,
     Finset.univ_eq_empty,Finset.sum_empty,zero_mul,mul_zero,add_zero,
-    derivative,Derivation.add_apply,Derivation.smul_apply,smul_eq_mul]
+    derivative,add_apply,smul_apply,smul_eq_mul]
   norm_num [velocity,Matrix.cons_val_two,Matrix.cons_val_three,Matrix.cons_val_four,
     Matrix.head_cons,Matrix.tail_cons]
   ring
 
-section ProductRule
-variable {K ι : Type*} [Field K] [Fintype ι]
-lemma divergence_product (Ds : ι → Derivation ℤ K K) (g s : K) (w : ι → K) :
-    residueDivergence Ds g (fun i => s*w i)=
-      s*residueDivergence Ds g w+∑ i,w i*Ds i s := by
-  simp only [residueDivergence,fieldDivergence,Derivation.leibniz,smul_eq_mul,
-    Finset.sum_add_distrib,mul_assoc,← Finset.mul_sum]
-  ring
-end ProductRule
-
 theorem correction_divergence (z : FunctionField) :
     residueDivergence tangent (gradient 0) (fun i => (z/3)*volumeVector i)=
       ratio^3*cubicNormal/3*derivative z := by
-  rw [divergence_product,volume_divergence,mul_zero,zero_add]
+  rw [residueDivergence_smul,volume_divergence,mul_zero,zero_add]
   have hd (i : Fin 5) : tangent i (z/3)=tangent i z/3 := by
     rw [Derivation.leibniz_div]
     simp [smul_eq_mul]

@@ -1,6 +1,5 @@
 {
   "seed": 216025,
-  "resolution": 128,
   "phaseSigns": [
     1,
     -1,
@@ -47,13 +46,15 @@
       -0.1432844948309879
     ]
   ],
-  "mesh": "meshes/slice-family-hesse-web-216025.json",
-  "triangleCount": 172668,
-  "validated": true,
+  "centerOriginal": [
+    0.0037871055866298,
+    0.1335429014881286,
+    -0.19477594183055175
+  ],
+  "displayScale": 2.2087373096312484,
+  "complexScale": 0.43132656812363035,
   "camera": {
-    "yaw": 40.799374905387104,
-    "pitch": -0.4761190609117963,
-    "distance": 3.45,
+    "distance": 3.16158,
     "center": [
       0,
       0,

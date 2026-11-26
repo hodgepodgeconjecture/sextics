@@ -1,8 +1,8 @@
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import Proposal.ConicPolynomialFamily
-import Proposal.EndpointDerivations
-import Proposal.EvaluationMatrix
-import Proposal.FiniteDifferentials
+import HodgeComputer.Constructions.HoldoutCover.EndpointDerivations
+import HodgeComputer.Constructions.HoldoutCover.EvaluationMatrix
+import HodgeComputer.Constructions.HoldoutCover.FiniteDifferentials
 
 /- Source component: ConicSourceDerivations -/
 section
@@ -20,9 +20,6 @@ same twelve incidence equations used for the normal vector.
 
 noncomputable section
 
-set_option backward.isDefEq.respectTransparency false
-set_option maxRecDepth 10000
-set_option maxHeartbeats 0
 
 namespace HoldoutConicIncidence
 

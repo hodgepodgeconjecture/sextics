@@ -1,6 +1,5 @@
 {
   "seed": 100084,
-  "resolution": 128,
   "phaseSigns": [
     1,
     1,
@@ -9,7 +8,6 @@
     -1,
     -1
   ],
-  "mesh": "meshes/slice-one-reflection-y2-sector-100084-rrriii.json",
   "planeMatrix": [
     [
       -0.592310218200353,
@@ -48,11 +46,14 @@
       -0.03274760403630823
     ]
   ],
-  "triangleCount": 207996,
-  "validated": true,
+  "centerOriginal": [
+    0.035934476200185604,
+    -0.07568807094973931,
+    0.010812683385814923
+  ],
+  "displayScale": 2.495827162074842,
+  "complexScale": 0.432368262229286,
   "camera": {
-    "yaw": 0.6265496523487679,
-    "pitch": -1.1750194454340437,
     "orientation": [
       -0.9656549718535368,
       -0.16987979017247162,
@@ -64,6 +65,6 @@
       0,
       0
     ],
-    "distance": 3.45
+    "distance": 3.25589
   }
 }

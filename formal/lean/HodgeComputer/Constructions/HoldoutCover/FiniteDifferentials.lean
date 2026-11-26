@@ -213,12 +213,12 @@ theorem finite_derivations_commute
     apply finite_derivation_unique (0 : Derivation ℤ K K)
     · intro x
       simp only [Derivation.commutator_apply, compatible₁, compatible₂,
-        commute x, sub_self, Derivation.coe_zero, Pi.zero_apply, map_zero]
+        commute x, sub_self, FunLike.coe_zero, Pi.zero_apply, map_zero]
     · intro x
-      simp only [Derivation.coe_zero, Pi.zero_apply, map_zero]
+      simp only [FunLike.coe_zero, Pi.zero_apply, map_zero]
   intro x
   have h := congrArg (fun E : Derivation ℤ L L => E x) hbracket
-  simpa only [Derivation.commutator_apply, Derivation.coe_zero,
+  simpa only [Derivation.commutator_apply, FunLike.coe_zero,
     Pi.zero_apply, sub_eq_zero] using h
 
 theorem extendFiniteDerivation_commute (D₁ D₂ : Derivation ℤ K K)
@@ -247,8 +247,6 @@ quotient rule and preserve the polynomial subring of the function field.
 
 noncomputable section
 
-set_option backward.isDefEq.respectTransparency false
-
 namespace HoldoutConstruction
 
 section RingFraction
@@ -271,10 +269,10 @@ theorem extendRingDerivation_commute (D E : Derivation ℤ P P)
     apply FieldValuedFraction.derivation_ext (P := P) (F := L)
     intro p
     simp only [Derivation.commutator_apply, extendRingDerivation_apply, h p,
-      sub_self, Derivation.coe_zero, Pi.zero_apply]
+      sub_self, FunLike.coe_zero, Pi.zero_apply]
   intro x
   have h := congrArg (fun δ : Derivation ℤ L L => δ x) hz
-  simpa only [Derivation.commutator_apply, Derivation.coe_zero, Pi.zero_apply,
+  simpa only [Derivation.commutator_apply, FunLike.coe_zero, Pi.zero_apply,
     sub_eq_zero] using h
 
 theorem extendRingDerivation_mem_range (D : Derivation ℤ P P) (x : L)
@@ -356,24 +354,36 @@ def curveCoefficientDerivation (D : Derivation ℤ E E) :
     curveTimeDerivation (algebraMap E (CurveFunctionField E) a) = 0 := by
   change curveTimeDerivation
     (algebraMap (Polynomial E) (CurveFunctionField E) (Polynomial.C a)) = 0
-  simp [curveTimeDerivation]
+  refine (extendRingDerivation_apply (L := CurveFunctionField E)
+    (timePolynomialDerivation (E := E)) (Polynomial.C a)).trans ?_
+  change algebraMap (Polynomial E) (CurveFunctionField E)
+    (Polynomial.derivative (Polynomial.C a)) = 0
+  rw [Polynomial.derivative_C, map_zero]
 
 @[simp] theorem curveTimeDerivation_time :
     curveTimeDerivation (curveTime (E := E)) = 1 := by
-  simp [curveTimeDerivation, curveTime]
+  refine (extendRingDerivation_apply (L := CurveFunctionField E)
+    (timePolynomialDerivation (E := E)) Polynomial.X).trans ?_
+  change algebraMap (Polynomial E) (CurveFunctionField E)
+    (Polynomial.derivative Polynomial.X) = 1
+  rw [Polynomial.derivative_X, map_one]
 
 @[simp] theorem curveCoefficientDerivation_coefficient (D : Derivation ℤ E E) (a : E) :
     curveCoefficientDerivation D (algebraMap E (CurveFunctionField E) a) =
       algebraMap E (CurveFunctionField E) (D a) := by
   change curveCoefficientDerivation D
     (algebraMap (Polynomial E) (CurveFunctionField E) (Polynomial.C a)) = _
-  simp only [curveCoefficientDerivation, extendRingDerivation_apply,
-    coefficientPolynomialDerivation_C]
-  rfl
+  refine (extendRingDerivation_apply (L := CurveFunctionField E)
+    (coefficientPolynomialDerivation D) (Polynomial.C a)).trans ?_
+  exact congrArg (algebraMap (Polynomial E) (CurveFunctionField E))
+    (coefficientPolynomialDerivation_C D a)
 
 @[simp] theorem curveCoefficientDerivation_time (D : Derivation ℤ E E) :
     curveCoefficientDerivation D (curveTime (E := E)) = 0 := by
-  simp [curveCoefficientDerivation, curveTime]
+  refine (extendRingDerivation_apply (L := CurveFunctionField E)
+    (coefficientPolynomialDerivation D) Polynomial.X).trans ?_
+  exact (congrArg (algebraMap (Polynomial E) (CurveFunctionField E))
+    (coefficientPolynomialDerivation_X D)).trans (map_zero _)
 
 theorem curveTime_coefficient_commute (D : Derivation ℤ E E) :
     Function.Commute curveTimeDerivation (curveCoefficientDerivation D) :=
@@ -478,6 +488,7 @@ theorem derivations_agree_quotient_fraction
   obtain ⟨a,b,_,rfl⟩ := IsFractionRing.div_surjective B z
   rw [map_div₀, Derivation.leibniz_div, Derivation.leibniz_div, hring a, hring b]
 
+omit [IsDomain B] in
 theorem derivations_ext_finite_quotient_fraction [CharZero K]
     [Algebra K L] [FiniteDimensional K L]
     (π : MvPolynomial σ R →+* B) (hπ : Function.Surjective π)
@@ -490,10 +501,10 @@ theorem derivations_ext_finite_quotient_fraction [CharZero K]
   have hz : D-E = 0 := by
     apply finite_derivation_unique (0 : Derivation ℤ K K)
     · intro x
-      simp only [Derivation.sub_apply, h x, sub_self, Derivation.coe_zero,
+      simp only [sub_apply, h x, sub_self, FunLike.coe_zero,
         Pi.zero_apply, map_zero]
     · intro x
-      simp only [Derivation.coe_zero, Pi.zero_apply, map_zero]
+      simp only [FunLike.coe_zero, Pi.zero_apply, map_zero]
   exact sub_eq_zero.mp hz
 
 end QuotientFraction

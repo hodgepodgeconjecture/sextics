@@ -1,7 +1,5 @@
 import Proposal.GenericSpecialization
-import Proposal.CheckedPolynomialLists
-set_option maxHeartbeats 0
-set_option maxRecDepth 100000
+import HodgeComputer.Constructions.FiniteAlgebra.CheckedPolynomialLists
 noncomputable section
 namespace GenericSpecialization
 open CheckedPolynomialLists

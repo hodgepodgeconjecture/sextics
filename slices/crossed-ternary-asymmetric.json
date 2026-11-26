@@ -1,6 +1,5 @@
 {
   "seed": 100130,
-  "resolution": 128,
   "phaseSigns": [
     1,
     1,
@@ -47,12 +46,14 @@
       0.18849381327010284
     ]
   ],
-  "mesh": "meshes/slice-crossed-ternary-asymmetric-100130-rrriii.json",
-  "triangleCount": 228788,
-  "validated": true,
+  "centerOriginal": [
+    0.10436069416822594,
+    0.2561382131636523,
+    -0.014556749074945237
+  ],
+  "displayScale": 2.5759547865843873,
+  "complexScale": 0.4480283649645815,
   "camera": {
-    "yaw": 1.2392188913864794,
-    "pitch": -0.8064808909206536,
     "orientation": [
       0.37647868170377774,
       -0.8480518494761187,
@@ -64,6 +65,6 @@
       0,
       0
     ],
-    "distance": 3.45
+    "distance": 3.19114
   }
 }

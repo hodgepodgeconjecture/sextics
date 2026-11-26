@@ -4,9 +4,6 @@ import HodgeComputer.Constructions.HigherResidues.NormalJetBinding
 /- Actual normal-row Taylor jets of a polynomial hypersurface.
 Prepared with OpenAI Codex assistance for fqlx. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 4000000
-set_option maxRecDepth 100000
 namespace SplitHigherResidue
 open Polynomial HoldoutConstruction SplitNormalJetBinding
 open scoped BigOperators
@@ -30,7 +27,6 @@ def normalVariation (D : Fin 4 → Derivation ℤ K K) (ψ : Fin 5 → K) :
 lemma normalQuadraticJet_eq (π : P →+* K) (F : P) (ψ : Fin 5 → K) :
     normalQuadraticJet π F ψ=SplitNormalTaylor.secondJet ψ (hessian π F) := by
   unfold normalQuadraticJet SplitNormalTaylor.secondJet
-  congr 1
   simp only [Fin.sum_univ_succ,Fin.sum_univ_zero]
   ring
 
@@ -110,7 +106,7 @@ theorem actual_polynomial_normal_row_jet
         rw [(hessian_symm π F).apply j k]
         ring
       simp only [Pi.add_apply,Pi.smul_apply,Matrix.vecMul,dotProduct,
-        normalVariation,Fin.cases_succ,Pi.single_apply,Fin.succ_ne_zero,if_false,smul_eq_mul,mul_zero]
+        normalVariation,Fin.cases_succ,Pi.single_apply,Fin.succ_ne_zero,ite_false,smul_eq_mul,mul_zero]
       rw [hh,hn]
       ring
   · funext j
@@ -121,7 +117,7 @@ theorem actual_polynomial_normal_row_jet
     | succ i =>
       have ha := normalQuadraticJet_derivative π F ψ (D i) (fun j => M j i.succ) (hD i)
       simp only [Pi.add_apply,Pi.smul_apply,Matrix.vecMul,dotProduct,
-        normalVariation,Fin.cases_succ,Pi.single_apply,Fin.succ_ne_zero,if_false,smul_eq_mul,mul_zero,zero_add]
+        normalVariation,Fin.cases_succ,Pi.single_apply,Fin.succ_ne_zero,ite_false,smul_eq_mul,mul_zero,zero_add]
       exact ha.symm
 
 end SplitHigherResidue

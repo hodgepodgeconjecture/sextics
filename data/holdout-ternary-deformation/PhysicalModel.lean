@@ -1,3 +1,4 @@
+import HodgeComputer.Sextic
 import HodgeTarget
 import Proposal.DeformedCoverFields
 import HodgeComputer.Constructions.HoldoutCover.ResidueDerivatives
@@ -9,8 +10,6 @@ partial derivative. Uses fqlx's generic quotient/fraction derivations.
 Prepared with OpenAI Codex assistance for hodgepodgeconjecture.
 -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 200000
 namespace DeformedCover
 open HoldoutConstruction Polynomial
 local instance physicalModel_local_1 : Algebra ℤ PhysicalField := Ring.toIntAlgebra _
@@ -31,18 +30,18 @@ lemma protected_irreducible : Irreducible HodgeSubmission.F := by
   rw [protected_univariate]
   exact DeformedGeometry.physicalPolynomial_irreducible _ _ complex_I_six
 
-def physicalProjection : HodgeComputer.Poly →+* PhysicalRing :=
+def physicalProjection : HodgeComputer.Sextic.Poly →+* PhysicalRing :=
   (AdjoinRoot.mk physicalPolynomial).comp (MvPolynomial.finSuccEquiv ℂ 5).toRingHom
 lemma physicalProjection_surjective : Function.Surjective physicalProjection :=
   (AdjoinRoot.mk_surjective (g := physicalPolynomial)).comp (MvPolynomial.finSuccEquiv ℂ 5).surjective
-lemma physicalProjection_kernel (p : HodgeComputer.Poly) :
+lemma physicalProjection_kernel (p : HodgeComputer.Sextic.Poly) :
     physicalProjection p=0 ↔ HodgeSubmission.F ∣ p := by
   change AdjoinRoot.mk physicalPolynomial (MvPolynomial.finSuccEquiv ℂ 5 p)=0 ↔ _
   rw [AdjoinRoot.mk_eq_zero,← protected_univariate]
   exact map_dvd_iff (MvPolynomial.finSuccEquiv ℂ 5)
-def physicalResidueMap : HodgeComputer.Poly →+* PhysicalField :=
+def physicalResidueMap : HodgeComputer.Sextic.Poly →+* PhysicalField :=
   (algebraMap PhysicalRing PhysicalField).comp physicalProjection
-lemma physicalResidueMap_kernel (p : HodgeComputer.Poly) :
+lemma physicalResidueMap_kernel (p : HodgeComputer.Sextic.Poly) :
     physicalResidueMap p=0 ↔ HodgeSubmission.F ∣ p :=
   residue_fractionMap_kernel physicalProjection HodgeSubmission.F physicalProjection_kernel p
 @[simp] lemma physicalResidueMap_C (c : ℂ) :
@@ -55,14 +54,13 @@ lemma physicalResidueMap_kernel (p : HodgeComputer.Poly) :
 def physicalParameter (i : Fin 5) : PhysicalField := physicalResidueMap (MvPolynomial.X i.succ)
 def physicalRoot : PhysicalField := physicalResidueMap (MvPolynomial.X 0)
 
-def physicalAxis : HodgeComputer.Poly →+* Polynomial ℂ :=
+def physicalAxis : HodgeComputer.Sextic.Poly →+* Polynomial ℂ :=
   MvPolynomial.eval₂Hom C ![X,0,0,0,0,0]
 lemma protected_axis : physicalAxis HodgeSubmission.F=X^6 := by
   simp [physicalAxis,HodgeSubmission.F]
 lemma protected_normal_axis : physicalAxis (integerPartial 0 HodgeSubmission.F)=6*X^5 := by
   norm_num [physicalAxis,HodgeSubmission.F,integerPartial,MvPolynomial.pderiv_pow,
     MvPolynomial.pderiv_mul,Polynomial.C_ofNat,Pi.single_apply,Fin.ext_iff]
-  simp [Matrix.cons_val]
 lemma protected_not_dvd_normal : ¬ HodgeSubmission.F ∣ integerPartial 0 HodgeSubmission.F := by
   intro hd
   have hm := map_dvd physicalAxis hd
@@ -75,7 +73,7 @@ lemma physical_normal_ne_zero : physicalResidueMap (integerPartial 0 HodgeSubmis
 def physicalTangent (i : Fin 5) : Derivation ℤ PhysicalField PhysicalField :=
   residueTangent (K := PhysicalField) physicalProjection physicalProjection_surjective
     (integerPartial 0) (integerPartial i.succ) HodgeSubmission.F physicalProjection_kernel physical_normal_ne_zero
-lemma physicalTangent_apply (i : Fin 5) (p : HodgeComputer.Poly) :
+lemma physicalTangent_apply (i : Fin 5) (p : HodgeComputer.Sextic.Poly) :
     physicalTangent i (physicalResidueMap p)=physicalResidueMap (integerPartial i.succ p)-
       physicalResidueMap (integerPartial i.succ HodgeSubmission.F)/
         physicalResidueMap (integerPartial 0 HodgeSubmission.F)*physicalResidueMap (integerPartial 0 p) :=

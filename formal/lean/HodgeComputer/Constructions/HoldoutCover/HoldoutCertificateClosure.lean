@@ -75,7 +75,7 @@ theorem holdout_hasCertificate_of_cover_residue
       residueDivergence
         (fun i => extendFiniteDerivation (L := CommonCoverFunctionField) (physicalTangent i))
         (algebraMap HoldoutFunctionField CommonCoverFunctionField physicalNormal) w = 0) :
-    HodgeComputer.HasCertificate holdoutSextic holdoutSource 1 := by
+    HodgeComputer.HasCertificate holdoutSextic 1 holdoutSource := by
   have hi : (Complex.I : ℂ)^6 = -1 := by
     rw [show (6 : ℕ) = 2*3 by decide, pow_mul, Complex.I_sq]
     norm_num
@@ -106,15 +106,13 @@ theorem holdout_hasCertificate_of_cover_residue
       (physical_normal_source_trace T hT physicalNormalSource
         (physicalResidueMap (MvPolynomial.X 4)^4)) heq
   apply holdout_hasCertificate_of_normalized D (Fin.cases N₀ N) Q hlegal
-  · set_option backward.isDefEq.respectTransparency false in
-    simpa only [HodgeTestbed.directional, Fin.sum_univ_succ,
-      Fin.cases_zero, Fin.cases_succ, integerPartial, Derivation.restrictScalars_apply,
-      Derivation.coeFn_coe, mul_comm] using hnormal
-  · set_option backward.isDefEq.respectTransparency false in
-    simpa only [HodgeTestbed.divergenceNumerator, HodgeTestbed.divergence,
+  · simp only [HodgeTestbed.directional, Fin.sum_univ_succ,
+      Fin.cases_zero, Fin.cases_succ, integerPartial, mul_comm] at hnormal ⊢
+    exact hnormal
+  · simp only [HodgeTestbed.divergenceNumerator, HodgeTestbed.divergence,
       HodgeTestbed.directional, residueDivNum, Fin.sum_univ_succ,
-      Fin.cases_zero, Fin.cases_succ, integerPartial, Derivation.restrictScalars_apply,
-      Derivation.coeFn_coe, mul_comm] using hdiv
+      Fin.cases_zero, Fin.cases_succ, integerPartial, mul_comm] at hdiv ⊢
+    exact hdiv
 
 end HoldoutConstruction
 

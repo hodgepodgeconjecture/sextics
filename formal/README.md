@@ -1,14 +1,18 @@
 # The formal acceptance contract
 
-The live challenge's target is existence, not minimization of the degree of a denominator. A constructive and a nonconstructive Lean proof must prove the same statement for an immutable `(F,q,A)`.
+For reusable constructions and worked applications, see the [technique guide](TECHNIQUES.md).
 
-Let `R = ℂ[X0,X1,X2,Y0,Y1,Y2]`. For the chosen sextic `F`, pole parameter `q`, and homogeneous odd target `A`, the statement asks for a nonzero homogeneous `D` and a six-tuple `N` such that:
+The target is existence of a rational-vector-field certificate, with no bound on the denominator degree. Constructive and nonconstructive proofs establish the same statement for the specified data.
+
+For arbitrary natural numbers `n`, `d`, and `q`, let `R = ℂ[z₀,…,zₙ]`. The contract requires `F ≠ 0`, `F` homogeneous of degree `d`, and `A` homogeneous of integer degree `d(q+1) − (n+1)`. It asks for a nonzero homogeneous denominator `D`, numerators `N₀,…,Nₙ`, and a polynomial `Q` such that:
 
 - `D` is relatively prime to `F`.
-- Each `Nᵢ` is homogeneous of degree `deg(D) + 6q − 5`; zero components are allowed by the homogeneous predicate.
-- The rational field `vᵢ = Nᵢ / D` satisfies `F^(q+1) ∣ A − q·dF(v) + F·div(v)` in the localization away from `F`.
+- Each `Nᵢ` is homogeneous of integer degree `deg(D) + dq − n`.
+- The rational field `vᵢ = Nᵢ / D` satisfies `F^(q+1) ∣ A − q·dF(v) + F·div(v)` in the localization obtained by inverting polynomials relatively prime to `F`.
 
-The standing instances have positive integral `q`, `F(X,−Y)=F(X,Y)`, and `A(X,−Y)=−A(X,Y)`. Field parity may be enforced by averaging; it must not accidentally narrow the stated existential problem.
+Integer homogeneity means that every monomial with nonzero coefficient has the specified degree. The zero polynomial is homogeneous of every integer degree; a negative degree permits only zero. There is no independent homogeneity or nonvanishing condition on `Q`.
+
+The catalogue specializes to `n=5`, `d=6`, coordinates `X0,X1,X2,Y0,Y1,Y2`, and `q∈{1,2}`. Its targets have `F(X,−Y)=F(X,Y)` and `A(X,−Y)=−A(X,Y)`. The general contract imposes no parity requirement on the field.
 
 ## A finite algebraic witness
 
@@ -23,34 +27,16 @@ Since `D` is invertible in the relevant localization, a witness for the equation
 
 ## Protected verification
 
-`formal/lean/HodgeComputer/Verify.lean` defines `Verify` and the existential `HasCertificate` over complex coefficients. Its localization identity justifies the cleared equation. The shared contract imposes no denominator-degree bound or extra parity condition on the witness.
+`formal/lean/HodgeComputer/Verify.lean` defines `HodgeComputer.Verify (n := n) F A d q D N Q` and the existential `HodgeComputer.HasCertificate F q A` over complex coefficients. `HasCertificate` uses `F.totalDegree`; it takes only `F`, `q`, and `A` as explicit inputs. The implicit `n` is inferred from `F` and `A`, whose type is `HodgeComputer.AmbientPoly n = MvPolynomial (Fin (n + 1)) ℂ`. The witness checker retains an explicit degree `d`, established by its nonvanishing and homogeneity fields. `Verify.hasCertificate` uses those fields to identify `d` with `F.totalDegree`. The localization identity justifies the cleared equation. The shared contract imposes no denominator-degree bound or extra parity condition on the witness.
 
 The verifier generates a protected exact target from the base branch's record. Contributors prove its existential statement and, when exporting a JSON witness for display, an additional theorem about those exact witness polynomials. The protected pipeline compiles the source in isolation, replays its declarations with the kernel checker, and audits the statement and axioms. Allowed axioms are `propext`, `Classical.choice`, and `Quot.sound`.
 
 A rational-coefficient identity transfers to complex coefficients, but denominator admissibility over the complex numbers must also be established. Do not infer complex coprimality merely from rational irreducibility. Nonconstructive proofs are allowed when they establish the same protected existential theorem.
 
-The Lean project pins its toolchain and mathlib manifest. Instance-specific proofs belong to each instance's existing data folder and first enter through its solve PR. Reusable machinery from accepted proofs can be extracted into the shared library through a separate maintenance PR. A checked merge by the configured owner and a trusted acceptance receipt are required before the publisher derives solved status and leaderboard credit. See [the proposal specification](../CONTRIBUTING.md) and [verification workflow](../MAINTAINING.md#verification-sign-off-and-publication).
+The Lean project pins its toolchain and mathlib manifest. Instance-specific proofs belong to each instance's existing data folder and first enter through its solve PR. Reusable, target-independent machinery may be placed under `formal/lean/HodgeComputer/Constructions/` either directly in the solve PR that uses it or in a separate maintenance PR. CI checks the proof (and any companion library modules) before the owner merges it. The publisher records contributor credit in `acceptance.json`; the website renders the current repository contents. See [the proposal specification](../CONTRIBUTING.md) and [verification workflow](../MAINTAINING.md#verification-sign-off-and-publication).
 
 ## Reusable constructions
 
-The shared library is the Lean counterpart of the mathematical book: organized, reusable statements with explicit hypotheses and concrete applications. Keep exploratory calculations, unsuccessful searches, and target-specific closure arguments outside it. Preserve accepted instance sources as verification evidence; new applications import the maintained library.
+The shared library under `formal/lean/HodgeComputer/` is the Lean counterpart of the mathematical book: organized, reusable statements with explicit hypotheses and concrete applications. Four core modules (`Verify`, `Sextic`, `CertificateOperations`, `CoordinateChanges`) define the protected contract and elementary certificate operations; reusable proof machinery lives in themed packages under `formal/lean/HodgeComputer/Constructions/`.
 
-[`HodgeComputer.CertificateOperations`](lean/HodgeComputer/CertificateOperations.lean) supplies `Verify.add` and `HasCertificate.add` for every positive pole order. It combines different legal denominators and retains both quotient remainders. `HasCertificate.zero` supplies the neutral source. These are the cleared-form operations of Chapter 1, extracted from `fqlx`'s [bundle assembly](https://github.com/hodge-computer/sextics/pull/161), which uses the addition formula in the accepted one-reflection construction.
-
-[`HodgeComputer.Constructions.HoldoutCover`](lean/HodgeComputer/Constructions/HoldoutCover/README.md) contains the Fermat-cover and moving-conic machinery from `fqlx`'s accepted [holdout proof](https://github.com/hodge-computer/sextics/pull/128). The construction supplies a primitive for an arbitrary polynomial source on its weighted quotient; an application must prove the source and derivative identities that transport its own target back to the original sextic.
-
-New holdout specializations can import `HodgeComputer.Constructions.HoldoutCover.GeneralizedCover` and apply `HoldoutGeneralization.certificate_of_source_pair`. The module also supplies the vanishing traces of the square and inverse square of the cover coordinate. These are ingredients for the fixed holdout sextic, not a theorem for arbitrary sextics or targets.
-
-The original accepted files under `data/holdout/` remain unchanged as the source of the original verification record. New submissions use the maintained shared modules instead of copying those files. Imports retain the original declaration namespaces and mathematical attribution; do not import both copies into the same Lean module.
-
-[`HodgeComputer.Constructions.PolynomialCurves`](lean/HodgeComputer/Constructions/PolynomialCurves/README.md) contains arithmetic lifting and polynomial-family integration extracted from the accepted constructions of `fqlx` and `hodgepodgeconjecture`. It lifts a nonsingular square incidence system from a special fiber to a finite extension of the generic coefficient field, and converts a dominant polynomial-curve family with a polynomial normal into normalized certificate data. The [module guide](lean/HodgeComputer/Constructions/PolynomialCurves/README.md) lists the precise application obligations and original sources. These results supply reusable steps; each application still establishes its own incidence, dominance, coordinate transport, and exact target.
-
-[`HodgeComputer.Constructions.EllipticCompanions`](lean/HodgeComputer/Constructions/EllipticCompanions/README.md) contains target-independent rational residue and translated elliptic-contraction machinery from `1337isnot1337`'s accepted [crossed-ternary construction](https://github.com/hodge-computer/sextics/pull/149). Its `Contraction` entry point combines two supplied scalar primitives into a product-divergence primitive, with explicit pole separation, infinity correction, and finite descent. Applications still construct their companion geometry and scalar primitives, prove the required derivative independence, and establish their exact physical target, denominator legality, and homogeneous degrees. This library does not extend the pole order of an existing companion theorem automatically.
-
-[`HodgeComputer.Constructions.ResidueTransport`](lean/HodgeComputer/Constructions/ResidueTransport/README.md) contains the change-of-density Piola identity and moving-Weierstrass-map correction from `hodgepodgeconjecture`'s [cyclic cubic proof](https://github.com/hodge-computer/sextics/pull/165). Its fixed-parameter jet formulation retains the exact correction when a cubic map varies. Applications still supply the auxiliary primitive, compatible curve and differential identities, nonzero denominators, and physical source transport. These identities do not integrate arbitrary elliptic differentials.
-
-[`HodgeComputer.Constructions.HigherResidues`](lean/HodgeComputer/Constructions/HigherResidues/README.md) provides the second-normal-residue calculus and polynomial-family integration for third-order poles, extracted from `fqlx`'s accepted split-ternary proof. It binds the numerator and determinant jets to actual derivatives and includes the tangent correction. Its entry point accepts a polynomial-curve family on a five-coordinate hypersurface; constructing that family, descent, and the final certificate remain application obligations.
-
-[`HodgeComputer.Constructions.TransitiveCubic`](lean/HodgeComputer/Constructions/TransitiveCubic/README.md) contains the six-coefficient transitive cubic, its exact covariant syzygy, and invariant differential from `fqlx`'s [mixed-biweight construction](https://github.com/hodge-computer/sextics/pull/170), extending the cubic methods of `hodgepodgeconjecture`. Its hypotheses and application obligations are listed in the module guide. The physical equation, incidence seed, and source transport remain application-specific.
-
-[`ResidueTransport.CoordinateIndependence`](lean/HodgeComputer/Constructions/ResidueTransport/CoordinateIndependence.lean) proves that compatible coordinate derivations in characteristic zero make polynomial evaluation injective. It is the dominance criterion used by the cyclic and transitive cubic constructions; it does not assume the ambient field is purely transcendental.
+A new shared construction should do substantive proof work in at least one completed solve, build without warnings, and carry clear attribution to the constructions it came from. Keep exploratory calculations, unsuccessful searches, and target-specific closure arguments outside the shared library. See the [technique guide](TECHNIQUES.md) for the complete index of shared packages, their hypotheses, and their accepted applications.

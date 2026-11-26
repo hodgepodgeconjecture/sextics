@@ -1,6 +1,5 @@
 {
   "seed": 170035074,
-  "resolution": 104,
   "phaseSigns": [
     1,
     1,
@@ -47,17 +46,25 @@
       -0.05430198864134135
     ]
   ],
-  "mesh": "meshes/slice-four-plus-two-residual.json",
-  "triangleCount": 204084,
-  "validated": true,
+  "centerOriginal": [
+    -0.49449639272996543,
+    -0.31372357417644625,
+    1.397888293969617
+  ],
+  "displayScale": 4.656827329824815,
+  "complexScale": 0.3149517426922114,
   "camera": {
-    "yaw": 0.350149916290465,
-    "pitch": -0.6640780000690425,
-    "distance": 2.85,
+    "distance": 2.50116,
     "center": [
       0,
       0,
       0
+    ],
+    "orientation": [
+      0.5152350336570907,
+      0.7366814282707576,
+      0.3589147373374456,
+      0.2510249881094026
     ]
   }
 }

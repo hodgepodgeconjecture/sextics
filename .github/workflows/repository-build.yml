@@ -1,0 +1,152 @@
+name: Repository build
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+# A new push to a pull request cancels that pull request's earlier runs, queued or running.
+concurrency:
+  group: repository-build-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      lean: ${{ steps.scope.outputs.lean }}
+      matrix: ${{ steps.scope.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Prepare content and CI tools
+        run: python3 -m pip install -r scripts/requirements-content.txt
+      - name: Test maintenance routing and credit recording
+        run: |
+          python3 scripts/test-maintenance.py
+          python3 scripts/test-publication.py
+      - name: Check the book's finite algebraic witnesses
+        run: |
+          python3 scripts/verify-norm-contact-span.py
+          python3 scripts/verify-extension-dimensions.py
+          python3 scripts/verify-hodge-locus-span.py
+      - name: Identify affected Lean modules and solves
+        id: scope
+        run: |
+          # HEAD is GitHub's candidate merge of this pull request into main. Its first parent is the
+          # main tip it merges into, so the plan covers exactly what the merge would change.
+          git rev-parse --verify --quiet 'HEAD^2' > /dev/null ||
+            { echo 'Expected the candidate merge commit of a pull request.' >&2; exit 1; }
+          python3 scripts/check-library.py --base 'HEAD^1' --plan > /tmp/lean-plan.json
+          python3 - <<'PY'
+          import json, os
+          plan = json.load(open('/tmp/lean-plan.json'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              print('lean=' + str(bool(plan['matrix']['include'])).lower(), file=output)
+              print('matrix=' + json.dumps(plan['matrix']), file=output)
+          PY
+      - name: Build the public release
+        run: |
+          set -euo pipefail
+          python3 scripts/build-content.py
+          python3 scripts/validate-records.py
+          python3 scripts/check-content.py
+          python3 infra/aws/package.py --site . --output "$RUNNER_TEMP/release" --static-only
+  lean-build:
+    name: Build shared Lean library
+    needs: build
+    if: needs.build.outputs.lean == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - name: Prepare pinned Lean
+        run: |
+          set -euo pipefail
+          python3 -m pip install -r scripts/requirements-content.txt
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/v4.2.0/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache pinned Lean dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            formal/lean/.lake/packages
+            ~/.elan/toolchains
+          key: repository-lean-dependencies-v2-${{ runner.os }}-${{ hashFiles('formal/lean/lean-toolchain', 'formal/lean/lake-manifest.json', 'formal/lean/lakefile.toml') }}
+      - name: Fetch Mathlib build cache
+        working-directory: formal/lean
+        run: lake exe cache get
+      - name: Build every shared dependency needed by the affected checks
+        run: python3 scripts/check-library.py --base 'HEAD^1' --phase build
+      - name: Export compiled shared library
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: shared-lean-library
+          path: formal/lean/.lake/build
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+  lean:
+    name: Lean / ${{ matrix.instance || 'shared library' }}
+    needs: [build, lean-build]
+    if: needs.build.outputs.lean == 'true'
+    runs-on: ubuntu-24.04
+    # A recheck may use the whole proof budget of solve-policy.json, inside GitHub's six-hour job limit.
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.build.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - name: Prepare pinned Lean
+        run: |
+          set -euo pipefail
+          python3 -m pip install -r scripts/requirements-content.txt
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/v4.2.0/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore pinned Lean dependencies
+        id: dependencies
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            formal/lean/.lake/packages
+            ~/.elan/toolchains
+          key: repository-lean-dependencies-v2-${{ runner.os }}-${{ hashFiles('formal/lean/lean-toolchain', 'formal/lean/lake-manifest.json', 'formal/lean/lakefile.toml') }}
+      - name: Fetch dependencies if the optional cache is unavailable
+        if: steps.dependencies.outputs.cache-hit != 'true'
+        working-directory: formal/lean
+        run: lake exe cache get
+      - name: Download this run's compiled shared library
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: shared-lean-library
+          path: formal/lean/.lake/build
+      - name: Recheck affected mathematics without rebuilding the shared library
+        env:
+          PHASE: ${{ matrix.phase }}
+          INSTANCE: ${{ matrix.instance }}
+        run: python3 scripts/check-library.py --base 'HEAD^1' --phase "$PHASE" --instance "$INSTANCE" --prepared

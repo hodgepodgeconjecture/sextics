@@ -1,15 +1,14 @@
+import Proposal.JacobianModel
 import Proposal.PhysicalCubicTangent
-import Proposal.CubicMap
+import HodgeComputer.Constructions.TransitiveCubic.Map
 
 /-! The covariant invariant differential on the exact physical field.
 The universal polynomial identity is instantiated using the proved physical
 tangent derivation and the actual coefficients. All nonvanishing assumptions
 are supplied by the physical chart. Prepared with OpenAI Codex assistance. -/
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
-set_option maxHeartbeats 2000000
 namespace CycleCubicFieldDifferential
-open CycleCovariants MvPolynomial
+open TransitiveCovariants MvPolynomial
 section Evaluation
 variable {R K : Type*} [CommRing R] [CommRing K]
 lemma eval_Hpoly (φ : R →+* K) (a b c d e f : R) (x y : K) :
@@ -55,7 +54,7 @@ theorem differential_of_constants (D : Derivation ℤ K K)
     (a b c d e f x y : K)
     (ha : D a=0) (hb : D b=0) (hc : D c=0)
     (hd : D d=0) (he : D e=0) (hf : D f=0)
-    (hu : CycleCubic.cubic a b c d e f x y 1=0)
+    (hu : TransitiveCubic.cubic a b c d e f x y 1=0)
     (hg : 3*a*x^2+2*d*x*y+2*f*x≠0)
     (hH : H a b c d e f x y 1≠0) (hJ : J a b c d e f x y 1≠0)
     (hx : D x= -(3*b*y^2+d*x^2+2*e*y)/(3*a*x^2+2*d*x*y+2*f*x))
@@ -69,14 +68,14 @@ theorem differential_of_constants (D : Derivation ℤ K K)
   let φ : R →+* K := (constants D).subtype
   let ρ : Affine R →+* K := MvPolynomial.eval₂Hom φ ![x,y]
   have hU : ρ (Upoly a' b' c' d' e' f')=0 := by
-    simpa [ρ,φ,Upoly,CycleCubic.cubic,a',b',c',d',e',f',Subring.subtype] using hu
+    simpa [ρ,φ,Upoly,TransitiveCubic.cubic,a',b',c',d',e',f'] using hu
   have hPx : ρ (pderiv 0 (Upoly a' b' c' d' e' f'))=3*a*x^2+2*d*x*y+2*f*x := by
     simp [ρ,φ,Upoly,a',b',c',d',e',f',MvPolynomial.pderiv_mul,MvPolynomial.pderiv_pow,
-      Pi.single_apply,Fin.ext_iff,Subring.subtype]
+      Pi.single_apply,Fin.ext_iff]
     ring
   have hPy : ρ (pderiv 1 (Upoly a' b' c' d' e' f'))=3*b*y^2+d*x^2+2*e*y := by
     simp [ρ,φ,Upoly,a',b',c',d',e',f',MvPolynomial.pderiv_mul,MvPolynomial.pderiv_pow,
-      Pi.single_apply,Fin.ext_iff,Subring.subtype]
+      Pi.single_apply,Fin.ext_iff]
     ring
   have hHmap : ρ (Hpoly a' b' c' d' e' f')=H a b c d e f x y 1 :=
     eval_Hpoly φ a' b' c' d' e' f' x y
@@ -95,7 +94,7 @@ theorem differential_of_constants (D : Derivation ℤ K K)
     change ρ (pderiv 0 p)*(-(3*b*y^2+d*x^2+2*e*y)/(3*a*x^2+2*d*x*y+2*f*x))+
       ρ (pderiv 1 p)=_
     ring
-  have result := CycleCubicMap.differential a' b' c' d' e' f' ρ D hU
+  have result := TransitiveCubicMap.differential a' b' c' d' e' f' ρ D hU
     (hPx ▸ hg) (hHmap ▸ hH) (hJmap ▸ hJ) hcompat
   simpa only [hHmap,hQmap,hJmap,hPx] using result
 end Differential

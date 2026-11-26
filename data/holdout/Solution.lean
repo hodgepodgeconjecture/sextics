@@ -1,6 +1,6 @@
 import HodgeTarget
-import Proposal.ConicResidue
-import Proposal.CoverCertificate
+import HodgeComputer.Constructions.HoldoutCover.ConicResidue
+import HodgeComputer.Constructions.HoldoutCover.CoverCertificate
 
 /- Source component: Solution -/
 section
@@ -16,8 +16,8 @@ noncomputable section
 open HoldoutConstruction HoldoutConicIncidence
 
 theorem Submission.certificate :
-    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q := by
-  change HodgeComputer.HasCertificate holdoutSextic holdoutSource 1
+    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A := by
+  change HodgeComputer.HasCertificate holdoutSextic 1 holdoutSource
   obtain ⟨p⟩ := HoldoutConic.exists_seed
   obtain ⟨w, hw⟩ := conic_target_residue_solution p coverQuotientSource
   exact holdout_hasCertificate_of_quotient_divergence w hw

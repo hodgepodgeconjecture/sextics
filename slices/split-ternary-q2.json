@@ -1,6 +1,5 @@
 {
   "seed": 170028222,
-  "resolution": 104,
   "phaseSigns": [
     1,
     1,
@@ -47,17 +46,25 @@
       -0.759308556287164
     ]
   ],
-  "mesh": "meshes/slice-split-ternary-q2.json",
-  "triangleCount": 233324,
-  "validated": true,
+  "centerOriginal": [
+    -0.6736699004255926,
+    0.7817734195765811,
+    0.058649830104971164
+  ],
+  "displayScale": 5.440074371764281,
+  "complexScale": 0.3269396309771842,
   "camera": {
-    "yaw": 0,
-    "pitch": -1.0078130481598793,
-    "distance": 3.35,
+    "distance": 3.01333,
     "center": [
       0,
       0,
       0
+    ],
+    "orientation": [
+      0.6792765759737831,
+      0.679276575973783,
+      0.19642640691448116,
+      0.19642640691448118
     ]
   }
 }

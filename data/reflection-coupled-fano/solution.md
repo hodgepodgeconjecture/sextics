@@ -1,6 +1,6 @@
 # A modular quartic, finite trace, and the reflection certificate
 
-This proposal constructs a certificate for the fixed instance **reflection-coupled-fano**. Its central ingredient is an explicit weighted quartic on the characteristic-five reduction of the reflection quotient, together with an invertible \(24\times24\) deformation matrix. An étale lifting argument supplies a polynomial family through the generic complex endpoint. Polynomial integration and finite trace then produce the rational vector field required by the certificate contract.
+This solution constructs a certificate for the fixed instance **reflection-coupled-fano**. Its central ingredient is an explicit weighted quartic on the characteristic-five reduction of the reflection quotient, together with an invertible \(24\times24\) deformation matrix. An étale lifting argument supplies a polynomial family through the generic complex endpoint. Polynomial integration and finite trace then produce the rational vector field required by the certificate contract.
 
 The construction proves existence. It does not export expanded denominator and numerator polynomials or a numerical denominator degree. Every occurrence of the coupling coefficient in characteristic zero is the exact number \(5/7\); the sextic, numerator, and pole parameter remain those of [instance.rec](instance.rec).
 
@@ -46,8 +46,7 @@ The [motivation](why.md) and [provenance](provenance.json) already explain why t
 [CoupledDomain.lean](CoupledDomain.lean) defines the quotient and physical equations. [SourceBinding.lean](SourceBinding.lean) identifies the physical equation, source, and pole parameter with the definitions generated from the protected record. [Solution.lean](Solution.lean) is the final binding to
 
     Submission.certificate :
-      HodgeComputer.HasCertificate
-        HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q
+      HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A
 
 The meaning of this statement is given by the repository's [formal contract](../../formal/README.md). It asks for a nonzero homogeneous denominator \(D\), six homogeneous numerators \(N_i\) of degree \(\deg D+1\), relative primality of \(F\) and \(D\), and a polynomial \(Q\) satisfying
 
@@ -266,7 +265,7 @@ The equations and units survive in the chosen field factor. This argument uses t
 
 The algebra behind this step is the square-Jacobian and étale construction in the maintained Holdout library, together with mathlib's étale and flatness results. For background, see the Stacks Project sections on [smooth ring maps](https://stacks.math.columbia.edu/tag/00T1) and [étale ring maps](https://stacks.math.columbia.edu/tag/00U0).
 
-The target-specific implementation is [ArithmeticBase.lean](ArithmeticBase.lean), [ArithmeticEndpoint.lean](ArithmeticEndpoint.lean), [OpenIncidence.lean](OpenIncidence.lean), [ArithmeticLifting.lean](ArithmeticLifting.lean), [ArithmeticSeed.lean](ArithmeticSeed.lean), and [ArithmeticFamily.lean](ArithmeticFamily.lean). [QuarticIncidence.lean](QuarticIncidence.lean) proves the degree, substitution, and differentiation identities for (8). [QuarticFamily.lean](QuarticFamily.lean) packages the exact equations, invertible Jacobian, and nonzero transverse coefficient.
+The target-specific implementation is [ArithmeticBase.lean](ArithmeticBase.lean), [ArithmeticEndpoint.lean](ArithmeticEndpoint.lean), [OpenIncidence.lean](../../formal/lean/HodgeComputer/Constructions/PolynomialCurves/OpenIncidence.lean), [ArithmeticLifting.lean](ArithmeticLifting.lean), [ArithmeticSeed.lean](ArithmeticSeed.lean), and [ArithmeticFamily.lean](ArithmeticFamily.lean). [QuarticIncidence.lean](QuarticIncidence.lean) proves the degree, substitution, and differentiation identities for (8). [QuarticFamily.lean](QuarticFamily.lean) packages the exact equations, invertible Jacobian, and nonzero transverse coefficient.
 
 ## 5. Dominance and a finite extension of the target field
 
@@ -287,7 +286,7 @@ Thus substitution is injective on \(\mathbb C[x_1,x_2,x_3,x_4,u]\). The monic ir
 
 By (4), \(K\) has transcendence degree five. Since \(E/K_{\mathrm{end}}\) is finite, \(E\) has transcendence degree four, and \(E(t)\) has transcendence degree five. The extension \(L/K\) is therefore algebraic. The argument also supplies the necessary essential-finite-type property over \(\mathbb C\); this makes the algebraic extension finite. Equality of transcendence degrees alone is not used to assert finiteness.
 
-[Lifting.lean](Lifting.lean) contains the anchored-substitution lemma. [TargetEmbedding.lean](TargetEmbedding.lean) defines the target coordinate ring and field, proves the embedding, checks its coordinate evaluation identities, and proves finiteness using the shared transcendence-degree results.
+[ArithmeticLifting.lean](../../formal/lean/HodgeComputer/Constructions/PolynomialCurves/ArithmeticLifting.lean) contains the anchored-substitution lemma. [TargetEmbedding.lean](TargetEmbedding.lean) defines the target coordinate ring and field, proves the embedding, checks its coordinate evaluation identities, and proves finiteness using the shared transcendence-degree results.
 
 ## 6. A polynomial normal and five commuting derivations
 
@@ -428,7 +427,7 @@ vanishes modulo \(H_c\). Therefore it equals \(H_cQ_H\) for some polynomial \(Q_
 
 The denominator is legal: its image in \(K\) is the product of the two nonzero elements \(\partial_0H_c\) and \(d\). Since \(H_c\) is irreducible over \(\mathbb C\), this proves \(D_H\ne0\) and \(\gcd(H_c,D_H)=1\).
 
-[CurveClosure.lean](CurveClosure.lean) combines the shared polynomial integration, finite trace, and clearing results. [FamilyClosure.lean](FamilyClosure.lean), in `quotient_normalized_of_quartic_family`, supplies all their hypotheses from the constructed quartic family. This produces unrestricted normalized polynomial data on the quotient; homogeneous extraction is performed after returning to the physical variables.
+[NormalizedCertificate.lean](../../formal/lean/HodgeComputer/Constructions/PolynomialCurves/NormalizedCertificate.lean) combines the shared polynomial integration, finite trace, and clearing results. [FamilyClosure.lean](FamilyClosure.lean), in `quotient_normalized_of_quartic_family`, supplies all their hypotheses from the constructed quartic family. This produces unrestricted normalized polynomial data on the quotient; homogeneous extraction is performed after returning to the physical variables.
 
 ## 8. Exact reflection transport and homogeneous extraction
 
@@ -473,7 +472,7 @@ Relative primality is checked separately. Treat \(H_c\) and \(F_c\) as monic pol
 
 The data in (17) need not yet be homogeneous. The shared [homogeneous certificate construction](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/HomogeneousCertificate.lean) applies because \(F\) and \(A\) are homogeneous of degree six, \(F\) is prime, and the normal chart (2) is legal.
 
-This construction first chooses a denominator representative modulo \(F\) whose initial homogeneous component is legal. An exact numerator correction and multiplication by the normal derivative preserve the normalized identities. Finite homogeneous extraction then produces a nonzero homogeneous denominator \(\widetilde D\) of some degree \(d\), six homogeneous numerators \(\widetilde N_i\) of degree \(d+1\), and a polynomial \(\widetilde Q\), with
+This construction first chooses a denominator representative modulo \(F\) whose initial homogeneous component is legal. An exact numerator correction and multiplication by the normal derivative preserve the normalized identities. Finite homogeneous extraction then produces a nonzero homogeneous denominator \(\widetilde D\), six homogeneous numerators \(\widetilde N_i\) of degree \(\deg(\widetilde D)+1\), and a polynomial \(\widetilde Q\), with
 
 \[
 \gcd(F,\widetilde D)=1,\qquad
@@ -487,7 +486,7 @@ This construction first chooses a denominator representative modulo \(F\) whose 
 \qquad\text{(20)}
 \]
 
-Substituting (20) into the left side of (1) gives \(F^2\widetilde Q\). These are exactly the degree, nonvanishing, relative-primality, and identity conditions required by `HodgeComputer.Verify` at \(q=1\).
+Substituting (20) into the left side of (1) gives \(F^2\widetilde Q\). Together with nonvanishing and degree-six homogeneity of \(F\), and degree-six homogeneity of \(A\), these are the conditions required by `HodgeComputer.Verify` at \(n=5,d=6,q=1\).
 
 The theorem `physical_certificate_of_quartic_family` in [FamilyClosure.lean](FamilyClosure.lean) performs this assembly. The closed arithmetic family and the exact source binding then give the protected theorem in [Solution.lean](Solution.lean).
 
@@ -505,14 +504,14 @@ No `witness.json` is supplied. The proof selects a field factor finite over the 
 
 The main correspondences are:
 
-| Mathematical step | Principal submitted files |
+| Mathematical step | Principal Lean modules |
 | --- | --- |
 | Exact quotient, complex irreducibility, physical homogeneity | [CoupledDomain.lean](CoupledDomain.lean) |
 | Modular quartic and its exact incidence Jacobian | [QuarticSeed.lean](QuarticSeed.lean), [QuarticMatrix.lean](QuarticMatrix.lean), [QuarticSeedJacobian.lean](QuarticSeedJacobian.lean) |
 | Integral endpoint and characteristic-zero lifting | [EndpointDomain.lean](EndpointDomain.lean), [ArithmeticLifting.lean](ArithmeticLifting.lean), [ArithmeticSeed.lean](ArithmeticSeed.lean), [ArithmeticFamily.lean](ArithmeticFamily.lean) |
 | Polynomial normal, source derivations, nonzero evaluation determinant | [QuarticNormal.lean](QuarticNormal.lean), [QuarticFamily.lean](QuarticFamily.lean), [QuarticSource.lean](QuarticSource.lean) |
-| Dominant evaluation and finite target-field extension | [Lifting.lean](Lifting.lean), [TargetEmbedding.lean](TargetEmbedding.lean) |
-| Polynomial integration, trace, and legal clearing | [CurveClosure.lean](CurveClosure.lean), [FamilyClosure.lean](FamilyClosure.lean) |
+| Dominant evaluation and finite target-field extension | [ArithmeticLifting.lean](../../formal/lean/HodgeComputer/Constructions/PolynomialCurves/ArithmeticLifting.lean), [TargetEmbedding.lean](TargetEmbedding.lean) |
+| Polynomial integration, trace, and legal clearing | [NormalizedCertificate.lean](../../formal/lean/HodgeComputer/Constructions/PolynomialCurves/NormalizedCertificate.lean), [FamilyClosure.lean](FamilyClosure.lean) |
 | Reflection transport and exact protected target | [ReflectionLift.lean](ReflectionLift.lean), [SourceBinding.lean](SourceBinding.lean), [Solution.lean](Solution.lean) |
 
 The submission imports the maintained shared constructions rather than duplicating an accepted proof package. All target-specific definitions and identities are in the permitted flat helper files.
@@ -523,10 +522,10 @@ The closed protected theorem compiles in the repository's pinned Lean environmen
 
 The [existing instance discussion](https://github.com/hodge-computer/sextics/discussions/111), [motivation](why.md), and [provenance](provenance.json) were read before the construction. At that time the discussion contained the maintainer's opening and no comments; the new partial results were subsequently shared in [the progress comment](https://github.com/hodge-computer/sextics/discussions/111#discussioncomment-19059042). The existing context distinguishes the known geometric existence result from the challenge of producing a checked finite certificate.
 
-- **Benjamin E. Diamond and the repository authors** supplied the fixed problem, the certificate formalism, and the reflection/Fano and residue-support framework in [Chapter 1](../../docs/01-certificates.md), [Chapter 2](../../docs/02-explicit-constructions.md), and [Chapter 3](../../docs/03-geometric-support.md). **Phillip Griffiths's residue theory** underlies the geometric interpretation. Diamond's [Hodge Structures in Sextic Fourfolds Equipped with an Involution](https://arxiv.org/html/2603.29157v2#S2) explains the rational-vector-field certificate correspondence in this setting.
+- **Benjamin E. Diamond and the repository authors** supplied the fixed problem, the certificate formalism, and the reflection/Fano and residue-support framework in [Chapter 1](../../docs/01-certificates.md), [Chapter 2](../../docs/02-explicit-constructions.md), and [Chapter 3](../../docs/03-geometric-support.md). **Phillip Griffiths's residue theory** underlies the geometric interpretation. Diamond's [Hodge Structures in Sextic Fourfolds Equipped with an Involution](https://arxiv.org/html/2603.29157#S2) explains the rational-vector-field certificate correspondence in this setting.
 - The Fano-covering-curve context in the repository uses the classical rational-curve results of **Shigefumi Mori** and **Yoichi Miyaoka–Shigefumi Mori**, as expounded in **Olivier Debarre's notes**, together with the free-curve results cited there: [Theorems 7.5 and 7.7, Proposition 9.12, and Corollary 9.13](https://perso.imj-prg.fr/wp-content/uploads/debarre-pub/M22.pdf). The present Lean argument supplies its own explicit modular curve, deformation minor, and algebraic family; these geometric existence theorems serve as motivation rather than added formal axioms.
-- **`fqlx`'s accepted [Holdout proposal, PR #128](https://github.com/hodge-computer/sextics/pull/128)** supplied the moving-family, polynomial-normal, integration, finite-differential-trace, legal-clearing, and homogeneous-extraction machinery reused here. The [maintained HoldoutCover library](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/README.md) retains that work's declarations and attribution, including the collaborators and AI assistance recorded in the [original explanation](../holdout/solution.md). Its later maintenance and target-parameterized assembly were prepared for `benediamond` with OpenAI Codex assistance. This proposal contributes the explicit modular quartic for the fixed coupled quotient, the modular deformation certificate, the arithmetic lift, and the target-specific assembly.
-- **`HeadOfNaps`'s accepted [quadric-contact-broken proposal, PR #122](https://github.com/hodge-computer/sextics/pull/122)** contributed the [fraction-derivation construction](https://github.com/hodge-computer/sextics/blob/main/data/quadric-contact-broken/FractionDerivation.lean) adapted by the shared Holdout machinery. Its disclosed collaborators and AI assistance retain their credit.
+- **`fqlx`'s accepted [Holdout proposal](../holdout/solution.md)** supplied the moving-family, polynomial-normal, integration, finite-differential-trace, legal-clearing, and homogeneous-extraction machinery reused here. The [maintained HoldoutCover library](../../formal/lean/HodgeComputer/Constructions/HoldoutCover/README.md) retains that work's declarations and attribution, including the collaborators and AI assistance recorded in the [original explanation](../holdout/solution.md). Its later maintenance and target-parameterized assembly were prepared for `benediamond` with OpenAI Codex assistance. This proposal contributes the explicit modular quartic for the fixed coupled quotient, the modular deformation certificate, the arithmetic lift, and the target-specific assembly.
+- **`HeadOfNaps`'s accepted [quadric-contact-broken proposal](../quadric-contact-broken/solution.md)** contributed the [fraction-derivation construction](../../formal/lean/HodgeComputer/Constructions/FiniteAlgebra/FractionDerivation.lean) adapted by the shared Holdout machinery. Its disclosed collaborators and AI assistance retain their credit.
 - **The Lean and mathlib contributors** supplied the polynomial, algebraic-extension, localization, étale-algebra, flatness, derivation, determinant, and transcendence-degree foundations. The proof uses the repository's pinned toolchain and mathlib revision. The [mathlib étale-algebra documentation](https://leanprover-community.github.io/mathlib4_docs/Mathlib/RingTheory/Etale/Basic.html) and the Stacks Project references above describe relevant algebraic foundations.
 - **OpenAI ChatGPT, working through collaborating agents for GitHub contributor `fqlx`**, assisted the curve search, exact calculations, mathematical construction, Lean formalization, debugging, source review, and exposition. This is an AI-assisted contribution. The mathematical dependencies and formal verification, rather than agreement among agents, support the claims.
 

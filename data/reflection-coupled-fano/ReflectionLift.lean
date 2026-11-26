@@ -1,10 +1,9 @@
+import HodgeComputer.Sextic
 import Proposal.CoupledDomain
 import HodgeComputer.Verify
 import Mathlib.Analysis.Complex.Polynomial.Basic
 
 noncomputable section
-set_option maxHeartbeats 2000000
-set_option backward.isDefEq.respectTransparency false
 namespace ReflectionCoupledFano
 open MvPolynomial
 open scoped BigOperators
@@ -61,14 +60,14 @@ theorem squareVariable_injective {σ : Type*} [DecidableEq σ] (j : σ) :
 
 abbrev squareLast := squareVariable (5 : Fin 6)
 
-theorem half_mul_two : (C ((2 : ℂ)⁻¹) : HodgeComputer.Poly)*2 = 1 := by
+theorem half_mul_two : (C ((2 : ℂ)⁻¹) : HodgeComputer.Sextic.Poly)*2 = 1 := by
   have h := congrArg (C (σ := Fin 6)) (show (2 : ℂ)⁻¹*2 = 1 by norm_num)
   simpa only [map_mul, map_ofNat, map_one] using h
 
-def liftNumerators (N : Fin 6 → HodgeComputer.Poly) : Fin 6 → HodgeComputer.Poly :=
+def liftNumerators (N : Fin 6 → HodgeComputer.Sextic.Poly) : Fin 6 → HodgeComputer.Sextic.Poly :=
   fun i => if i=5 then C ((2 : ℂ)⁻¹)*squareLast (N i) else X 5*squareLast (N i)
 
-theorem lift_directional (p : HodgeComputer.Poly) (N : Fin 6 → HodgeComputer.Poly) :
+theorem lift_directional (p : HodgeComputer.Sextic.Poly) (N : Fin 6 → HodgeComputer.Sextic.Poly) :
     HodgeTestbed.directional (squareLast p) (liftNumerators N) =
       X 5*squareLast (HodgeTestbed.directional p N) := by
   simp only [HodgeTestbed.directional, map_sum, Finset.mul_sum]
@@ -81,7 +80,7 @@ theorem lift_directional (p : HodgeComputer.Poly) (N : Fin 6 → HodgeComputer.P
   · simp [liftNumerators, hi]
     ring
 
-theorem lift_divergence (N : Fin 6 → HodgeComputer.Poly) :
+theorem lift_divergence (N : Fin 6 → HodgeComputer.Sextic.Poly) :
     HodgeTestbed.divergence (liftNumerators N) =
       X 5*squareLast (HodgeTestbed.divergence N) := by
   simp only [HodgeTestbed.divergence, map_sum, Finset.mul_sum]
@@ -92,7 +91,7 @@ theorem lift_divergence (N : Fin 6 → HodgeComputer.Poly) :
     linear_combination (X 5 * squareLast (pderiv 5 (N 5))) * half_mul_two
   · simp [liftNumerators, hi, pderiv_mul, pderiv_X, Pi.single_apply, squareVariable_pderiv]
 
-theorem lift_divergenceNumerator (D : HodgeComputer.Poly) (N : Fin 6 → HodgeComputer.Poly) :
+theorem lift_divergenceNumerator (D : HodgeComputer.Sextic.Poly) (N : Fin 6 → HodgeComputer.Sextic.Poly) :
     HodgeTestbed.divergenceNumerator (squareLast D) (liftNumerators N) =
       X 5*squareLast (HodgeTestbed.divergenceNumerator D N) := by
   simp only [HodgeTestbed.divergenceNumerator, lift_divergence, lift_directional,
@@ -104,11 +103,11 @@ theorem squareLast_hypersurface (k : ℂ) :
   simp only [hypersurface, map_add, map_mul, map_pow, map_ofNat, squareVariable_C, squareVariable_X]
   simp only [show (0 : Fin 6) ≠ 5 by decide, show (1 : Fin 6) ≠ 5 by decide,
     show (2 : Fin 6) ≠ 5 by decide, show (3 : Fin 6) ≠ 5 by decide,
-    show (4 : Fin 6) ≠ 5 by decide, if_false, if_true]
+    show (4 : Fin 6) ≠ 5 by decide, ite_false, ite_true]
   ring
 
 
-theorem squareLast_univariate (p : HodgeComputer.Poly) :
+theorem squareLast_univariate (p : HodgeComputer.Sextic.Poly) :
     MvPolynomial.finSuccEquiv ℂ 5 (squareLast p) =
       (MvPolynomial.finSuccEquiv ℂ 5 p).map (squareVariable (4 : Fin 5)) := by
   have he : (Fin.cases (Polynomial.X : Polynomial (MvPolynomial (Fin 5) ℂ))
@@ -129,7 +128,7 @@ theorem squareLast_univariate (p : HodgeComputer.Poly) :
   | mul_X p i hp =>
     simp only [map_mul, hp, Polynomial.map_mul, hX]
 
-theorem squareLast_not_dvd (k : ℂ) (D : HodgeComputer.Poly)
+theorem squareLast_not_dvd (k : ℂ) (D : HodgeComputer.Sextic.Poly)
     (hD : ¬ hypersurface k 3 1 ∣ D) :
     ¬ hypersurface k 6 2 ∣ squareLast D := by
   intro hd
@@ -142,7 +141,7 @@ theorem squareLast_not_dvd (k : ℂ) (D : HodgeComputer.Poly)
   apply (map_dvd_iff (MvPolynomial.finSuccEquiv ℂ 5)).mp
   simpa only [hypersurface_univariate] using hd'
 
-theorem squareLast_legal (k : ℂ) (D : HodgeComputer.Poly)
+theorem squareLast_legal (k : ℂ) (D : HodgeComputer.Sextic.Poly)
     (hD : IsRelPrime (hypersurface k 3 1) D) :
     IsRelPrime (hypersurface k 6 2) (squareLast D) := by
   apply (physical_irreducible k).isRelPrime_iff_not_dvd.mpr
@@ -150,7 +149,7 @@ theorem squareLast_legal (k : ℂ) (D : HodgeComputer.Poly)
   exact (weighted_quotient_irreducible k).isRelPrime_iff_not_dvd.mp hD
 
 theorem reflection_normalized_identities
-    (k : ℂ) (A D Q : HodgeComputer.Poly) (N : Fin 6 → HodgeComputer.Poly)
+    (k : ℂ) (A D Q : HodgeComputer.Sextic.Poly) (N : Fin 6 → HodgeComputer.Sextic.Poly)
     (h1 : HodgeTestbed.directional (hypersurface k 3 1) N = A*D)
     (h2 : HodgeTestbed.divergenceNumerator D N = hypersurface k 3 1*Q) :
     HodgeTestbed.directional (hypersurface k 6 2) (liftNumerators N) =
@@ -167,11 +166,11 @@ theorem reflection_normalized_identities
 theorem reflection_source :
     X 5*squareLast (quotientSource (R := ℂ)) = physicalSource := by
   simp only [quotientSource, physicalSource, map_mul, map_pow, squareVariable_X]
-  simp only [show (0 : Fin 6) ≠ 5 by decide, if_false, if_true]
+  simp only [show (0 : Fin 6) ≠ 5 by decide, ite_false, ite_true]
   ring
 
 theorem reflection_normalized_data
-    (k : ℂ) (D Q : HodgeComputer.Poly) (N : Fin 6 → HodgeComputer.Poly)
+    (k : ℂ) (D Q : HodgeComputer.Sextic.Poly) (N : Fin 6 → HodgeComputer.Sextic.Poly)
     (hlegal : IsRelPrime (hypersurface k 3 1) D)
     (h1 : HodgeTestbed.directional (hypersurface k 3 1) N = quotientSource*D)
     (h2 : HodgeTestbed.divergenceNumerator D N = hypersurface k 3 1*Q) :

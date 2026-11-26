@@ -38,7 +38,7 @@ Actual polynomial gradient, Hessian, third derivative, and determinant identitie
 \[
 P=J\bigl(R_2(B)+\operatorname{ResDiv}_{g_0}Z\bigr),
 \]
-with an explicit tangent correction \(Z\). Consequently polynomial integration in the curve parameter, followed by Piola transport, supplies a residue primitive. Derivative-compatible normalized trace descends it from the finite curve field to the companion field. This includes all second-order correction terms. The helper chain is [HigherResidue.lean](HigherResidue.lean), [NormalTaylor.lean](NormalTaylor.lean), [NormalJetBinding.lean](NormalJetBinding.lean), [SourceDensityAlgebra.lean](SourceDensityAlgebra.lean), [JacobianJets.lean](JacobianJets.lean), [NormalRowJets.lean](NormalRowJets.lean), and [HigherCurve.lean](HigherCurve.lean).
+with an explicit tangent correction \(Z\). Consequently polynomial integration in the curve parameter, followed by Piola transport, supplies a residue primitive. Derivative-compatible normalized trace descends it from the finite curve field to the companion field. This includes all second-order correction terms. The helper chain is [HigherResidue.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/HigherResidue.lean), [NormalTaylor.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/NormalTaylor.lean), [NormalJetBinding.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/NormalJetBinding.lean), [SourceDensityAlgebra.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/SourceDensityAlgebra.lean), [JacobianJets.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/JacobianJets.lean), [NormalRowJets.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/NormalRowJets.lean), and [HigherCurve.lean](../../formal/lean/HodgeComputer/Constructions/HigherResidues/HigherCurve.lean).
 
 For the first block, use \(T\) as the normal coordinate, with \(h=x^4a^3\). On the cleared companion \(H=7(f+S^3+T^3)\), take \(B=49hST\). Since \(g_0=21T^2\), the rational first-order source
 \[
@@ -64,13 +64,13 @@ The physical substitution \(X=t(x,a,1)\), \(Y=t\lambda(r,z,1)\) gives \(F=t^6(p+
 
 ## Legal homogeneous certificate
 
-Finally, [CertificateClearing.lean](CertificateClearing.lean) tracks common homogeneous fractions simultaneously in the ambient field and on \(F=0\). Their denominators remain nonzero in the hypersurface function field; exact irreducibility of \(F\) makes the resulting denominator relatively prime to \(F\). Clearing gives a homogeneous denominator \(D\) of degree \(d\), six numerators of degree \(d+7\), and the full strict identity
+Finally, [CertificateClearing.lean](CertificateClearing.lean) tracks common homogeneous fractions simultaneously in the ambient field and on \(F=0\). Their denominators remain nonzero in the hypersurface function field; exact irreducibility of \(F\) makes the resulting denominator relatively prime to \(F\). Clearing gives a homogeneous denominator \(D\), six numerators of degree \(\deg(D)+7\), and the full strict identity
 \[
 AD^2-2D\sum_iN_i\partial_iF+
 F\left(D\sum_i\partial_iN_i-\sum_iN_i\partial_iD\right)=0.
 \]
-The quotient polynomial is \(Q=0\). [Solution.lean](Solution.lean) identifies the protected polynomials exactly. This is an existential certificate construction; it does not export an expanded denominator or six expanded witnesses, and makes no claim of repository acceptance.
+The quotient polynomial is \(Q=0\). [Solution.lean](Solution.lean) identifies the protected polynomials exactly. This is an existential certificate construction; it does not export an expanded denominator or six expanded witnesses.
 
 ## Attribution
 
-The reusable elliptic construction comes from `1337isnot1337`'s accepted [PR #149](https://github.com/hodge-computer/sextics/pull/149), building on `fqlx`'s moving-conic work, `HeadOfNaps`'s certificate and quotient constructions, and the repository contributors' maintained machinery. The shared library is extracted separately in [PR #158](https://github.com/hodge-computer/sextics/pull/158). Lean and mathlib provide the formal foundations. This adaptation was prepared for `fqlx` with OpenAI Codex assistance. OpenJev was used for heuristic route comparisons and independent plausibility checks; it supplies no formal verification or demonstrated speedup.
+The reusable elliptic construction comes from `1337isnot1337`'s accepted [crossed-ternary-asymmetric proof](../crossed-ternary-asymmetric/solution.md), building on `fqlx`'s moving-conic work, `HeadOfNaps`'s certificate and quotient constructions, and the repository contributors' maintained machinery. Its target-independent part is maintained in the shared library. Lean and mathlib provide the formal foundations. This adaptation was prepared for `fqlx` with OpenAI Codex assistance. OpenJev was used for heuristic route comparisons and independent plausibility checks; it supplies no formal verification or demonstrated speedup.

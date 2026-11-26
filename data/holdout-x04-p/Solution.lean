@@ -1,11 +1,10 @@
+import HodgeComputer.Sextic
 import HodgeTarget
 import HodgeComputer.Constructions.HoldoutCover.GeneralizedCover
 
-/- Target specialization of fqlx's accepted PR #128, with Codex assistance
+/- Target specialization of fqlx's accepted holdout proof, with Codex assistance
 for benediamond. The shared construction and its attribution are retained. -/
 noncomputable section
-set_option maxRecDepth 10000
-set_option maxHeartbeats 1000000
 
 namespace Submission
 open HoldoutConstruction HoldoutGeneralization MvPolynomial
@@ -18,8 +17,8 @@ local instance : CharZero CommonCoverFunctionField :=
   charZero_of_injective_ringHom (f := algebraMap ℂ CommonCoverFunctionField)
     (algebraMap ℂ CommonCoverFunctionField).injective
 
-def target : HodgeComputer.Poly := (X 0)^4*(X 2)*(X 5)
-def reflected : HodgeComputer.Poly := (X 0)^4*(X 2)*(X 4)^2*(X 5)
+def target : HodgeComputer.Sextic.Poly := (X 0)^4*(X 2)*(X 5)
+def reflected : HodgeComputer.Sextic.Poly := (X 0)^4*(X 2)*(X 4)^2*(X 5)
 def quotientSource : MvPolynomial (Fin 5) (FermatCoefficientField ℂ) :=
   C ((genericBaseBeta ℂ)^1/(2*(genericBaseAlpha ℂ)^5))*(X 0)^4*(X 2)
 
@@ -58,8 +57,8 @@ theorem partial_binding : actualCoverJacobian.det*quotientCoverFieldMap (ρq (in
   field_simp [coverAlpha_ne_zero,coverT_ne_zero] <;> ring
 
 theorem certificate :
-    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.A HodgeSubmission.q := by
-  change HodgeComputer.HasCertificate holdoutSextic target 1
+    HodgeComputer.HasCertificate HodgeSubmission.F HodgeSubmission.q HodgeSubmission.A := by
+  change HodgeComputer.HasCertificate holdoutSextic 1 target
   apply certificate_of_source_pair target reflected quotientSource ((coverT^2)⁻¹)
   · simpa only [target, pow_one] using (((isHomogeneous_X_pow (R := ℂ) (0 : Fin 6) 4).mul (isHomogeneous_X_pow (R := ℂ) (2 : Fin 6) 1)).mul (isHomogeneous_X_pow (R := ℂ) (5 : Fin 6) 1))
   · exact trace_inverse_square

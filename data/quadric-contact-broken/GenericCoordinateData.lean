@@ -1,12 +1,10 @@
 import Proposal.GenericSpecialization
-import Proposal.CheckedPolynomialLists
+import HodgeComputer.Constructions.FiniteAlgebra.CheckedPolynomialLists
 import Proposal.GenericLineChart
 import Proposal.Subresultant
 noncomputable section
 namespace GenericSpecialization
 open Polynomial
-set_option maxHeartbeats 0
-set_option maxRecDepth 100000
 
 def kCoeff : Polynomial ℚ := C (180/7 : ℚ)
 def aActual : Polynomial ℚ := GenericLineChart.qa X 40 80 160 kCoeff 32 1040

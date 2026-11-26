@@ -1,7 +1,5 @@
 {
-  "mesh": "meshes/holdout-review-one-reflection-561751697.json",
   "seed": 561751697,
-  "resolution": 144,
   "phaseSigns": [
     1,
     1,
@@ -48,16 +46,25 @@
       -0.4064576485362736
     ]
   ],
-  "triangleCount": 369428,
-  "validated": true,
+  "centerOriginal": [
+    0.6376622964157321,
+    0.826823022337131,
+    -0.9483555414345326
+  ],
+  "displayScale": 5.281178453563169,
+  "complexScale": 0.3137511275514689,
   "camera": {
-    "yaw": -2.1324724959986168,
-    "pitch": 0.33595048246145603,
-    "distance": 3.4,
+    "distance": 2.20238,
     "center": [
       0,
       0,
       0
+    ],
+    "orientation": [
+      0.5562551217565493,
+      -0.16045842510218397,
+      -0.22598962846019766,
+      0.7834296529757827
     ]
   }
 }

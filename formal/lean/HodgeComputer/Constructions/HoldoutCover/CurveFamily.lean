@@ -18,8 +18,6 @@ This file alone asserts neither nonsingularity nor a Hodge certificate.
 
 noncomputable section
 
-set_option backward.isDefEq.respectTransparency false
-
 namespace HoldoutConicIncidence
 
 abbrev Index := Fin 6 ⊕ Fin 6
@@ -98,8 +96,7 @@ def coefficientDeriv (i : Index) :
 
 @[simp] theorem coefficientDeriv_C (i : Index) (f : Coeff R) :
     coefficientDeriv i (Polynomial.C f) = Polynomial.C (MvPolynomial.pderiv i f) := by
-  apply Polynomial.ext
-  intro n
+  ext n
   by_cases hn : n = 0 <;> simp [coefficientDeriv_coeff, Polynomial.coeff_C, hn]
 
 @[simp] theorem coefficientDeriv_X (i : Index) :
@@ -284,12 +281,11 @@ theorem eq_constant_of_positive_coefficients (f : Polynomial R)
     (hdegree : f.natDegree ≤ 12)
     (hpositive : ∀ i : Index, f.coeff (equationDegree i) = 0) :
     f = Polynomial.C (f.coeff 0) := by
-  apply Polynomial.ext
-  intro n
+  ext n
   by_cases hn : n = 0
   · subst n
     simp
-  · rw [Polynomial.coeff_C, if_neg hn]
+  · rw [Polynomial.coeff_C, ite_eq_right hn]
     by_cases h12 : n ≤ 12
     · obtain ⟨i, hi⟩ := equationDegree_covers (Nat.pos_of_ne_zero hn) h12
       rw [← hi]
@@ -311,7 +307,6 @@ section
 /-! Scalar evaluation and degree bounds for the anchored coefficient family. -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 
 namespace HoldoutConicIncidence
 
@@ -388,7 +383,6 @@ In particular, a seed in a residue field evaluates the very same polynomial
 presentation that is used over the generic coefficient field. -/
 
 noncomputable section
-set_option backward.isDefEq.respectTransparency false
 
 namespace HoldoutConicIncidence
 

@@ -1,8 +1,8 @@
-import Proposal.CurveFamily
+import HodgeComputer.Constructions.HoldoutCover.CurveFamily
 import Proposal.HypersurfaceCoordinates
-import Proposal.PolynomialCalculus
-import Proposal.ResidueClearing
-import Proposal.ResidueDerivatives
+import HodgeComputer.Constructions.HoldoutCover.PolynomialCalculus
+import HodgeComputer.Constructions.HoldoutCover.ResidueClearing
+import HodgeComputer.Constructions.HoldoutCover.ResidueDerivatives
 
 /- Source component: QuotientDerivations -/
 section
@@ -76,7 +76,6 @@ theorem quotientAxis_gradient (alpha beta : R) :
     Pi.single_apply, show (1 : Fin 5) ≠ 0 by decide,
     show (2 : Fin 5) ≠ 0 by decide, show (3 : Fin 5) ≠ 0 by decide,
     show (4 : Fin 5) ≠ 0 by decide]
-  simp [Matrix.cons_val]
 
 /-- Restriction to the X0 axis proves that the normal derivative does not
 vanish in the hypersurface's coordinate ring. -/
