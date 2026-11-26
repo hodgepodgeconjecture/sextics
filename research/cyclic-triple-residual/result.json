@@ -1,0 +1,67 @@
+{
+  "prime": 101,
+  "precision": 8,
+  "coupling": "5/7",
+  "endpoint": [
+    101,
+    1,
+    202,
+    303
+  ],
+  "incidence_point": [
+    5305135170009988,
+    10099820686269025,
+    6697672030177604,
+    3406983570780598,
+    1170099037371375,
+    2073914732982955,
+    8782178672900322,
+    101,
+    1,
+    202,
+    303
+  ],
+  "incidence_equations_mod_pN": true,
+  "implicit_second_derivatives_checked": true,
+  "J_degree": 0,
+  "R_degree": 9,
+  "Z_valuation": 1,
+  "R_valuation": 4,
+  "normalized_Z_mod_p": [
+    3,
+    0,
+    0,
+    100
+  ],
+  "normalized_R_mod_p": [
+    50,
+    5,
+    17,
+    71,
+    55,
+    86,
+    84,
+    0,
+    0,
+    0
+  ],
+  "primitive_degree_bound": 13,
+  "operator_shape": [
+    16,
+    14
+  ],
+  "rank": 14,
+  "augmented_rank": 15,
+  "full_normal_form_reconstruction": true,
+  "normalized_remainder_precision": 4,
+  "normalized_remainders_mod_pN": [
+    38008933,
+    69168482
+  ],
+  "normalized_remainders_mod_p": [
+    7,
+    46
+  ],
+  "elapsed_seconds": 0.122,
+  "scope": "Local p-adic branch through accepted seed; bounded time-direction equation only. No Lean proof."
+}

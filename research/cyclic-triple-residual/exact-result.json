@@ -1,0 +1,18 @@
+{
+  "coupling": "5/7",
+  "exact_jet_and_normal_checks": "PASS",
+  "general_obstruction": "-2*alpha**3*beta/k",
+  "specialized_obstruction": "-28/5",
+  "matrix_rank": 5,
+  "augmented_rank": 6,
+  "residue_at_each_infinity": "28/(45*c**5)",
+  "normal_form_determinant": "8*leading_coefficient(Z)*discriminant(Z)",
+  "general_compact_coefficient": "(-5*alpha**4*k**3 + 216*beta**3*gamma)/(36*alpha*k**3)",
+  "general_residue_coefficient": "2*alpha**2*beta/k",
+  "specialized_compact_coefficient": "1777487/4500",
+  "specialized_residue_coefficient": "28/5",
+  "leading_parameter_current_check": "PASS; no global rational continuation claimed",
+  "R4": "-65856*t**6/125 + 2352*t**5/25 - 28*t**4/5 + 2667293*t**3/1125 - 10584*t**2/25 + 126*t/5 - 1/2",
+  "generic_coupling_scope": "k*alpha*beta*gamma != 0",
+  "scope": "Obstruction to time-only integration for this anchored weighted-line family. Parameter currents remain allowed. Not Lean-verified."
+}
