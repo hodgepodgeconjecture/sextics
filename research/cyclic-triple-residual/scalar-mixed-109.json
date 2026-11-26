@@ -1,0 +1,38 @@
+{
+  "prime": 109,
+  "input_precision": 48,
+  "denominator_exponent": 2,
+  "seed": 20261126,
+  "coefficient_span": [
+    "1"
+  ],
+  "additional_polynomial_slope_span": [
+    "a",
+    "b",
+    "c",
+    "f"
+  ],
+  "original_columns": 261,
+  "exact_Euler_kernel_dimension": 14,
+  "columns_after_Euler_gauge": 247,
+  "rank_lower_bound": 247,
+  "inconsistency_witness": {
+    "sample": 247,
+    "rhs_valuation": 9,
+    "rhs_precision": 44,
+    "normalized_rhs_mod_p": 56
+  },
+  "status": "EXCLUDED",
+  "scope": "Only the stated finite polynomial coefficient span for b_i=J*M_i/xi^m. Does not exclude other incidence-dependent currents or general rational denominators.",
+  "elapsed_seconds": 92.628,
+  "samples_checked": 248,
+  "reproduction_hashes": {
+    "sample_directions_sha256": "94f73bdc58bef6e97294957ff69d3fdba3a944666cb19a0ab5c1602f166861c0",
+    "pivot_records_sha256": "43209215f5893085d4fb2fc1967aa7da29ed196630663f9bbe26ea5cabacf3a1"
+  },
+  "pivot_statistics": {
+    "minimum_precision": 31,
+    "maximum_valuation": 13,
+    "sum_of_valuations": 2233
+  }
+}

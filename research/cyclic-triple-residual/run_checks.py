@@ -52,4 +52,4 @@ for p in [101,109]:
     assert min(report['checked_to'].values())>=30
     assert (report['old_R_degree'],report['new_R_degree'])==(9,3)
 print('PASS: exact source-deformation jets agree with both independent adic reconstructions')
-print('All research checks passed. No Lean verification or target certificate claimed.')
+print('All Python research checks passed. Lean checks are separate; no target certificate claimed.')

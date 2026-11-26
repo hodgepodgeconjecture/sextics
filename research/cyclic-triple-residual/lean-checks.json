@@ -1,0 +1,57 @@
+{
+  "toolchain": "Lean (version 4.36.0, x86_64-unknown-linux-gnu, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)",
+  "mathlib_revision": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842",
+  "source_sha256": "ea968824e7b99181ea8a67c9d022cc57d5a71c3b81ac6806202f441ac7100085",
+  "compile": "PASS; no warnings",
+  "kernel_replay": "PASS",
+  "axioms": {
+    "CyclicCubicReduction.compact_polynomial_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.cubic_derivation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.discriminant_derivation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.cubic_primitive_rule": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.compact_rational_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.compact_source_of_quadratic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.compact_source": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.kummer_derivative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CyclicCubicReduction.current_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "compile_seconds": 2.04,
+  "kernel_replay_seconds": 1.734,
+  "peak_child_rss_kib": 2292652,
+  "scope": "Universal cubic compact reduction, sixth-root connection trivialization, and conditional current reconstruction only. No target incidence binding, rational scalar primitive, HasCertificate theorem, or protected instance verification."
+}

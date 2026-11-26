@@ -3,8 +3,10 @@
 Research checkpoint, 2026-11-26. Prepared for the contributor by OpenAI Codex.
 **Research branch checkpoint, saved to the contributor's fork with permission.**
 Discussion posts and PRs require the contributor's review.
-No target certificate, Lean verification, unrestricted nonexistence theorem,
-or acceptance is claimed.
+No target certificate, unrestricted nonexistence theorem, or acceptance is
+claimed. Nine universal reduction lemmas now compile and pass independent
+kernel replay under the pinned Lean 4.36.0 toolchain; target binding and the
+scalar primitive remain open.
 
 ## Result and scope
 
@@ -549,7 +551,138 @@ establish that either. The Euler resonance also persists.
 The next task is to exploit this scalar equation and the incidence
 relations to construct an actual rational primitive, retaining all
 denominators and their hypotheses. Finite trace, homogeneous clearing,
-and Lean verification would follow only after that missing construction.
+and target-level Lean verification require that missing construction.
+
+## Certified part of the reduction
+
+`lean/CyclicCubicReduction.lean` proves nine universal lemmas over a field
+with the stated characteristic and derivation hypotheses:
+
+- `compact_polynomial_identity` verifies the explicit quadratic correction
+  numerator for an arbitrary cubic and an arbitrary first coefficient jet.
+- `cubic_derivation` and `discriminant_derivation` bind the coefficient jets
+  to differentiation of the actual cubic and discriminant polynomials.
+- `cubic_primitive_rule` differentiates `P/(3w^2)` in the cubic cover field,
+  retaining the covering-coordinate derivative and the nonzero denominator.
+- `compact_rational_identity` verifies the residual scalar coefficient.
+- `compact_source_of_quadratic` combines those identities with the derivation.
+- `compact_source` instantiates the explicit cubic correction. Its conclusion
+  is the exact time derivative plus `(J_s/3-J*Delta_s/(18Delta))/w^2`.
+- `kummer_derivative` proves the sixth-root connection trivialization.
+- `current_reconstruction` proves that a solution of the scalar current
+  equation reconstructs the time and parameter currents. **The scalar
+  equation is a premise, not a proved existence claim.**
+
+The module compiles without warnings under Lean 4.36.0 and the repository's
+mathlib revision `fc4f59e577feb1a4956671bc04ac18aaaf8cd842`. Its declarations
+were independently replayed by `leanchecker`. All audited axioms are among
+`propext`, `Classical.choice`, and `Quot.sound`. The measured compile and
+replay each take about two seconds, with peak child RSS about 2.2 GiB.
+The source hash, exact timings and axiom audit are in `lean-checks.json`;
+the two text logs are included.
+
+This certifies the universal cubic algebra and the conditional current
+assembly. It does **not** yet certify the seven-equation incidence binding,
+the determinant transport on that field, an actual scalar primitive,
+trace/clearing, or the protected `HasCertificate` statement. There is no
+replacement target definition or assumed certificate in the module.
+
+To replay after installing the pinned toolchain, from the repository root:
+
+```sh
+cd formal/lean
+lake exe cache get Mathlib.RingTheory.Derivation.Basic Mathlib.Tactic.LinearCombination Mathlib.Tactic.FieldSimp Mathlib.Tactic.Ring
+cd ../..
+python3 research/cyclic-triple-residual/run_lean_checks.py
+```
+
+The script also accepts `--formal-root` and `--lake` for an explicit local
+installation. It reads the repository's existing options and manifest,
+builds temporary artifacts, rejects compilation warnings and disallowed
+axioms, and separately invokes the kernel checker. It does not run or
+replace the protected instance verifier.
+
+## Bounded scalar-current search: a combined class is excluded
+
+The next search tests the following **specific** finite class, combining
+endpoint rational expressions and linear dependence on the weight-zero
+curve coefficients:
+
+\[
+b_i=J\left(\frac{P_i(\xi,k_0,k_1,k_2,k_3)}{\xi^2}
+ +\sum_{\ell\in\{a,b,c,f\}}\ell\,
+ Q_{i\ell}(\xi,k_0,k_1,k_2,k_3)\right).
+\]
+
+Give `(xi,k0,k1,k2,k3)` weights `(1,1,1,1,3)`. Each `P_i` has
+weighted degree `weight(k_i)+2`; each `Q_iell` has degree `weight(k_i)`.
+All their coefficients are constants, not functions of the parameters.
+There are **261 coefficients**. This class contains both the endpoint-only
+denominator-`xi^2` ansatz and the polynomial ansatz linear in `a,b,c,f`,
+so the test permits cancellation between these two parts.
+
+The exact Euler zero currents `b_i=J*f*weight(k_i)*k_i` remove a known
+14-dimensional kernel: ten choices `f=M_2/xi^2` with `M_2` a weight-two
+endpoint monomial, and `f=a,b,c,f`. The Euler field has divergence six,
+`S(J)=-5J`, `S(Delta)=6Delta`, and `S(f)=0`, so these are identically
+zero under the scalar current operator. Setting the corresponding `k0`
+coefficients to zero is an exact choice of representative, leaving
+**247 unknowns**; it imposes no restriction on existence within this class.
+
+At each sampled endpoint, the script Hensel-lifts the original seven
+incidence equations and computes all four endpoint derivatives and the
+source-deformation jet with their actual Jacobian inverse. For a basis
+term `b_i=J*M_i/xi^m`, the cleared scalar equation has column
+
+\[
+18\Delta\xi\,\partial_{k_i}M_i
+-18(m+5)\Delta M_i\,\partial_{k_i}\xi
+-3\xi M_i\,\partial_{k_i}\Delta
+\]
+
+and right side `-2 Delta k0^3 xi^(m-2)-xi^(m+1) Delta_s`.
+These formulas are independently checked by symbolic differentiation.
+In the combined class `m=2`, with the polynomial slope terms represented
+by numerators divisible by `xi^2`. At every point the code also checks
+the Euler derivatives of `xi`, `Delta`, and the four weight-zero slopes.
+
+At both primes, 248 sampled directions yield coefficient rank **247**
+and augmented rank **248**. The final transformed right side has
+valuation nine, is known modulo `p^44`, and has leading residue 45 at
+101 and 56 at 109. Input precision is 48 digits. Precision is propagated
+through every elimination and inversion, including zero representatives;
+no floating-point rank tolerance or rational reconstruction is used.
+
+This is an inconsistency certificate for this finite coefficient class.
+The nonsingular incidence Jacobian supplies actual `Q_p` points behind
+the congruences. The 247 pivots and the resolved nonzero augmented pivot
+prove the rank claims over `Q_p`. An identity on the seed component with
+constant coefficients in `Q(i)` would evaluate at all these points and
+is therefore impossible. The exclusion also descends from complex
+constant coefficients: expansion at the seed gives a linear system over
+`Q(i)` in finitely many unknown coefficients, and any consistent complex
+solution of that system would admit a solution over `Q(i)`.
+
+The scripts and results are **not Lean-verified**. In particular, this
+does not exclude currents with nonlinear slope dependence, dependence on
+the other incidence coefficients, larger endpoint denominators, poles on
+the incidence Jacobian or discriminant, or other supports. It is not an
+unrestricted nonexistence result. No further blind increase of these
+bounds is justified by this calculation alone.
+
+Reproduce the combined screen with:
+
+```sh
+python3 scalar_current_screen.py --prime 101 --precision 48 --mixed --sample-limit 270 --output scalar-mixed-101.json
+python3 scalar_current_screen.py --prime 109 --precision 48 --mixed --sample-limit 270 --output scalar-mixed-109.json
+```
+
+Each run takes about 90 seconds on the current workspace and stops at the
+first resolved inconsistent row. The compact reports give the random seed,
+sample counts, pivot bounds, and hashes of the reproducible directions and
+pivot records. Add `--full-report` to retain those detailed records. The next
+mathematical step must use more of the incidence field or find a serving
+correspondence; the scalar equation and target proof remain unresolved.
 
 ## Reproduction and validation
 
@@ -592,7 +725,7 @@ The seed equation is normalized as `7H=7epsilon`. The source uses the
 original numerator, not the accepted companion numerator. The modular
 program's report records the actual incidence points for replay.
 
-No Lean toolchain checks or protected verifier runs were performed for
-this checkpoint. The repository now requires Lean 4.36.0. No repository
-protected files were edited. This is a research-branch checkpoint, not a
-solution submission; no discussion post or PR has been made.
+The Python checks are distinct from the Lean checks above. No protected
+instance verifier run has been made, since there is no complete target
+proof. No repository protected files were edited. This is a research-branch
+checkpoint, not a solution submission; no discussion post or PR has been made.
