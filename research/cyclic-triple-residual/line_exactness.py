@@ -164,6 +164,11 @@ def main(p, precision, output):
         cc = curve_dir(second[j])
         for i in range(4): mm[i][j] = cc[i]
         Jdot = add(Jdot, det_poly(mm,modulus),modulus)
+    # Degree argument in README: the evaluation determinant is time-constant.
+    # Retain the independently assembled determinant as a check of this shortcut.
+    expected_J=pow(6*pow(point[0],5,modulus),-1,modulus)
+    expected_Jdot=-5*pow(36*pow(point[0],11,modulus),-1,modulus) % modulus
+    assert J==[expected_J] and Jdot==[expected_Jdot]
     X = [point[7],point[2]]; Y = [point[0],point[1]]
     Z = [point[10],point[4],point[5],point[6]]
     Zdot = curve_dir(eps)[3]
@@ -182,15 +187,16 @@ def main(p, precision, output):
     Zbar=[v//p**vz % p for v in Z]; Rbar=[v//p**vr % p for v in R]
     assert len(Zbar)==4 and Zbar[-1] != 0
     assert sp.gcd(sp.Poly.from_list(Zbar[::-1],t,modulus=p),sp.Poly.from_list(diff(Zbar)[::-1],t,modulus=p)).degree()==0
-    # Uniform upper bound: deg J <= 6, deg A <= 6, deg R <= 15.
-    degree_bound=13
+    # The constant-determinant lemma sharpens deg R <=9 and deg s <=7.
+    degree_bound=7
+    row_count=degree_bound+3
     operator=[]
     for n in range(degree_bound+1):
         monomial=[0]*n+[1]
         col=add(scale(mul(Zbar,diff(monomial),p),3,p),scale(mul(diff(Zbar),monomial,p),-2,p),p)
-        operator.append(col+[0]*(16-len(col)))
+        operator.append(col+[0]*(row_count-len(col)))
     matrix=[list(row) for row in zip(*operator)]
-    rhs=Rbar+[0]*(16-len(Rbar))
+    rhs=Rbar+[0]*(row_count-len(Rbar))
     rk=rank(matrix,p); aug=rank([row+[v] for row,v in zip(matrix,rhs)],p)
     # Reduce the FULL adic source, not just its leading residue-field term.
     # Division by p^vr loses vr known digits; use the smaller common precision.
@@ -217,8 +223,9 @@ def main(p, precision, output):
     report=dict(prime=p,precision=precision,coupling='5/7',endpoint=[p,1,2*p,3*p],
                 incidence_point=point,incidence_equations_mod_pN=True,implicit_second_derivatives_checked=True,
                 J_degree=len(J)-1,R_degree=len(R)-1,Z_valuation=vz,R_valuation=vr,
+                constant_determinant_shortcut_checked=True,
                 normalized_Z_mod_p=Zbar,normalized_R_mod_p=Rbar,
-                primitive_degree_bound=degree_bound,operator_shape=[16,14],rank=rk,augmented_rank=aug,
+                primitive_degree_bound=degree_bound,operator_shape=[row_count,degree_bound+1],rank=rk,augmented_rank=aug,
                 full_normal_form_reconstruction=True,normalized_remainder_precision=reduced_precision,
                 normalized_remainders_mod_pN=small_solution[3:],
                 normalized_remainders_mod_p=[v % p for v in small_solution[3:]],

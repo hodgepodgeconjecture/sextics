@@ -27,6 +27,7 @@
   "R_degree": 9,
   "Z_valuation": 1,
   "R_valuation": 4,
+  "constant_determinant_shortcut_checked": true,
   "normalized_Z_mod_p": [
     3,
     0,
@@ -45,13 +46,13 @@
     0,
     0
   ],
-  "primitive_degree_bound": 13,
+  "primitive_degree_bound": 7,
   "operator_shape": [
-    16,
-    14
+    10,
+    8
   ],
-  "rank": 14,
-  "augmented_rank": 15,
+  "rank": 8,
+  "augmented_rank": 9,
   "full_normal_form_reconstruction": true,
   "normalized_remainder_precision": 4,
   "normalized_remainders_mod_pN": [
@@ -62,6 +63,6 @@
     7,
     46
   ],
-  "elapsed_seconds": 0.122,
+  "elapsed_seconds": 0.096,
   "scope": "Local p-adic branch through accepted seed; bounded time-direction equation only. No Lean proof."
 }

@@ -130,9 +130,45 @@ has nonzero residues at the three points at infinity. Exactness holds
 if and only if both coefficients vanish. Finite branch points have zero
 residues automatically by their local exponents modulo three.
 
-For the actual family, a conservative degree bound is `deg J <= 6`,
-`deg A <= 6`, and `deg R <= 15`, so `deg s <= 13` suffices for the
-complete test. This bound follows from the family, not a guessed cutoff.
+The constant-determinant lemma below sharpens the actual family's bounds
+to `deg R <= 9` and `deg s <= 7`. The original checkpoint used the valid
+but looser bounds 15 and 13. These bounds follow from the family, not a
+guessed cutoff.
+
+## The moving determinant is constant
+
+After expanding along the `Y1/time` and `X1/k1` entries, the evaluation
+determinant is the determinant of a four-by-four polynomial matrix `M`
+with rows `(Y0,X0,Y2,Z)` and columns `(epsilon,k0,k2,k3)`. Differentiating
+`H(phi)=epsilon` gives
+
+\[
+(H_{Y_0},H_{X_0},H_{Y_2},H_Z)M=(1,0,0,0).
+\]
+
+Multiply by the adjugate. Then `H_Y0 * det(M)` is the three-by-three
+minor in the last three rows and columns. Its degree is at most
+`1+1+3=5`. Generically `H_Y0(phi)` has degree five, while `det(M)` is
+polynomial, so `det(M)` is constant in time. The required degree-five
+coefficient is nonzero on our component: along the first jet above its
+leading term is `-36 beta^2 lambda^2/kappa`, when `beta != 0`.
+
+Evaluation at `t=0` gives `J=1/(6xi^5)`. This is an identity on the
+generic incidence field and hence on its domain of definition, including
+specializations where the degree-five coefficient vanishes. It holds
+with epsilon variable too. The endpoint equation gives
+`xi_epsilon=1/(6xi^5)`, so
+
+\[
+J=\frac1{6\xi^5},\qquad J_\epsilon=-\frac5{36\xi^{11}}.
+\]
+
+The same argument applies in the `X0`-anchored chart below, using rows
+`(Y0,X1,Y2,Z)`. There the degree-five gradient coefficient is nonzero at
+the transformed limiting line. This gives a cheaper actual-source
+evaluator requiring only the first implicit normal derivative. The code
+retains its separate second-derivative determinant computation and checks
+agreement, instead of using the simplification as its own verification.
 
 ## Characteristic-zero first jet
 
@@ -284,15 +320,69 @@ Do not repeat a search for a time-only primitive, assume the finite trace
 removes a nonzero differential class, or infer global rationality from the
 leading beta-antiderivatives. No AWS computation is justified yet.
 
+## Continuation: source-zero infinity and Euler audit
+
+The next test changes the parameterization so the point at infinity has
+`X0=0`, where the target numerator vanishes. Let `h=b/k0` for the old
+`X0=k0+b t`, and introduce `T=t/(1+h t)`. With `g=1-h T`, scale ordinary
+coordinates by `g` and `Z` by `g^3`. The new coefficients are
+
+\[
+\begin{aligned}
+a'&=a-\xi h,&b'&=-k_1h,&c'&=c-k_2h,\\
+d'&=d-3k_3h,&e'&=e-2dh+3k_3h^2,&
+f'&=f-eh+dh^2-k_3h^3.
+\end{aligned}
+\]
+
+Now `X0=k0` and `X1=k1+b'T`; the endpoint is unchanged. All six
+coordinate identities and both charts' coefficient equations are checked
+against the copied exact `instance.rec`. The fixed polynomial and source
+are not changed. We solve the new normal equation `H=epsilon`, rather
+than pretending that the old normal simply scales: away from `epsilon=0`
+the coordinate transformation sends `H` to `g^6 H`.
+
+The `source_root_chart.py` calculation tracks absolute p-adic precision
+through inversions with negative valuation. At endpoints
+`(k0,k1,k2,k3)=(p,1,2p,3p)`, **both** remainders are nonzero, with
+valuation two at `p=101` and `p=109`. The outputs certify the incidence,
+inverse, source determinant, and reconstructed normal form to the
+reported precisions (60 input digits at 101, 40 at 109). In this chart
+`deg R <= 6`, so the time-primitive bound is only four. Moving infinity
+to a zero of the source therefore does not by itself cancel its residue
+for this rebuilt normal representative. A claim that the change of chart
+finishes the problem would omit parameter and normal-change currents.
+
+There is also an exact scaling obstruction to a naive Euler shortcut.
+The endpoint Euler field is
+`S=k0*d_k0+k1*d_k1+k2*d_k2+3k3*d_k3`, with divergence six.
+The cubic coefficient weights `(a,b,c,d)` in the connection formula are
+`(0,1,2,3)`, so `Gamma_S=diag(-1,0)`. Uniqueness of the homogeneous
+normal form gives source remainder weights `(-5,-6)`. Therefore
+
+\[
+S(C)+(\operatorname{div}S)C+\Gamma_S C=0.
+\]
+
+The source is precisely at the zero Euler weight: division by a nonzero
+weight cannot supply a primitive. This leaves the rational two-component
+current equation above as the actual next task. Neither the chart test
+nor this scaling identity excludes general rational parameter currents.
+
 ## Reproduction and validation
 
 Requires Python 3 and SymPy (tested with Python 3.12 and SymPy 1.14.0).
 
 ```sh
+python3 run_checks.py
+# Individual stages:
 python3 verify_initial_obstruction.py
 python3 verify_cubic_connection.py
+python3 verify_chart_and_determinant.py
 python3 line_exactness.py --prime 101 --precision 8 --output result.json
 python3 line_exactness.py --prime 109 --precision 10 --output result-109.json
+python3 source_root_chart.py --prime 101 --precision 60 --output source-root-101.json
+python3 source_root_chart.py --prime 109 --precision 40 --output source-root-109.json
 ```
 
 The first script verifies the characteristic-zero jet, source derivative,
@@ -303,12 +393,13 @@ flatness identities, and a scaling control. The modular script
 independently builds all seven incidence equations,
 Hensel-lifts them at the exact coupling, computes first and second implicit
 derivatives and all determinant-variation terms, then tests the complete
-16-by-14 polynomial system. It also reconstructs the full source from its
+10-by-8 polynomial system (tightened from the initial 16-by-14 system).
+It also reconstructs the full source from its
 two-remainder normal form: the normalized remainder pair is
 `(38008933,69168482)` modulo `101^4`, and
 `(399742904841,92335547497)` modulo `109^6`. These are adic sample values,
 not rational reconstructions of the generic coefficient functions.
-Both primes give ranks 14 and 15 after
+Both primes give ranks 8 and 9 after
 normalizing `v_p(Z)=1` and `v_p(R)=4`; they are implementation cross-checks,
 not substitutes for the characteristic-zero argument.
 

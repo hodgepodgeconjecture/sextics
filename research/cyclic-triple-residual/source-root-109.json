@@ -1,0 +1,27 @@
+{
+  "prime": 109,
+  "input_precision": 40,
+  "anchor": "X0",
+  "target_source": "X0^3*Y0^3",
+  "coupling": "5/7",
+  "incidence_checked_to": 39,
+  "jacobian_inverse_checked_to": 37,
+  "minimum_inverse_valuation": -1,
+  "J_degree": 0,
+  "R_degree": 6,
+  "constant_determinant_shortcut_checked_to": 40,
+  "compact_remainder": {
+    "valuation": 2,
+    "absolute_precision": 40,
+    "representative": "1066739379317356276882502762572547284653127413973907033090932432018511033025923867",
+    "zero_to_precision": false
+  },
+  "residue_remainder": {
+    "valuation": 2,
+    "absolute_precision": 40,
+    "representative": "1929535249757448625116059494539613063497595076220774419832799648642108202259497035",
+    "zero_to_precision": false
+  },
+  "normal_form_reconstruction_to": 41,
+  "scope": "Precision-tracked adic sample; zeros modulo p^N are not generic vanishing proofs."
+}
