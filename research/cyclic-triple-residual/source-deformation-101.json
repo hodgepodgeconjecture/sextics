@@ -1,0 +1,39 @@
+{
+  "prime": 101,
+  "input_precision": 30,
+  "target_source": "X0^3*Y0^3",
+  "auxiliary_deformation": "F-s*A; all reported source identities at s=0",
+  "current_parameters": [
+    "k0",
+    "k2",
+    "k3"
+  ],
+  "current_numerator_degrees": [
+    6,
+    6,
+    6
+  ],
+  "old_R_degree": 9,
+  "new_R_degree": 3,
+  "checked_to": {
+    "constant_determinants": 30,
+    "cramers_rule": 32,
+    "volume_divergence": 32,
+    "full_source_transport": 33,
+    "normal_form_reconstruction": 32,
+    "scalar_discriminant_formula": 31
+  },
+  "new_compact_remainder": {
+    "valuation": 3,
+    "absolute_precision": 31,
+    "normalized_residue_mod_p": 18,
+    "zero_to_precision": false
+  },
+  "new_residue_remainder": {
+    "valuation": 59,
+    "absolute_precision": 59,
+    "normalized_residue_mod_p": null,
+    "zero_to_precision": true
+  },
+  "scope": "Exact generic current formulas are proved in README; these adic samples independently check the implementation. No target certificate or Lean verification."
+}

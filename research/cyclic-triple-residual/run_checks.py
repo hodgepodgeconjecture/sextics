@@ -11,7 +11,10 @@ commands=[['verify_initial_obstruction.py'],['verify_cubic_connection.py'],
           ['line_exactness.py','--prime','101','--precision','8','--output','result.json'],
           ['line_exactness.py','--prime','109','--precision','10','--output','result-109.json'],
           ['source_root_chart.py','--prime','101','--precision','60','--output','source-root-101.json'],
-          ['source_root_chart.py','--prime','109','--precision','40','--output','source-root-109.json']]
+          ['source_root_chart.py','--prime','109','--precision','40','--output','source-root-109.json'],
+          ['verify_source_deformation.py'],
+          ['source_deformation.py','--prime','101','--precision','30','--output','source-deformation-101.json'],
+          ['source_deformation.py','--prime','109','--precision','30','--output','source-deformation-109.json']]
 for command in commands:
     run=subprocess.run([sys.executable,*command],cwd=ROOT,text=True,capture_output=True)
     if run.returncode:
@@ -35,4 +38,18 @@ for name in ['source-root-101.json','source-root-109.json']:
         assert report[component]['absolute_precision']>2
         assert not report[component]['zero_to_precision']
 print('PASS: independent characteristic-zero / adic agreement, and source-root nonzero remainders')
+exact_deformation=json.loads((ROOT/'source-deformation-exact.json').read_text())
+compact=sp.sympify(exact_deformation['specialized_compact_C0_lambda3'])
+for p in [101,109]:
+    report=json.loads((ROOT/f'source-deformation-{p}.json').read_text())
+    root_i=next(i for i in range(p) if (i*i+1)%p==0)
+    num,den=sp.fraction(sp.together(compact.subs(sp.I,root_i)))
+    expected=int(num)*pow(int(den),-1,p)%p
+    assert expected==report['new_compact_remainder']['normalized_residue_mod_p']
+    assert report['new_compact_remainder']['valuation']==3
+    assert not report['new_compact_remainder']['zero_to_precision']
+    assert report['new_residue_remainder']['zero_to_precision']
+    assert min(report['checked_to'].values())>=30
+    assert (report['old_R_degree'],report['new_R_degree'])==(9,3)
+print('PASS: exact source-deformation jets agree with both independent adic reconstructions')
 print('All research checks passed. No Lean verification or target certificate claimed.')

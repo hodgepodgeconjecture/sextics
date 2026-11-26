@@ -17,9 +17,16 @@ representative and family, not a cutoff search.
 The first nonzero degeneration term has a nonzero residue at infinity and
 a nonzero elliptic remainder for the explicit direction tested. A universal
 five-by-five determinant identity reduces this class of cubic-cover
-exactness problems to two scalar obstructions. Parameter derivatives can
-cancel both leading terms formally; a rational current for the full family
-has not been constructed.
+exactness problems to two scalar obstructions.
+
+**Latest progress:** an exact change of source representative now removes
+the entire residue component, using three explicit rational parameter
+currents on the full incidence field. Its time numerator has degree three
+instead of nine. The remaining equation is scalar, with connection
+`d - (1/6)dlog(Delta)`. Its compact elliptic component is provably nonzero;
+a rational parameter current for that remaining component has not been
+constructed. The preceding time-only obstruction remains valid for its
+stated representative. No auxiliary deformation changes the fixed target.
 
 The known quotient certificate does not extend to the residual target just
 by allowing rational functions in its integration step.
@@ -307,14 +314,15 @@ additional moving-pole or residue currents remain available outside it.
 Finite trace and legal homogeneous clearing would still be required for
 the protected certificate.
 
-## Next research task
+## Earlier two-component research task
 
-Apply the two-remainder reduction to the full polynomial `R` over the
+The earlier approach was to apply the two-remainder reduction to the full polynomial `R` over the
 incidence field, not just its first jet. Use the connection and exact
 corrections above to search for a rational solution of the two-component
 current equation; verify reconstruction before
-attempting Lean transport and clearing. The family is isotrivial after a
-finite cover, but moving marked points and source corrections remain.
+attempting Lean transport and clearing. The source-deformation reduction
+below supersedes this with a scalar sufficient equation. The family is
+isotrivial after a finite cover; that fact alone does not integrate the source.
 
 Do not repeat a search for a time-only primitive, assume the finite trace
 removes a nonzero differential class, or infer global rationality from the
@@ -365,9 +373,183 @@ S(C)+(\operatorname{div}S)C+\Gamma_S C=0.
 \]
 
 The source is precisely at the zero Euler weight: division by a nonzero
-weight cannot supply a primitive. This leaves the rational two-component
-current equation above as the actual next task. Neither the chart test
-nor this scaling identity excludes general rational parameter currents.
+weight cannot supply a primitive. Neither the chart test nor this scaling
+identity excludes general rational parameter currents. The continuation
+below removes one component by an explicit source-transport identity.
+
+## Exact source deformation removes the residue component
+
+Introduce an auxiliary scalar `s` and solve the same anchored incidence for
+
+\[
+H(\phi_s(h,k,t))-s A(\phi_s(h,k,t))=h,
+\qquad A=X_0^3Y_0^3.
+\]
+
+All expressions below are evaluated at **`s=h=0`**. Thus `F,q,A` remain
+exactly the served target. The auxiliary derivative is a way of computing
+rational coefficients in the existing incidence field, not a new permitted
+certificate differentiation direction. The seven coefficient equations
+give `Q_y U=7 coeff_t(A)` for `U=partial_s phi_s`; the already nonsingular
+Jacobian makes `U` rational in that field.
+
+Here is an explicit transport current. Omit the fixed `Y1=t,X1=k1` rows
+and put `x=(Y0,X0,Y2,Z)`, `z=(h,k0,k2,k3)`,
+`M=partial_z x`, `J=det M`, and `V=partial_h x`. For
+`i in {0,2,3}`, let `S_i` be the determinant obtained by replacing the
+`k_i` column of `M` with `U`. The `k1` current is zero. Since
+`dH(U)=A`, `dH(V)=1`, and `dH(partial_ki x)=0`, Cramer's rule gives
+
+\[
+JU=AJV+\sum_{i\in\{0,2,3\}}S_i\,\partial_{k_i}x.
+\]
+
+The divergence of a row of the cofactor matrix of a Jacobian is zero
+(the classical Piola identity). Applying it to this four-variable map gives
+
+\[
+J_s=\partial_h(AJ)+\sum_i\partial_{k_i}S_i.
+\]
+
+The `Z` row of Cramer's identity also gives
+`J Z_s=AJ Z_h+sum_i S_i Z_ki`. Combining these identities, with `w^3=Z`,
+proves the **literal rational identity**
+
+\[
+\boxed{\quad
+\partial_h\!\left(\frac{AJ}{3w^2}\right)
+=\partial_s\!\left(\frac{J}{3w^2}\right)
+ -\sum_i\partial_{k_i}\!\left(\frac{S_i}{3w^2}\right).
+\quad}
+\]
+
+Consequently the currents `-S_i/(3w^2)` transport the full original source
+to the new one. These currents are rational on the full component;
+they are not truncated formal antiderivatives. Each `S_i` is a polynomial
+of degree at most six in `t` because the three ordinary rows of `M,U`
+are linear and their weighted `Z` row is cubic. The cofactor identity is
+verified over characteristic zero with arbitrary Jacobian entries and
+arbitrary symmetric Hessians in `verify_source_deformation.py`.
+
+The constant-determinant argument continues to apply to `H-sA`, which is
+weighted homogeneous of degree six. Its endpoint equation is
+
+\[
+\xi^6+k_0^6+k_1^6+k_2^6+k_3^2+\kappa k_0^3k_3-s k_0^3\xi^3=h.
+\]
+
+Thus, at `s=h=0`,
+
+\[
+J=\frac1{6\xi^5},\qquad
+\xi_s=\frac{k_0^3}{6\xi^2},\qquad
+J_s=-\frac{k_0^3}{18\xi^8}.
+\]
+
+Both `J` and `J_s` are constant in `t`, while `Z_s` is cubic. The new
+source is therefore
+
+\[
+\widetilde\omega=\frac{\widetilde R}{9w^5}\,dt,
+\qquad \widetilde R=3ZJ_s-2JZ_s,\qquad
+\deg_t\widetilde R\leq3.
+\]
+
+In the complete five-column normal form, only the `tZ` column has a
+degree-four term. Hence its coefficient is **identically zero** for this
+new source. Equivalently, it has no residues at infinity. The connection
+formula determines the remaining coefficient exactly:
+
+\[
+\widetilde\omega=d_t\!\left(\frac{J S_{s0}}{3w^2}\right)
+ +B\,\frac{dt}{w^2},\qquad
+B=\frac{J_s}{3}-\frac{J\Delta_s}{18\Delta}.
+\]
+
+Here `S_s0=sum_v (partial_s v) S_v0`, for the four cubic coefficients
+`v`, using the exact corrections in `connection.json`. In the previous
+normalization, `C0=9B=3J_s-J Delta_s/(2 Delta)` and `C1=0`.
+
+This is genuine cancellation of the residue component by explicit
+parameter currents, rather than a claim that the old residue was zero.
+It uses standard determinant transport and Gauss-Manin differentiation;
+no novelty claim is made for those general identities.
+
+The same argument proves a broader statement for this incidence chart:
+**every weighted-degree-six polynomial source on the quotient has a
+representative in the compact elliptic line**, provided one works on the
+same open set where the incidence Jacobian, the cubic leading coefficient,
+and its discriminant are nonzero. Replace `A` by that polynomial in the
+auxiliary deformation. Weighted homogeneity preserves the determinant
+degree argument, so `J_s` is still time-constant and the new numerator
+still has degree at most three. This generalizes the residue elimination;
+it does not prove rational exactness of the compact component for any of
+those sources. In particular, it supplies no new target certificate by itself.
+
+### The compact component remains nonzero
+
+An independent characteristic-zero calculation expands the original
+incidence to order `lambda^2`, the source deformation to order `lambda^4`,
+and the discriminant derivative to order `lambda^7`. For the same endpoints
+`k=(alpha*lambda,1,beta*lambda,gamma*lambda)` and branch `xi -> i`, it gives
+
+\[
+\begin{aligned}
+C_0={}&\lambda^3\left[-\frac{5\alpha^3}{36}
+ +\beta^2\left(\frac{24\alpha}{\kappa^4}
+               -\frac{6i\alpha^2}{\gamma\kappa^3}\right)\right.\\
+&\left.\hspace{24mm}
+ +\beta^3\left(\frac{6\alpha}{\gamma\kappa^3}
+               +\frac{96i}{\kappa^4}
+               +\frac{9\gamma}{\alpha\kappa^3}\right)\right]
+ +O(\lambda^4).
+\end{aligned}
+\]
+
+At `alpha=1,beta=2,gamma=3,kappa=5/7`, the bracket is
+`22618411/22500 + (1830248/625)i`, which is nonzero. At `beta=0` it is
+`-5alpha^3/36`. Thus the new representative still has a compact elliptic
+obstruction to time-only integration. A full certificate has not appeared
+merely by removing the residue term.
+
+The independent adic evaluator reconstructs the actual original source,
+all three determinant currents and their endpoint derivatives, and the
+new source. It checks the full transport identity to at least 30 digits
+at both 101 and 109. The exact leading coefficient above reduces to
+18 and 65 respectively, agreeing with the independent adic values
+(the chosen images of `i` are 10 and 33). This is a cross-check of the
+characteristic-zero derivation, not an inference of an identity from samples.
+
+### The remaining scalar equation
+
+It now suffices to find four rational functions `b_i` in the actual
+incidence field satisfying
+
+\[
+\boxed{\quad
+\sum_{i=0}^3\left(\partial_{k_i}b_i
+ -\frac{\partial_{k_i}\Delta}{6\Delta}b_i\right)=B.
+\quad}
+\]
+
+The holomorphic line is preserved by the connection, so these currents
+do not reintroduce the residue component. Its exact time corrections,
+together with the three already constructed currents, would reconstruct
+the original source. This scalar equation is **unsolved** here.
+
+One useful equivalent formulation is obtained on the finite cover
+`delta^6=Delta`: the equation becomes
+`sum_i partial_ki(b_i/delta)=B/delta`. Also
+`B/delta=(1/3) partial_s(J/delta)` at `s=0`. This identifies an ordinary
+rational divergence problem on a specified algebraic cover. Trivializing
+the connection in this way does not prove that the divergence equation
+has a rational solution. Formal integration near the seed does not
+establish that either. The Euler resonance also persists.
+
+The next task is to exploit this scalar equation and the incidence
+relations to construct an actual rational primitive, retaining all
+denominators and their hypotheses. Finite trace, homogeneous clearing,
+and Lean verification would follow only after that missing construction.
 
 ## Reproduction and validation
 
@@ -383,6 +565,9 @@ python3 line_exactness.py --prime 101 --precision 8 --output result.json
 python3 line_exactness.py --prime 109 --precision 10 --output result-109.json
 python3 source_root_chart.py --prime 101 --precision 60 --output source-root-101.json
 python3 source_root_chart.py --prime 109 --precision 40 --output source-root-109.json
+python3 verify_source_deformation.py
+python3 source_deformation.py --prime 101 --precision 30 --output source-deformation-101.json
+python3 source_deformation.py --prime 109 --precision 30 --output source-deformation-109.json
 ```
 
 The first script verifies the characteristic-zero jet, source derivative,

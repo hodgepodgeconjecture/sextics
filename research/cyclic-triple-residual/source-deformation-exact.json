@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "generic_cofactor_divergence": "PASS",
+    "endpoint_deformation_determinant": "PASS",
+    "second_incidence_jet": "PASS",
+    "source_deformation_jets": "PASS"
+  },
+  "leading_discriminant": "-27*alpha**2*gamma**2",
+  "leading_discriminant_deformation": "9*I*alpha*gamma*(alpha**4*gamma*k**4 - 216*I*alpha**3*beta**2*k + 216*alpha**2*beta**3*k + 864*alpha**2*beta**2*gamma + 3456*I*alpha*beta**3*gamma + 324*beta**3*gamma**2*k)/k**4",
+  "compact_C0_lambda3": "-(5*alpha**4*gamma*k**4 + 216*I*alpha**3*beta**2*k - 216*alpha**2*beta**3*k - 864*alpha**2*beta**2*gamma - 3456*I*alpha*beta**3*gamma - 324*beta**3*gamma**2*k)/(36*alpha*gamma*k**4)",
+  "specialized_compact_C0_lambda3": "22618411/22500 + 1830248*I/625",
+  "residue_C1": "0 identically after the explicit parameter-current transport",
+  "scope": "Exact characteristic-zero identities and a nonzero compact remainder; no full rational current or Lean certificate."
+}
