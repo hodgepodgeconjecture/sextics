@@ -1,0 +1,50 @@
+{
+  "prime": 13,
+  "variables": [
+    "xi",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "k0",
+    "k2",
+    "k3"
+  ],
+  "point": [
+    9,
+    10,
+    12,
+    3,
+    6,
+    8,
+    3,
+    1,
+    2,
+    1
+  ],
+  "incidence_Jacobian_determinant_mod_p": 12,
+  "augmented_incidence_discriminant_Jacobian_determinant_mod_p": 7,
+  "discriminant_endpoint_derivatives_k0_k2_k3": [
+    9,
+    3,
+    6
+  ],
+  "cubic": "3*t**3 - 5*t**2 + 6*t + 1",
+  "gcd_with_cubic_derivative_degree": 1,
+  "w0": 12,
+  "xi_k3": 8,
+  "Delta_xi": 4,
+  "Delta_source_derivative_at_fixed_xi": 4,
+  "local_opposite_character_pairing_residue": 6,
+  "checks": {
+    "fixed_target_binding": "PASS",
+    "incidence_point": "PASS",
+    "smooth_incidence": "PASS",
+    "horizontal_simple_discriminant_zero": "PASS",
+    "ordinary_cubic_double_root": "PASS",
+    "actual_source_variation": "PASS"
+  },
+  "scope": "The horizontal simple zero proves generic degree-six Kummer branching. The local pairing contribution is not the global obstruction sum. No target certificate."
+}

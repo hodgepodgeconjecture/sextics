@@ -8,6 +8,20 @@ claimed. Nine universal reduction lemmas now compile and pass independent
 kernel replay under the pinned Lean 4.36.0 toolchain; target binding and the
 scalar primitive remain open.
 
+**Latest field and boundary results (2026-11-27):**
+[the irreducibility argument](incidence-irreducibility.md) identifies the
+generic 120-sheet algebra with the selected incidence field, proves that
+its generic curve has no extra algebraic constants, and uses a transverse
+discriminant-zero witness to establish a geometrically integral Kummer
+curve of degree 720 over the endpoint curve. The
+[infinity audit](infinity-boundary.md) accounts for all 120 incidence
+sheets at each endpoint infinity and proves regularity of the transformed
+source there. [Two finite boundary families](finite-boundary.md) also have
+regular transformed source, including a constant-cubic degeneration.
+These are exact algebraic results with reproducible checks, not Lean
+proofs or a rational primitive. The remaining issue is global exactness;
+the full three-component current remains a separate, less restrictive route.
+
 **Strategy reassessment:** [the new geometry audit](strategy-reassessment.md)
 explains why connection trivialization is not an existence argument for
 the scalar current. It checks the singular root-cover model at the actual

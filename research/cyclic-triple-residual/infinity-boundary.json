@@ -1,0 +1,137 @@
+{
+  "leading_equations": {
+    "p4": "H**2*k**2*v**2 + 6*H*K*b**2*k**2*v - 12*H*K*b**2*k*v - 8*H*K*b*c**2*k - 8*H*L*b**2*c*k + 2*H*b**3*k**2 - 4*H*b**3*k + 15*K**2*b**4*k**2 - 60*K**2*b**4 - 60*L**2*c**4 - 60*v**4",
+    "p5": "2*H*b**3*k**2*v - 4*H*b**3*k*v - 4*H*b**2*c**2*k + 6*K*b**5*k**2 - 24*K*b**5 - 24*L*c**5 - 24*v**5",
+    "p6": "b**6*k**2 - 4*b**6 - 4*c**6 - 4*v**6",
+    "U": "2*b**3*k**2*v - 4*b**3*k*v - 4*b**2*c**2*k",
+    "V": "6*K*b**5*k**2 - 24*K*b**5 - 24*L*c**5 - 24*v**5"
+  },
+  "vertical_source_forcing_orders": [
+    3,
+    3,
+    3
+  ],
+  "isolated_weight_checks": [
+    {
+      "weights_eps_b_v_c": [
+        4,
+        0,
+        2,
+        1
+      ],
+      "E4_initial": "2*b**3*eps*k*(k - 2) + k**2*v**2",
+      "E5_initial": "2*b**3*k*v*(k - 2) - 4*b**2*c**2*k",
+      "W_order_lower_bounds": [
+        16,
+        8,
+        6
+      ],
+      "residual_correction_order_lower_bounds": [
+        16,
+        14,
+        12
+      ]
+    },
+    {
+      "weights_eps_b_v_c": [
+        4,
+        2,
+        3,
+        0
+      ],
+      "E4_initial": "2*b*c*eps*k*(-4*K*c + k) + k**2*v**2",
+      "E5_initial": "-24*L*c**5*eps - 4*b**2*c**2*k",
+      "W_order_lower_bounds": [
+        16,
+        8,
+        7
+      ],
+      "residual_correction_order_lower_bounds": [
+        16,
+        15,
+        14
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "prime": 1009,
+      "parameters": {
+        "K": 1,
+        "L": 2,
+        "kappa": "5/7"
+      },
+      "quotient_dimension": 72,
+      "macaulay_ranks": {
+        "degree16": 81,
+        "degree17": 99
+      },
+      "at_c_zero_rank": 18,
+      "unit_checks": [
+        "b",
+        "v",
+        "selector_Jacobian",
+        "U",
+        "V"
+      ],
+      "checks": {
+        "selector_transverse": "PASS",
+        "no_lost_points_at_c_zero": "PASS",
+        "all_vertical_branches_have_b_v_H_nonzero": "PASS",
+        "leading_incidence": "PASS"
+      }
+    },
+    {
+      "prime": 1013,
+      "parameters": {
+        "K": 1,
+        "L": 2,
+        "kappa": "5/7"
+      },
+      "quotient_dimension": 72,
+      "macaulay_ranks": {
+        "degree16": 81,
+        "degree17": 99
+      },
+      "at_c_zero_rank": 18,
+      "unit_checks": [
+        "b",
+        "v",
+        "selector_Jacobian",
+        "U",
+        "V"
+      ],
+      "checks": {
+        "selector_transverse": "PASS",
+        "no_lost_points_at_c_zero": "PASS",
+        "all_vertical_branches_have_b_v_H_nonzero": "PASS",
+        "leading_incidence": "PASS"
+      }
+    }
+  ],
+  "branch_types": [
+    {
+      "name": "vertical-family branches",
+      "count": 72,
+      "endpoint_ramification": 1,
+      "ord_Delta_original": -12,
+      "source_order_lower_bound": 3
+    },
+    {
+      "name": "c=0, b nonzero",
+      "count": 6,
+      "endpoint_ramification": 4,
+      "ord_Delta_original": -24,
+      "source_order_lower_bound": 8
+    },
+    {
+      "name": "b=0, c nonzero",
+      "count": 6,
+      "endpoint_ramification": 4,
+      "ord_Delta_original": -20,
+      "Kummer_ramification": 3,
+      "source_order_after_Kummer_lower_bound": 12
+    }
+  ],
+  "scope": "Generic endpoint parameters K,L. Formal local balances and source-order bounds are explained in infinity-boundary.md. No finite-boundary classification, compact de Rham reduction, or certificate."
+}
