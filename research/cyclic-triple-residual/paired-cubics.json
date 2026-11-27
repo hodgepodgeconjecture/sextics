@@ -1,0 +1,26 @@
+{
+  "input_sha256": "8ebd27075d7f2ee7fe3a7294cef764a44806a47298791fcc2fa869b9c4370311",
+  "checks": {
+    "exact_exchange_involution_and_factorization": "PASS",
+    "exact_seed_and_implicit_first_jet": "PASS",
+    "leading_discriminants_with_jet_order_justification": "PASS",
+    "target_and_source_trace_zero": "PASS",
+    "rational_horizontal_gauge_valuation_obstruction": "PASS"
+  },
+  "plus_cubic_first_jet": "-alpha*lam*t**3 + gamma*lam",
+  "minus_cubic_first_jet": "alpha*lam*t**3 - 5*I*alpha*lam*t**2/7 + 6*I*beta*lam*t**3 + 25*gamma*lam*t**2/294 - gamma*lam - 5*I*t/7",
+  "plus_discriminant_order": 4,
+  "plus_discriminant_leading_coefficient": "-27*alpha**2*gamma**2",
+  "minus_discriminant_order": 1,
+  "minus_discriminant_leading_coefficient": "-500*I*(alpha + 6*I*beta)/343",
+  "ratio_discriminant_order": -3,
+  "same_character_gauge_required_order": "-1/2",
+  "opposite_character_gauge_required_order": "-5/6",
+  "limits": [
+    "Generic direction: alpha*gamma*(alpha+6*i*beta) != 0.",
+    "The valuation is the exceptional-divisor valuation of the blowup of the smooth line-space seed.",
+    "No rational horizontal identification of the two rank-one compact connections on this component.",
+    "Finite ramified extensions and other correspondences are not excluded.",
+    "No unrestricted rational-current obstruction and no HasCertificate proof."
+  ]
+}

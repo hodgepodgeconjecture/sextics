@@ -17,6 +17,14 @@ Unstructured enlargement of the bounded current ansatz is paused pending
 a geometric mechanism or a justified pole bound. Reproduce the six new
 exact checks with `python3 verify_strategy_geometry.py` from this folder.
 
+**Paired-cubic follow-up:** [the exchange audit](paired-cubics.md) shows
+that the natural quotient exchange annihilates the target character.
+The two discriminants have exceptional-divisor orders 4 and 1 at the
+seed, excluding a rational horizontal identification of their compact
+connections. Five exact checks are reproducible with
+`python3 verify_paired_cubics.py`. These are obstructions to the specified
+shortcuts, not to the target certificate or arbitrary parameter currents.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the
