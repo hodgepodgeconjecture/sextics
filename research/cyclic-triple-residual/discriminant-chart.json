@@ -1,0 +1,50 @@
+{
+  "symbolic_checks": {
+    "incidence_matrix_structure": "PASS",
+    "universal_remainder_determinant": "PASS",
+    "determinant_cancellation": "PASS",
+    "leading_normal_current": "PASS",
+    "leading_pole_current": "-(alpha**4*gamma*k**4 - 216*I*alpha**3*beta**2*k + 216*alpha**2*beta**3*k + 864*alpha**2*beta**2*gamma + 3456*I*alpha*beta**3*gamma + 324*beta**3*gamma**2*k)/(108*alpha*k**4)",
+    "leading_regular_residual": "-(alpha**4*k**4 - 864*alpha**2*beta**2 - 3456*I*alpha*beta**3 - 648*beta**3*gamma*k)/(108*alpha*k**4)",
+    "leading_correction": "-gamma*(5*alpha**4*k**4 - 4320*alpha**2*beta**2 - 17280*I*alpha*beta**3 - 1296*beta**3*gamma*k)/(360*alpha*k**4)"
+  },
+  "samples": [
+    {
+      "prime": 101,
+      "input_precision": 32,
+      "checks": {
+        "incidence": "PASS",
+        "tangent_cofactor_field": "PASS",
+        "source_cofactor_field": "PASS",
+        "new_coordinate_Jacobian": "PASS",
+        "pole_current_cancellation": "PASS"
+      },
+      "valuations": {
+        "T": 0,
+        "Nj": 3,
+        "Ns": 7,
+        "Delta": 4
+      },
+      "pole_current_valuation": 4
+    },
+    {
+      "prime": 109,
+      "input_precision": 32,
+      "checks": {
+        "incidence": "PASS",
+        "tangent_cofactor_field": "PASS",
+        "source_cofactor_field": "PASS",
+        "new_coordinate_Jacobian": "PASS",
+        "pole_current_cancellation": "PASS"
+      },
+      "valuations": {
+        "T": 0,
+        "Nj": 3,
+        "Ns": 7,
+        "Delta": 4
+      },
+      "pole_current_valuation": 4
+    }
+  ],
+  "scope": "Coordinate-chart and exact cancellation results only. No global singular-locus classification, pole bound, rational primitive or target certificate."
+}

@@ -38,6 +38,13 @@ allows the endpoint poles present in that leading current. The resulting
 both fail the full scalar equation at two primes. These exclude those
 specified rational lifts only; the general rationality problem is open.
 
+**Discriminant coordinate:** [the coordinate audit](discriminant-chart.md)
+identifies the incidence cofactor derivations and shows that the endpoint
+Jacobian determinant cancels from the explicit pole current. Its remaining
+denominator is a Jacobian minor for the projection using the discriminant
+as a coordinate. This gives an exact algebraic integration problem for a
+one-component current, with solvability still unproved.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the
