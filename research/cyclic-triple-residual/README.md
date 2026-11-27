@@ -45,6 +45,14 @@ denominator is a Jacobian minor for the projection using the discriminant
 as a coordinate. This gives an exact algebraic integration problem for a
 one-component current, with solvability still unproved.
 
+**Explicit integration field:** [the reduced curve model](algebraic-curve-model.md)
+eliminates the three cubic-lift coefficients, leaving degree-4, degree-5,
+and degree-6 equations in the line slopes over a genus-two endpoint curve.
+Exact rank certificates give total generic degree 120 over that endpoint
+curve (not over the discriminant). A verified exact differential also
+removes the displayed negative powers of the endpoint coordinate from the
+source. Finding a rational primitive remains open.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the
