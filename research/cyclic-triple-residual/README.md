@@ -25,6 +25,13 @@ connections. Five exact checks are reproducible with
 `python3 verify_paired_cubics.py`. These are obstructions to the specified
 shortcuts, not to the target certificate or arbitrary parameter currents.
 
+**Constructive continuation:** [parameter-current construction](constructive-current.md)
+gives an exact rational subtraction removing the explicit discriminant pole
+on a suitable chart, and a formal radial solution near the seed. Four exact
+finite-field runs verify the latter modulo the twentieth power of the
+radial parameter; its leading current is checked symbolically in
+characteristic zero. Rationality of a full current remains unproved.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the
