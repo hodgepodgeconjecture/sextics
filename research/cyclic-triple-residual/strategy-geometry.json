@@ -1,0 +1,67 @@
+{
+  "input_sha256": "8ebd27075d7f2ee7fe3a7294cef764a44806a47298791fcc2fa869b9c4370311",
+  "checks": {
+    "exact_target_and_double_cover": "PASS",
+    "binary_cubic_discriminant_covariance": "PASS",
+    "bundle_determinants": "PASS",
+    "line_seed_and_discriminant_jet": "PASS",
+    "parity_surface_equation_and_weights": "PASS",
+    "diagonal_symmetry_and_characters": "PASS"
+  },
+  "line_space": {
+    "expected_dimension": 3,
+    "canonical_Plucker_exponent_if_regular": 10,
+    "root_model_dualizing_Plucker_exponent_if_lci": 15,
+    "seed_incidence_determinant": "-135000*I/2401",
+    "leading_discriminant": "-27*alpha**2*gamma**2",
+    "unnormalized_root_model_at_seed": "singular; tangent dimension 4, local dimension 3"
+  },
+  "parity_surface": {
+    "equation": "X0**6 + 5*X0**3*X1*r*u/7 + 5*X0**3*X2**3/7 + 5*X0**2*r**2*u*v**2/7 + 5*X0*X1*r**2*u**3*v/7 + 5*X0*X2**3*r*u*v/7 + X1**6 + 5*X1*X2**3*r*u/7 + X2**6 + r**3*u**6 + r**3*v**6 + r**3",
+    "canonical_weight": 1,
+    "smooth_specialization_gradient_determinant": "171/49",
+    "holomorphic_two_form_deck_characters_mod_3": {
+      "X0": 1,
+      "X1": 1,
+      "X2": 2
+    }
+  },
+  "symmetry": {
+    "group_order": 18,
+    "target_kernel_order": 6,
+    "kernel_generator": [
+      1,
+      5,
+      5,
+      2,
+      2,
+      0
+    ],
+    "projective_involutions": [
+      [
+        3,
+        3,
+        3,
+        0,
+        0,
+        0
+      ]
+    ],
+    "invariant_two_forms_on_two_pencil_fiber": [
+      "X2*X2",
+      "Y1*Y1"
+    ],
+    "smooth_pencil_specialization_mixed_gradient_bounds": [
+      "20/7",
+      "30/7",
+      "5/7",
+      "5/7"
+    ]
+  },
+  "limitations": [
+    "No proof of global smoothness, normality, canonical singularities, or a resolution of the actual line/root spaces.",
+    "Canonical exponents do not by themselves prove a birational classification for the actual component.",
+    "The character audit rejects only the stated vanishing shortcut, not all correspondences.",
+    "No scalar rational primitive, protected Lean certificate, or unrestricted nonexistence proof."
+  ]
+}

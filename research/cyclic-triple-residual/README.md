@@ -8,6 +8,15 @@ claimed. Nine universal reduction lemmas now compile and pass independent
 kernel replay under the pinned Lean 4.36.0 toolchain; target binding and the
 scalar primitive remain open.
 
+**Strategy reassessment:** [the new geometry audit](strategy-reassessment.md)
+explains why connection trivialization is not an existence argument for
+the scalar current. It checks the singular root-cover model at the actual
+seed, computes the conditional canonical exponents of the line and root
+spaces, and screens two alternative quotients by their characters.
+Unstructured enlargement of the bounded current ansatz is paused pending
+a geometric mechanism or a justified pole bound. Reproduce the six new
+exact checks with `python3 verify_strategy_geometry.py` from this folder.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the
