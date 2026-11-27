@@ -53,6 +53,14 @@ curve (not over the discriminant). A verified exact differential also
 removes the displayed negative powers of the endpoint coordinate from the
 source. Finding a rational primitive remains open.
 
+**Finite algebra and local residues:** [the discriminant-basis computation](finite-curve-algebra.md)
+constructs the 120-dimensional incidence algebra, reconstructs the actual
+source and differential-field connection at two exact fibers, and verifies
+that powers of the discriminant give a generic basis. It also identifies
+local residue vanishing forced by nontrivial Kummer ramification and
+conditions under which coordinate poles cancel. Global differential
+reduction and the target proof remain unfinished.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the
