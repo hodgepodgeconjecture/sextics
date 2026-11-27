@@ -32,6 +32,12 @@ finite-field runs verify the latter modulo the twentieth power of the
 radial parameter; its leading current is checked symbolically in
 characteristic zero. Rationality of a full current remains unproved.
 
+**Rational-lift test:** [the targeted test](rational-current-test.md)
+allows the endpoint poles present in that leading current. The resulting
+48-parameter radial class and 144-parameter independent-component class
+both fail the full scalar equation at two primes. These exclude those
+specified rational lifts only; the general rationality problem is open.
+
 ## Result and scope
 
 On the smooth local component through the accepted weighted-line seed, the

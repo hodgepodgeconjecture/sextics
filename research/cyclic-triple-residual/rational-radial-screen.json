@@ -1,0 +1,4951 @@
+{
+  "cleared_equation_identity": "PASS",
+  "column_exponents": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      -3,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      -4,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      -3,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      3,
+      -3,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      3,
+      -3,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      3,
+      -5,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      3,
+      -4,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      3,
+      -3,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      -1,
+      2,
+      -1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      -2,
+      2,
+      -1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      -1,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      -1,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      2,
+      -1,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      2,
+      -3,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      -2,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      -1,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -1,
+      3,
+      -1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -2,
+      3,
+      -1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -1,
+      3,
+      -1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -1,
+      3,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      -1,
+      3,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      -3,
+      3,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      -2,
+      3,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      -1,
+      3,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -3,
+      2,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -4,
+      2,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -3,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -3,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      -3,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      -5,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      -4,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      -3,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -3,
+      3,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -4,
+      3,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -3,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -3,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      -3,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      -5,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      -4,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      -3,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -5,
+      3,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -6,
+      3,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -5,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -5,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      -1,
+      -5,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      -1,
+      -7,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      -1,
+      -6,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      -1,
+      -5,
+      3,
+      1
+    ]
+  ],
+  "runs": [
+    {
+      "prime": 101,
+      "input_precision": 48,
+      "independent_components": false,
+      "columns": 48,
+      "rank_lower_bound": 48,
+      "directions": [
+        [
+          5,
+          76,
+          34
+        ],
+        [
+          39,
+          70,
+          19
+        ],
+        [
+          22,
+          37,
+          51
+        ],
+        [
+          31,
+          35,
+          12
+        ],
+        [
+          21,
+          60,
+          5
+        ],
+        [
+          21,
+          96,
+          27
+        ],
+        [
+          6,
+          75,
+          95
+        ],
+        [
+          84,
+          63,
+          20
+        ],
+        [
+          92,
+          92,
+          4
+        ],
+        [
+          7,
+          58,
+          67
+        ],
+        [
+          74,
+          95,
+          83
+        ],
+        [
+          87,
+          70,
+          96
+        ],
+        [
+          36,
+          61,
+          90
+        ],
+        [
+          5,
+          68,
+          5
+        ],
+        [
+          61,
+          31,
+          66
+        ],
+        [
+          22,
+          50,
+          33
+        ],
+        [
+          20,
+          36,
+          92
+        ],
+        [
+          53,
+          66,
+          18
+        ],
+        [
+          59,
+          81,
+          31
+        ],
+        [
+          37,
+          99,
+          66
+        ],
+        [
+          68,
+          14,
+          86
+        ],
+        [
+          91,
+          87,
+          35
+        ],
+        [
+          13,
+          18,
+          41
+        ],
+        [
+          87,
+          11,
+          63
+        ],
+        [
+          22,
+          74,
+          11
+        ],
+        [
+          10,
+          4,
+          86
+        ],
+        [
+          77,
+          90,
+          6
+        ],
+        [
+          38,
+          29,
+          36
+        ],
+        [
+          43,
+          57,
+          80
+        ],
+        [
+          33,
+          32,
+          2
+        ],
+        [
+          12,
+          78,
+          41
+        ],
+        [
+          15,
+          99,
+          100
+        ],
+        [
+          63,
+          97,
+          100
+        ],
+        [
+          69,
+          66,
+          61
+        ],
+        [
+          90,
+          38,
+          23
+        ],
+        [
+          55,
+          30,
+          33
+        ],
+        [
+          13,
+          13,
+          42
+        ],
+        [
+          6,
+          89,
+          92
+        ],
+        [
+          79,
+          37,
+          6
+        ],
+        [
+          76,
+          10,
+          24
+        ],
+        [
+          85,
+          8,
+          95
+        ],
+        [
+          72,
+          29,
+          74
+        ],
+        [
+          10,
+          35,
+          52
+        ],
+        [
+          38,
+          7,
+          61
+        ],
+        [
+          8,
+          36,
+          89
+        ],
+        [
+          35,
+          76,
+          19
+        ],
+        [
+          50,
+          51,
+          39
+        ],
+        [
+          9,
+          69,
+          39
+        ],
+        [
+          60,
+          74,
+          83
+        ]
+      ],
+      "pivots": [
+        {
+          "sample": 0,
+          "column": 0,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 1,
+          "column": 8,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 2,
+          "column": 16,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 3,
+          "column": 24,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 4,
+          "column": 32,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 5,
+          "column": 40,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 6,
+          "column": 2,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 7,
+          "column": 3,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 8,
+          "column": 7,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 9,
+          "column": 10,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 10,
+          "column": 11,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 11,
+          "column": 15,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 12,
+          "column": 18,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 13,
+          "column": 19,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 14,
+          "column": 26,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 15,
+          "column": 34,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 16,
+          "column": 35,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 17,
+          "column": 42,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 18,
+          "column": 43,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 19,
+          "column": 1,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 20,
+          "column": 4,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 21,
+          "column": 5,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 22,
+          "column": 6,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 23,
+          "column": 9,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 24,
+          "column": 12,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 25,
+          "column": 13,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 26,
+          "column": 14,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 27,
+          "column": 17,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 28,
+          "column": 20,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 29,
+          "column": 21,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 30,
+          "column": 22,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 31,
+          "column": 23,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 32,
+          "column": 25,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 33,
+          "column": 33,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 34,
+          "column": 38,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 35,
+          "column": 39,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 36,
+          "column": 41,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 37,
+          "column": 46,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 38,
+          "column": 47,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 39,
+          "column": 27,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 40,
+          "column": 28,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 41,
+          "column": 29,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 42,
+          "column": 30,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 43,
+          "column": 31,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 44,
+          "column": 36,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 45,
+          "column": 37,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 46,
+          "column": 44,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 47,
+          "column": 45,
+          "valuation": 10,
+          "precision": 39
+        }
+      ],
+      "inconsistency_witness": {
+        "sample": 48,
+        "valuation": 8,
+        "absolute_precision": 49,
+        "unit_mod_p": 16
+      },
+      "status": "EXCLUDED",
+      "scope": "Only b_i=J*x_i*g_i on k1=1, with g_i in the stated 48-dimensional Laurent-monomial span; g_i are equal in radial mode. No exclusion of other rational currents."
+    },
+    {
+      "prime": 109,
+      "input_precision": 48,
+      "independent_components": false,
+      "columns": 48,
+      "rank_lower_bound": 48,
+      "directions": [
+        [
+          5,
+          76,
+          34
+        ],
+        [
+          105,
+          39,
+          70
+        ],
+        [
+          108,
+          19,
+          22
+        ],
+        [
+          37,
+          51,
+          31
+        ],
+        [
+          35,
+          12,
+          102
+        ],
+        [
+          21,
+          60,
+          5
+        ],
+        [
+          21,
+          96,
+          27
+        ],
+        [
+          6,
+          75,
+          95
+        ],
+        [
+          84,
+          63,
+          20
+        ],
+        [
+          92,
+          92,
+          103
+        ],
+        [
+          4,
+          7,
+          58
+        ],
+        [
+          67,
+          74,
+          95
+        ],
+        [
+          83,
+          87,
+          70
+        ],
+        [
+          96,
+          36,
+          61
+        ],
+        [
+          90,
+          5,
+          68
+        ],
+        [
+          5,
+          61,
+          101
+        ],
+        [
+          31,
+          101,
+          66
+        ],
+        [
+          22,
+          50,
+          33
+        ],
+        [
+          106,
+          20,
+          36
+        ],
+        [
+          92,
+          53,
+          66
+        ],
+        [
+          18,
+          59,
+          81
+        ],
+        [
+          31,
+          37,
+          99
+        ],
+        [
+          66,
+          68,
+          14
+        ],
+        [
+          86,
+          91,
+          87
+        ],
+        [
+          35,
+          13,
+          18
+        ],
+        [
+          41,
+          87,
+          11
+        ],
+        [
+          63,
+          22,
+          74
+        ],
+        [
+          11,
+          10,
+          4
+        ],
+        [
+          86,
+          108,
+          77
+        ],
+        [
+          90,
+          6,
+          106
+        ],
+        [
+          38,
+          29,
+          36
+        ],
+        [
+          43,
+          57,
+          80
+        ],
+        [
+          33,
+          32,
+          2
+        ],
+        [
+          12,
+          78,
+          41
+        ],
+        [
+          15,
+          99,
+          100
+        ],
+        [
+          63,
+          97,
+          100
+        ],
+        [
+          69,
+          66,
+          61
+        ],
+        [
+          102,
+          90,
+          38
+        ],
+        [
+          23,
+          55,
+          30
+        ],
+        [
+          33,
+          13,
+          13
+        ],
+        [
+          42,
+          6,
+          89
+        ],
+        [
+          92,
+          79,
+          37
+        ],
+        [
+          6,
+          76,
+          10
+        ],
+        [
+          24,
+          85,
+          8
+        ],
+        [
+          95,
+          72,
+          29
+        ],
+        [
+          74,
+          10,
+          35
+        ],
+        [
+          52,
+          38,
+          7
+        ],
+        [
+          61,
+          8,
+          36
+        ],
+        [
+          89,
+          104,
+          35
+        ]
+      ],
+      "pivots": [
+        {
+          "sample": 0,
+          "column": 0,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 1,
+          "column": 8,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 2,
+          "column": 16,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 3,
+          "column": 24,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 4,
+          "column": 32,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 5,
+          "column": 40,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 6,
+          "column": 2,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 7,
+          "column": 3,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 8,
+          "column": 7,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 9,
+          "column": 10,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 10,
+          "column": 11,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 11,
+          "column": 15,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 12,
+          "column": 18,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 13,
+          "column": 19,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 14,
+          "column": 26,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 15,
+          "column": 34,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 16,
+          "column": 35,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 17,
+          "column": 42,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 18,
+          "column": 43,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 19,
+          "column": 1,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 20,
+          "column": 4,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 21,
+          "column": 5,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 22,
+          "column": 6,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 23,
+          "column": 9,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 24,
+          "column": 12,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 25,
+          "column": 13,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 26,
+          "column": 14,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 27,
+          "column": 17,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 28,
+          "column": 20,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 29,
+          "column": 21,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 30,
+          "column": 22,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 31,
+          "column": 23,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 32,
+          "column": 25,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 33,
+          "column": 38,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 34,
+          "column": 33,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 35,
+          "column": 39,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 36,
+          "column": 41,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 37,
+          "column": 46,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 38,
+          "column": 47,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 39,
+          "column": 27,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 40,
+          "column": 28,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 41,
+          "column": 29,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 42,
+          "column": 30,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 43,
+          "column": 31,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 44,
+          "column": 36,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 45,
+          "column": 37,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 46,
+          "column": 44,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 47,
+          "column": 45,
+          "valuation": 10,
+          "precision": 39
+        }
+      ],
+      "inconsistency_witness": {
+        "sample": 48,
+        "valuation": 8,
+        "absolute_precision": 49,
+        "unit_mod_p": 95
+      },
+      "status": "EXCLUDED",
+      "scope": "Only b_i=J*x_i*g_i on k1=1, with g_i in the stated 48-dimensional Laurent-monomial span; g_i are equal in radial mode. No exclusion of other rational currents."
+    },
+    {
+      "prime": 101,
+      "input_precision": 48,
+      "independent_components": true,
+      "columns": 144,
+      "rank_lower_bound": 144,
+      "directions": [
+        [
+          5,
+          76,
+          34
+        ],
+        [
+          39,
+          70,
+          19
+        ],
+        [
+          22,
+          37,
+          51
+        ],
+        [
+          31,
+          35,
+          12
+        ],
+        [
+          21,
+          60,
+          5
+        ],
+        [
+          21,
+          96,
+          27
+        ],
+        [
+          6,
+          75,
+          95
+        ],
+        [
+          84,
+          63,
+          20
+        ],
+        [
+          92,
+          92,
+          4
+        ],
+        [
+          7,
+          58,
+          67
+        ],
+        [
+          74,
+          95,
+          83
+        ],
+        [
+          87,
+          70,
+          96
+        ],
+        [
+          36,
+          61,
+          90
+        ],
+        [
+          5,
+          68,
+          5
+        ],
+        [
+          61,
+          31,
+          66
+        ],
+        [
+          22,
+          50,
+          33
+        ],
+        [
+          20,
+          36,
+          92
+        ],
+        [
+          53,
+          66,
+          18
+        ],
+        [
+          59,
+          81,
+          31
+        ],
+        [
+          37,
+          99,
+          66
+        ],
+        [
+          68,
+          14,
+          86
+        ],
+        [
+          91,
+          87,
+          35
+        ],
+        [
+          13,
+          18,
+          41
+        ],
+        [
+          87,
+          11,
+          63
+        ],
+        [
+          22,
+          74,
+          11
+        ],
+        [
+          10,
+          4,
+          86
+        ],
+        [
+          77,
+          90,
+          6
+        ],
+        [
+          38,
+          29,
+          36
+        ],
+        [
+          43,
+          57,
+          80
+        ],
+        [
+          33,
+          32,
+          2
+        ],
+        [
+          12,
+          78,
+          41
+        ],
+        [
+          15,
+          99,
+          100
+        ],
+        [
+          63,
+          97,
+          100
+        ],
+        [
+          69,
+          66,
+          61
+        ],
+        [
+          90,
+          38,
+          23
+        ],
+        [
+          55,
+          30,
+          33
+        ],
+        [
+          13,
+          13,
+          42
+        ],
+        [
+          6,
+          89,
+          92
+        ],
+        [
+          79,
+          37,
+          6
+        ],
+        [
+          76,
+          10,
+          24
+        ],
+        [
+          85,
+          8,
+          95
+        ],
+        [
+          72,
+          29,
+          74
+        ],
+        [
+          10,
+          35,
+          52
+        ],
+        [
+          38,
+          7,
+          61
+        ],
+        [
+          8,
+          36,
+          89
+        ],
+        [
+          35,
+          76,
+          19
+        ],
+        [
+          50,
+          51,
+          39
+        ],
+        [
+          9,
+          69,
+          39
+        ],
+        [
+          60,
+          74,
+          83
+        ],
+        [
+          5,
+          54,
+          13
+        ],
+        [
+          22,
+          41,
+          22
+        ],
+        [
+          94,
+          74,
+          88
+        ],
+        [
+          47,
+          20,
+          97
+        ],
+        [
+          60,
+          57,
+          62
+        ],
+        [
+          58,
+          71,
+          97
+        ],
+        [
+          69,
+          99,
+          88
+        ],
+        [
+          57,
+          40,
+          91
+        ],
+        [
+          49,
+          18,
+          4
+        ],
+        [
+          98,
+          64,
+          24
+        ],
+        [
+          67,
+          37,
+          32
+        ],
+        [
+          30,
+          66,
+          60
+        ],
+        [
+          12,
+          12,
+          20
+        ],
+        [
+          67,
+          9,
+          61
+        ],
+        [
+          19,
+          75,
+          91
+        ],
+        [
+          91,
+          35,
+          36
+        ],
+        [
+          14,
+          30,
+          75
+        ],
+        [
+          99,
+          75,
+          94
+        ],
+        [
+          47,
+          58,
+          70
+        ],
+        [
+          72,
+          40,
+          82
+        ],
+        [
+          42,
+          72,
+          67
+        ],
+        [
+          98,
+          56,
+          3
+        ],
+        [
+          24,
+          97,
+          65
+        ],
+        [
+          68,
+          13,
+          28
+        ],
+        [
+          82,
+          74,
+          77
+        ],
+        [
+          30,
+          18,
+          6
+        ],
+        [
+          20,
+          17,
+          19
+        ],
+        [
+          11,
+          71,
+          9
+        ],
+        [
+          59,
+          60,
+          96
+        ],
+        [
+          96,
+          22,
+          43
+        ],
+        [
+          86,
+          37,
+          92
+        ],
+        [
+          46,
+          90,
+          21
+        ],
+        [
+          1,
+          91,
+          19
+        ],
+        [
+          8,
+          5,
+          57
+        ],
+        [
+          3,
+          55,
+          36
+        ],
+        [
+          55,
+          56,
+          62
+        ],
+        [
+          29,
+          69,
+          98
+        ],
+        [
+          36,
+          9,
+          100
+        ],
+        [
+          82,
+          52,
+          62
+        ],
+        [
+          6,
+          60,
+          86
+        ],
+        [
+          1,
+          86,
+          27
+        ],
+        [
+          31,
+          52,
+          85
+        ],
+        [
+          48,
+          91,
+          70
+        ],
+        [
+          40,
+          3,
+          65
+        ],
+        [
+          75,
+          16,
+          8
+        ],
+        [
+          12,
+          62,
+          58
+        ],
+        [
+          49,
+          71,
+          26
+        ],
+        [
+          75,
+          19,
+          11
+        ],
+        [
+          15,
+          15,
+          87
+        ],
+        [
+          2,
+          14,
+          21
+        ],
+        [
+          50,
+          69,
+          8
+        ],
+        [
+          76,
+          64,
+          55
+        ],
+        [
+          79,
+          61,
+          17
+        ],
+        [
+          92,
+          29,
+          52
+        ],
+        [
+          33,
+          64,
+          2
+        ],
+        [
+          12,
+          26,
+          31
+        ],
+        [
+          71,
+          34,
+          79
+        ],
+        [
+          10,
+          79,
+          24
+        ],
+        [
+          92,
+          26,
+          6
+        ],
+        [
+          80,
+          24,
+          83
+        ],
+        [
+          35,
+          31,
+          49
+        ],
+        [
+          81,
+          78,
+          65
+        ],
+        [
+          25,
+          90,
+          61
+        ],
+        [
+          14,
+          77,
+          31
+        ],
+        [
+          52,
+          26,
+          96
+        ],
+        [
+          52,
+          77,
+          82
+        ],
+        [
+          51,
+          19,
+          45
+        ],
+        [
+          78,
+          36,
+          15
+        ],
+        [
+          10,
+          61,
+          72
+        ],
+        [
+          31,
+          80,
+          55
+        ],
+        [
+          60,
+          64,
+          61
+        ],
+        [
+          84,
+          89,
+          93
+        ],
+        [
+          23,
+          80,
+          4
+        ],
+        [
+          33,
+          13,
+          77
+        ],
+        [
+          73,
+          51,
+          74
+        ],
+        [
+          81,
+          4,
+          95
+        ],
+        [
+          9,
+          76,
+          31
+        ],
+        [
+          50,
+          94,
+          67
+        ],
+        [
+          12,
+          85,
+          84
+        ],
+        [
+          11,
+          57,
+          5
+        ],
+        [
+          55,
+          7,
+          38
+        ],
+        [
+          74,
+          25,
+          44
+        ],
+        [
+          5,
+          14,
+          35
+        ],
+        [
+          58,
+          53,
+          32
+        ],
+        [
+          17,
+          55,
+          22
+        ],
+        [
+          99,
+          16,
+          84
+        ],
+        [
+          42,
+          85,
+          72
+        ],
+        [
+          29,
+          43,
+          38
+        ],
+        [
+          21,
+          90,
+          24
+        ],
+        [
+          98,
+          5,
+          64
+        ],
+        [
+          54,
+          40,
+          74
+        ],
+        [
+          30,
+          78,
+          22
+        ],
+        [
+          38,
+          14,
+          42
+        ],
+        [
+          16,
+          26,
+          39
+        ],
+        [
+          10,
+          46,
+          8
+        ],
+        [
+          23,
+          19,
+          17
+        ]
+      ],
+      "pivots": [
+        {
+          "sample": 0,
+          "column": 0,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 1,
+          "column": 8,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 2,
+          "column": 16,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 3,
+          "column": 24,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 4,
+          "column": 32,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 5,
+          "column": 40,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 6,
+          "column": 2,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 7,
+          "column": 3,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 8,
+          "column": 7,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 9,
+          "column": 10,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 10,
+          "column": 11,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 11,
+          "column": 15,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 12,
+          "column": 18,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 13,
+          "column": 19,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 14,
+          "column": 26,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 15,
+          "column": 34,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 16,
+          "column": 35,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 17,
+          "column": 42,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 18,
+          "column": 43,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 19,
+          "column": 64,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 20,
+          "column": 80,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 21,
+          "column": 88,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 22,
+          "column": 1,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 23,
+          "column": 4,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 24,
+          "column": 5,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 25,
+          "column": 6,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 26,
+          "column": 9,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 27,
+          "column": 12,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 28,
+          "column": 13,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 29,
+          "column": 14,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 30,
+          "column": 17,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 31,
+          "column": 20,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 32,
+          "column": 21,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 33,
+          "column": 22,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 34,
+          "column": 23,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 35,
+          "column": 25,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 36,
+          "column": 33,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 37,
+          "column": 38,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 38,
+          "column": 39,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 39,
+          "column": 41,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 40,
+          "column": 46,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 41,
+          "column": 47,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 42,
+          "column": 48,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 43,
+          "column": 56,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 44,
+          "column": 72,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 45,
+          "column": 90,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 46,
+          "column": 91,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 47,
+          "column": 27,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 48,
+          "column": 28,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 49,
+          "column": 29,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 50,
+          "column": 30,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 51,
+          "column": 31,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 52,
+          "column": 36,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 53,
+          "column": 37,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 54,
+          "column": 44,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 55,
+          "column": 45,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 56,
+          "column": 49,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 57,
+          "column": 50,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 58,
+          "column": 51,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 59,
+          "column": 52,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 60,
+          "column": 53,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 61,
+          "column": 54,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 62,
+          "column": 55,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 63,
+          "column": 57,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 64,
+          "column": 58,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 65,
+          "column": 59,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 66,
+          "column": 60,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 67,
+          "column": 61,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 68,
+          "column": 62,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 69,
+          "column": 63,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 70,
+          "column": 65,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 71,
+          "column": 66,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 72,
+          "column": 67,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 73,
+          "column": 68,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 74,
+          "column": 69,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 75,
+          "column": 70,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 76,
+          "column": 71,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 77,
+          "column": 74,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 78,
+          "column": 81,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 79,
+          "column": 89,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 80,
+          "column": 94,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 81,
+          "column": 95,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 82,
+          "column": 96,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 83,
+          "column": 98,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 84,
+          "column": 104,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 85,
+          "column": 112,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 86,
+          "column": 128,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 87,
+          "column": 136,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 88,
+          "column": 73,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 89,
+          "column": 75,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 90,
+          "column": 76,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 91,
+          "column": 77,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 92,
+          "column": 78,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 93,
+          "column": 79,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 94,
+          "column": 82,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 95,
+          "column": 83,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 96,
+          "column": 84,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 97,
+          "column": 85,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 98,
+          "column": 86,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 99,
+          "column": 87,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 100,
+          "column": 92,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 101,
+          "column": 93,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 102,
+          "column": 97,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 103,
+          "column": 99,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 104,
+          "column": 101,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 105,
+          "column": 100,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 106,
+          "column": 102,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 107,
+          "column": 103,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 108,
+          "column": 105,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 109,
+          "column": 106,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 110,
+          "column": 107,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 111,
+          "column": 108,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 112,
+          "column": 109,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 113,
+          "column": 110,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 114,
+          "column": 111,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 115,
+          "column": 113,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 116,
+          "column": 114,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 117,
+          "column": 115,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 118,
+          "column": 116,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 119,
+          "column": 117,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 120,
+          "column": 118,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 121,
+          "column": 119,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 122,
+          "column": 120,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 123,
+          "column": 121,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 124,
+          "column": 122,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 125,
+          "column": 123,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 126,
+          "column": 124,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 127,
+          "column": 125,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 128,
+          "column": 126,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 129,
+          "column": 127,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 130,
+          "column": 129,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 131,
+          "column": 130,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 132,
+          "column": 131,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 133,
+          "column": 132,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 134,
+          "column": 133,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 135,
+          "column": 138,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 136,
+          "column": 139,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 137,
+          "column": 142,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 138,
+          "column": 134,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 139,
+          "column": 135,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 140,
+          "column": 137,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 141,
+          "column": 140,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 142,
+          "column": 141,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 143,
+          "column": 143,
+          "valuation": 12,
+          "precision": 35
+        }
+      ],
+      "inconsistency_witness": {
+        "sample": 144,
+        "valuation": 9,
+        "absolute_precision": 47,
+        "unit_mod_p": 66
+      },
+      "status": "EXCLUDED",
+      "scope": "Only b_i=J*x_i*g_i on k1=1, with g_i in the stated 48-dimensional Laurent-monomial span; g_i are equal in radial mode. No exclusion of other rational currents."
+    },
+    {
+      "prime": 109,
+      "input_precision": 48,
+      "independent_components": true,
+      "columns": 144,
+      "rank_lower_bound": 144,
+      "directions": [
+        [
+          5,
+          76,
+          34
+        ],
+        [
+          105,
+          39,
+          70
+        ],
+        [
+          108,
+          19,
+          22
+        ],
+        [
+          37,
+          51,
+          31
+        ],
+        [
+          35,
+          12,
+          102
+        ],
+        [
+          21,
+          60,
+          5
+        ],
+        [
+          21,
+          96,
+          27
+        ],
+        [
+          6,
+          75,
+          95
+        ],
+        [
+          84,
+          63,
+          20
+        ],
+        [
+          92,
+          92,
+          103
+        ],
+        [
+          4,
+          7,
+          58
+        ],
+        [
+          67,
+          74,
+          95
+        ],
+        [
+          83,
+          87,
+          70
+        ],
+        [
+          96,
+          36,
+          61
+        ],
+        [
+          90,
+          5,
+          68
+        ],
+        [
+          5,
+          61,
+          101
+        ],
+        [
+          31,
+          101,
+          66
+        ],
+        [
+          22,
+          50,
+          33
+        ],
+        [
+          106,
+          20,
+          36
+        ],
+        [
+          92,
+          53,
+          66
+        ],
+        [
+          18,
+          59,
+          81
+        ],
+        [
+          31,
+          37,
+          99
+        ],
+        [
+          66,
+          68,
+          14
+        ],
+        [
+          86,
+          91,
+          87
+        ],
+        [
+          35,
+          13,
+          18
+        ],
+        [
+          41,
+          87,
+          11
+        ],
+        [
+          63,
+          22,
+          74
+        ],
+        [
+          11,
+          10,
+          4
+        ],
+        [
+          86,
+          108,
+          77
+        ],
+        [
+          90,
+          6,
+          106
+        ],
+        [
+          38,
+          29,
+          36
+        ],
+        [
+          43,
+          57,
+          80
+        ],
+        [
+          33,
+          32,
+          2
+        ],
+        [
+          12,
+          78,
+          41
+        ],
+        [
+          15,
+          99,
+          100
+        ],
+        [
+          63,
+          97,
+          100
+        ],
+        [
+          69,
+          66,
+          61
+        ],
+        [
+          102,
+          90,
+          38
+        ],
+        [
+          23,
+          55,
+          30
+        ],
+        [
+          33,
+          13,
+          13
+        ],
+        [
+          42,
+          6,
+          89
+        ],
+        [
+          92,
+          79,
+          37
+        ],
+        [
+          6,
+          76,
+          10
+        ],
+        [
+          24,
+          85,
+          8
+        ],
+        [
+          95,
+          72,
+          29
+        ],
+        [
+          74,
+          10,
+          35
+        ],
+        [
+          52,
+          38,
+          7
+        ],
+        [
+          61,
+          8,
+          36
+        ],
+        [
+          89,
+          104,
+          35
+        ],
+        [
+          76,
+          19,
+          50
+        ],
+        [
+          51,
+          39,
+          9
+        ],
+        [
+          69,
+          39,
+          60
+        ],
+        [
+          74,
+          83,
+          5
+        ],
+        [
+          54,
+          13,
+          22
+        ],
+        [
+          41,
+          22,
+          94
+        ],
+        [
+          74,
+          101,
+          88
+        ],
+        [
+          47,
+          20,
+          97
+        ],
+        [
+          60,
+          57,
+          62
+        ],
+        [
+          58,
+          71,
+          97
+        ],
+        [
+          69,
+          99,
+          88
+        ],
+        [
+          57,
+          40,
+          91
+        ],
+        [
+          49,
+          18,
+          4
+        ],
+        [
+          98,
+          64,
+          24
+        ],
+        [
+          67,
+          104,
+          37
+        ],
+        [
+          105,
+          32,
+          30
+        ],
+        [
+          66,
+          60,
+          12
+        ],
+        [
+          12,
+          20,
+          106
+        ],
+        [
+          67,
+          9,
+          61
+        ],
+        [
+          104,
+          19,
+          75
+        ],
+        [
+          91,
+          91,
+          35
+        ],
+        [
+          102,
+          36,
+          14
+        ],
+        [
+          107,
+          105,
+          30
+        ],
+        [
+          75,
+          99,
+          75
+        ],
+        [
+          94,
+          47,
+          58
+        ],
+        [
+          70,
+          72,
+          40
+        ],
+        [
+          82,
+          42,
+          72
+        ],
+        [
+          67,
+          98,
+          56
+        ],
+        [
+          3,
+          24,
+          105
+        ],
+        [
+          97,
+          65,
+          68
+        ],
+        [
+          13,
+          28,
+          82
+        ],
+        [
+          74,
+          77,
+          30
+        ],
+        [
+          18,
+          6,
+          20
+        ],
+        [
+          17,
+          19,
+          11
+        ],
+        [
+          71,
+          102,
+          9
+        ],
+        [
+          59,
+          60,
+          105
+        ],
+        [
+          96,
+          96,
+          22
+        ],
+        [
+          43,
+          86,
+          37
+        ],
+        [
+          92,
+          46,
+          90
+        ],
+        [
+          21,
+          104,
+          1
+        ],
+        [
+          91,
+          19,
+          8
+        ],
+        [
+          5,
+          57,
+          3
+        ],
+        [
+          55,
+          36,
+          55
+        ],
+        [
+          56,
+          62,
+          102
+        ],
+        [
+          29,
+          69,
+          98
+        ],
+        [
+          36,
+          9,
+          100
+        ],
+        [
+          82,
+          52,
+          62
+        ],
+        [
+          6,
+          60,
+          86
+        ],
+        [
+          1,
+          86,
+          27
+        ],
+        [
+          31,
+          52,
+          85
+        ],
+        [
+          48,
+          91,
+          70
+        ],
+        [
+          40,
+          3,
+          65
+        ],
+        [
+          75,
+          16,
+          8
+        ],
+        [
+          12,
+          101,
+          62
+        ],
+        [
+          105,
+          58,
+          49
+        ],
+        [
+          71,
+          26,
+          75
+        ],
+        [
+          19,
+          11,
+          15
+        ],
+        [
+          15,
+          87,
+          2
+        ],
+        [
+          14,
+          21,
+          50
+        ],
+        [
+          69,
+          8,
+          76
+        ],
+        [
+          64,
+          55,
+          79
+        ],
+        [
+          61,
+          17,
+          92
+        ],
+        [
+          29,
+          52,
+          33
+        ],
+        [
+          64,
+          2,
+          12
+        ],
+        [
+          26,
+          31,
+          71
+        ],
+        [
+          34,
+          79,
+          10
+        ],
+        [
+          79,
+          24,
+          92
+        ],
+        [
+          104,
+          26,
+          6
+        ],
+        [
+          80,
+          24,
+          83
+        ],
+        [
+          105,
+          35,
+          31
+        ],
+        [
+          49,
+          81,
+          78
+        ],
+        [
+          65,
+          25,
+          90
+        ],
+        [
+          61,
+          14,
+          77
+        ],
+        [
+          31,
+          52,
+          26
+        ],
+        [
+          96,
+          52,
+          77
+        ],
+        [
+          82,
+          51,
+          19
+        ],
+        [
+          45,
+          78,
+          36
+        ],
+        [
+          15,
+          10,
+          61
+        ],
+        [
+          72,
+          107,
+          31
+        ],
+        [
+          80,
+          55,
+          60
+        ],
+        [
+          64,
+          61,
+          84
+        ],
+        [
+          89,
+          93,
+          23
+        ],
+        [
+          80,
+          4,
+          33
+        ],
+        [
+          13,
+          77,
+          73
+        ],
+        [
+          51,
+          104,
+          74
+        ],
+        [
+          81,
+          4,
+          95
+        ],
+        [
+          9,
+          76,
+          31
+        ],
+        [
+          50,
+          94,
+          67
+        ],
+        [
+          12,
+          103,
+          85
+        ],
+        [
+          84,
+          11,
+          57
+        ],
+        [
+          5,
+          55,
+          7
+        ],
+        [
+          38,
+          74,
+          25
+        ],
+        [
+          44,
+          5,
+          14
+        ],
+        [
+          35,
+          58,
+          53
+        ],
+        [
+          32,
+          17,
+          55
+        ],
+        [
+          22,
+          99,
+          16
+        ]
+      ],
+      "pivots": [
+        {
+          "sample": 0,
+          "column": 0,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 1,
+          "column": 8,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 2,
+          "column": 16,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 3,
+          "column": 24,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 4,
+          "column": 32,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 5,
+          "column": 40,
+          "valuation": 7,
+          "precision": 44
+        },
+        {
+          "sample": 6,
+          "column": 2,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 7,
+          "column": 3,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 8,
+          "column": 7,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 9,
+          "column": 10,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 10,
+          "column": 11,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 11,
+          "column": 15,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 12,
+          "column": 18,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 13,
+          "column": 19,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 14,
+          "column": 26,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 15,
+          "column": 34,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 16,
+          "column": 35,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 17,
+          "column": 42,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 18,
+          "column": 43,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 19,
+          "column": 64,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 20,
+          "column": 80,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 21,
+          "column": 88,
+          "valuation": 8,
+          "precision": 43
+        },
+        {
+          "sample": 22,
+          "column": 1,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 23,
+          "column": 4,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 24,
+          "column": 5,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 25,
+          "column": 6,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 26,
+          "column": 9,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 27,
+          "column": 12,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 28,
+          "column": 13,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 29,
+          "column": 14,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 30,
+          "column": 17,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 31,
+          "column": 20,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 32,
+          "column": 21,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 33,
+          "column": 22,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 34,
+          "column": 23,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 35,
+          "column": 25,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 36,
+          "column": 33,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 37,
+          "column": 38,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 38,
+          "column": 39,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 39,
+          "column": 41,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 40,
+          "column": 46,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 41,
+          "column": 47,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 42,
+          "column": 48,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 43,
+          "column": 56,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 44,
+          "column": 72,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 45,
+          "column": 90,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 46,
+          "column": 91,
+          "valuation": 9,
+          "precision": 41
+        },
+        {
+          "sample": 47,
+          "column": 27,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 48,
+          "column": 28,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 49,
+          "column": 29,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 50,
+          "column": 30,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 51,
+          "column": 31,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 52,
+          "column": 36,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 53,
+          "column": 37,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 54,
+          "column": 44,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 55,
+          "column": 45,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 56,
+          "column": 49,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 57,
+          "column": 50,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 58,
+          "column": 51,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 59,
+          "column": 52,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 60,
+          "column": 53,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 61,
+          "column": 54,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 62,
+          "column": 55,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 63,
+          "column": 57,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 64,
+          "column": 58,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 65,
+          "column": 59,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 66,
+          "column": 60,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 67,
+          "column": 61,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 68,
+          "column": 62,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 69,
+          "column": 63,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 70,
+          "column": 65,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 71,
+          "column": 66,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 72,
+          "column": 67,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 73,
+          "column": 68,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 74,
+          "column": 69,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 75,
+          "column": 70,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 76,
+          "column": 71,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 77,
+          "column": 74,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 78,
+          "column": 81,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 79,
+          "column": 89,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 80,
+          "column": 94,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 81,
+          "column": 95,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 82,
+          "column": 96,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 83,
+          "column": 98,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 84,
+          "column": 104,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 85,
+          "column": 112,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 86,
+          "column": 128,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 87,
+          "column": 136,
+          "valuation": 10,
+          "precision": 39
+        },
+        {
+          "sample": 88,
+          "column": 73,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 89,
+          "column": 75,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 90,
+          "column": 76,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 91,
+          "column": 77,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 92,
+          "column": 78,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 93,
+          "column": 79,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 94,
+          "column": 82,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 95,
+          "column": 83,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 96,
+          "column": 84,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 97,
+          "column": 85,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 98,
+          "column": 86,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 99,
+          "column": 87,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 100,
+          "column": 92,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 101,
+          "column": 93,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 102,
+          "column": 97,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 103,
+          "column": 99,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 104,
+          "column": 101,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 105,
+          "column": 100,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 106,
+          "column": 102,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 107,
+          "column": 103,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 108,
+          "column": 105,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 109,
+          "column": 106,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 110,
+          "column": 107,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 111,
+          "column": 108,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 112,
+          "column": 109,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 113,
+          "column": 110,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 114,
+          "column": 111,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 115,
+          "column": 113,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 116,
+          "column": 114,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 117,
+          "column": 115,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 118,
+          "column": 116,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 119,
+          "column": 117,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 120,
+          "column": 118,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 121,
+          "column": 119,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 122,
+          "column": 120,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 123,
+          "column": 121,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 124,
+          "column": 122,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 125,
+          "column": 123,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 126,
+          "column": 124,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 127,
+          "column": 125,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 128,
+          "column": 126,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 129,
+          "column": 127,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 130,
+          "column": 129,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 131,
+          "column": 130,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 132,
+          "column": 131,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 133,
+          "column": 132,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 134,
+          "column": 133,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 135,
+          "column": 138,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 136,
+          "column": 139,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 137,
+          "column": 142,
+          "valuation": 11,
+          "precision": 37
+        },
+        {
+          "sample": 138,
+          "column": 134,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 139,
+          "column": 135,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 140,
+          "column": 137,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 141,
+          "column": 140,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 142,
+          "column": 141,
+          "valuation": 12,
+          "precision": 35
+        },
+        {
+          "sample": 143,
+          "column": 143,
+          "valuation": 12,
+          "precision": 35
+        }
+      ],
+      "inconsistency_witness": {
+        "sample": 144,
+        "valuation": 8,
+        "absolute_precision": 47,
+        "unit_mod_p": 57
+      },
+      "status": "EXCLUDED",
+      "scope": "Only b_i=J*x_i*g_i on k1=1, with g_i in the stated 48-dimensional Laurent-monomial span; g_i are equal in radial mode. No exclusion of other rational currents."
+    }
+  ]
+}
