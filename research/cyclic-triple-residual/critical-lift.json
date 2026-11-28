@@ -1,0 +1,75 @@
+{
+  "prime": 13,
+  "precision_exponent": 32,
+  "fixed_parameters": {
+    "K": 1,
+    "L": 2
+  },
+  "variables": [
+    "xi",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "z",
+    "l0",
+    "l1",
+    "l2",
+    "l3",
+    "l4",
+    "l5",
+    "l6"
+  ],
+  "seed": [
+    4,
+    6,
+    2,
+    12,
+    6,
+    9,
+    3,
+    1,
+    3,
+    0,
+    10,
+    1,
+    11,
+    9,
+    3
+  ],
+  "lift_mod_prime_power": [
+    228396625824028467931725871647810386,
+    253721934889769114402387068805113604,
+    362527203619420888139260930712945983,
+    40168641995843201117580481389787445,
+    367533611055682760135953662564751115,
+    234996629026983610280425921409965749,
+    267521162758690729514139348213693070,
+    433920527405984822720079844161713457,
+    391835477726852799952140328622564809,
+    142214224032830515396256919765519689,
+    46116901251871422320241536404487840,
+    36504730361058428819192819631048759,
+    232753542526050021465467303413079230,
+    132197830843561433689964895949453560,
+    79940242319279691225409656218716117
+  ],
+  "critical_Jacobian_determinant_mod_p": 4,
+  "local_data_mod_p": {
+    "Delta": 3,
+    "w": 12,
+    "Delta_xixi": 12,
+    "Delta_dot": 5,
+    "trace_summand": 1
+  },
+  "local_trace_summand_mod_prime_power": 26695079536306711359793496648615631,
+  "checks": {
+    "critical_equations": "PASS",
+    "unit_critical_Jacobian": "PASS",
+    "Newton_lift_all_15_equations": "PASS",
+    "ordinary_chart_denominators": "PASS"
+  },
+  "scope": "One exact lifted critical point at K=1,L=2. Nonzero local contribution does not imply nonzero global trace; conjugate and other critical points have not been summed."
+}
