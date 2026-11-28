@@ -8,6 +8,16 @@ claimed. Nine universal reduction lemmas now compile and pass independent
 kernel replay under the pinned Lean 4.36.0 toolchain; target binding and the
 scalar primitive remain open.
 
+**Reduced equations and sparse solver (2026-11-28):**
+[the implementation audit](reduced-critical.md) constructs the five-variable
+critical system over F13 and checks its derivative against both saved
+witnesses. Variable elimination raises the critical degree to 112, so a
+sparse F4 solver was also installed and tested locally. Native saturation
+failed a known-answer smoke test; the runner instead uses a checked
+inverse-variable construction with ordinary F4. No full critical trace
+has been obtained. These are solver and representation results, not a
+mathematical obstruction or certificate.
+
 **Principal-parts continuation (2026-11-28):**
 [the global-test reduction](principal-parts.md) converts one conditional
 Serre-duality pairing into a trace on the ordinary critical locus of the

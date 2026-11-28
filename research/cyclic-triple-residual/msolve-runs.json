@@ -1,0 +1,114 @@
+{
+  "runs": [
+    {
+      "solver": "msolve 0.11.0",
+      "input": "15-variable unsaturated critical system at K=1,L=2 over F13",
+      "threads": 2,
+      "linear_algebra": "exact sparse",
+      "max_pairs_per_matrix": 1000,
+      "address_space_GiB": 3,
+      "timeout_seconds": 60,
+      "status": "timeout",
+      "exit_code": null,
+      "elapsed_seconds": 60.01976769799876,
+      "peak_RSS_KiB": 981592
+    },
+    {
+      "solver": "msolve 0.11.0 F4SAT",
+      "saturation": "xi*(14*z+5)*Delta",
+      "prime": 13,
+      "parameters": [
+        1,
+        2
+      ],
+      "threads": 2,
+      "memory_GiB": 3,
+      "timeout_seconds": 120,
+      "status": "solver_error",
+      "exit_code": 1,
+      "elapsed_seconds": 0.008667480000440264,
+      "peak_RSS_KiB": 6164
+    },
+    {
+      "solver": "msolve 0.11.0 F4SAT",
+      "saturation": "xi*(14*z+5)*Delta",
+      "prime": 1000003,
+      "parameters": [
+        1,
+        2
+      ],
+      "threads": 2,
+      "memory_GiB": 3,
+      "timeout_seconds": 60,
+      "status": "solver_error",
+      "exit_code": -11,
+      "elapsed_seconds": 58.927180754999426,
+      "peak_RSS_KiB": 1711364
+    },
+    {
+      "prime": 13,
+      "parameters": [
+        1,
+        2
+      ],
+      "saturation": "xi*(14*z+5)*Delta",
+      "threads": 2,
+      "timeout_seconds": 60,
+      "address_space_GiB": 3,
+      "status": "timeout",
+      "exit_code": null,
+      "elapsed_seconds": 60.02157281499967,
+      "peak_RSS_KiB": 985768,
+      "scope": "No trace computed by this runner; saturation does not yet exclude every exceptional stratum.",
+      "saturation_method": "Rabinowitsch inverse variable",
+      "log_tail": [
+        "  6       8    4510      84 x 1180        3.98%        6 new       2 zero         0.00 | 0.01         ",
+        "  7      43    4487    1165 x 14167       1.21%       25 new      18 zero         0.06 | 0.08         ",
+        "  7      20    4667    1004 x 10133       1.66%        6 new      14 zero         0.03 | 0.04         ",
+        "  8     768    4694   25601 x 124154      0.50%      520 new     248 zero         2.80 | 3.94         ",
+        "  8     161    8147   20749 x 96886       1.14%      147 new      15 zero         2.20 | 2.69         ",
+        "  8      67    9170   21643 x 98572       1.22%       62 new       5 zero         2.14 | 2.43         ",
+        "  8      52    9628   16291 x 78397       1.57%       30 new      22 zero         1.59 | 1.71         ",
+        "  9    1001    9843   53734 x 243584      0.57%      619 new     382 zero        17.48 | 27.95        ",
+        "  9    1000   14177   51390 x 203350      1.10%      629 new     372 zero        29.37 | 47.93        ",
+        "  8      96   17006"
+      ]
+    },
+    {
+      "prime": 13,
+      "parameters": [
+        1,
+        2
+      ],
+      "saturation": "xi*(14*z+5)*Delta",
+      "threads": 4,
+      "timeout_seconds": 120,
+      "address_space_GiB": 6,
+      "status": "timeout",
+      "exit_code": null,
+      "elapsed_seconds": 120.04193107299943,
+      "peak_RSS_KiB": 2057236,
+      "scope": "No trace computed by this runner; saturation does not yet exclude every exceptional stratum.",
+      "saturation_method": "Rabinowitsch inverse variable",
+      "log_tail": [
+        "  8     161    8147   20749 x 96886       1.14%      147 new      15 zero         2.12 | 3.09         ",
+        "  8      67    9170   21643 x 98572       1.22%       62 new       5 zero         2.08 | 2.61         ",
+        "  8      52    9628   16291 x 78397       1.57%       30 new      22 zero         1.55 | 1.81         ",
+        "  9    1001    9843   53734 x 243584      0.57%      619 new     382 zero        12.61 | 29.44        ",
+        "  9    1000   14177   51390 x 203350      1.10%      629 new     372 zero        21.70 | 52.39        ",
+        "  8      96   17006   23544 x 109793      1.59%       81 new      15 zero         3.68 | 4.88         ",
+        "  8      10   17429    9617 x 54124       3.15%        7 new       3 zero         1.35 | 1.50         ",
+        "  9    1000   17473   54717 x 225076      1.38%      770 new     230 zero        33.06 | 80.24        ",
+        "  8      23   21915   20624 x 95861       2.27%       16 new       7 zero         3.52 | 3.92         ",
+        "  9    1000   21980   58000 x 243251      1.56%"
+      ]
+    }
+  ],
+  "F4SAT_smoke_exit_code": 0,
+  "F4SAT_smoke_output": "#Reduced Groebner basis data\n#---\n#field characteristic: 1000003\n#variable order:       x\n#monomial order:       graded reverse lexicographical\n#length of basis:      1 element\n#---\n[1*x^2+1000002]:\n",
+  "scope": "No complete critical basis or trace. Exit -11 is a solver crash; its cause is not established.",
+  "F4SAT_smoke_correctness": "FAIL: expected x+1, returned x^2-1",
+  "Rabinowitsch_smoke_output": "#Reduced Groebner basis data\n#---\n#field characteristic: 1000003\n#variable order:       inv, x\n#monomial order:       graded reverse lexicographical\n#length of basis:      2 elements sorted by increasing leading monomials\n#---\n[1*x^1+1,\n1*inv^1+500002]:\n",
+  "Rabinowitsch_smoke_exit_code": 0,
+  "runner_smoke_test": "One-second timeout passed for the unsaturated packaged runner."
+}

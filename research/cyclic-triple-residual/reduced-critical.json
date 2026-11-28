@@ -1,0 +1,56 @@
+{
+  "prime": 13,
+  "K": 1,
+  "L": 2,
+  "slope_equation_term_counts": [
+    211,
+    437,
+    854
+  ],
+  "slope_equation_degrees": [
+    22,
+    29,
+    36
+  ],
+  "Delta_numerator_terms": [
+    1039,
+    964
+  ],
+  "Delta_denominator_D0_exponent": 5,
+  "removed_critical_D0_power": 3,
+  "critical_terms_before_incidence_reduction": [
+    78218,
+    74487
+  ],
+  "critical_terms": [
+    50149,
+    47528
+  ],
+  "critical_degrees": [
+    112,
+    106
+  ],
+  "checks": [
+    {
+      "point_a_b_c_xi": [
+        6,
+        2,
+        12,
+        4
+      ],
+      "w": 12,
+      "Delta_xi": 0
+    },
+    {
+      "point_a_b_c_xi": [
+        10,
+        12,
+        3,
+        9
+      ],
+      "w": 12,
+      "Delta_xi": 4
+    }
+  ],
+  "elapsed_seconds": 4.2342093249990285
+}
