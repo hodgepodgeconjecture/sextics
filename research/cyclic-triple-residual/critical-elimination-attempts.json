@@ -1,0 +1,63 @@
+{
+  "attempts": [
+    {
+      "prime": 13,
+      "parameters": {
+        "K": 1,
+        "L": 2
+      },
+      "variables": 15,
+      "equations": 15,
+      "term_counts": [
+        4,
+        9,
+        16,
+        21,
+        22,
+        15,
+        8,
+        20,
+        20,
+        42,
+        28,
+        17,
+        17,
+        17,
+        17
+      ],
+      "algorithm": "SymPy f5b grevlex",
+      "time_limit_seconds": 60,
+      "memory_limit_GiB": 3,
+      "status": "TimeoutError",
+      "detail": "60-second elimination budget exhausted",
+      "elapsed_seconds": 60.005,
+      "scope": "Unsaturated critical system. No complete critical algebra or trace follows from a timeout."
+    },
+    {
+      "algorithm": "FLINT integer-polynomial Buchberger",
+      "coefficient_field": "characteristic zero",
+      "limits": {
+        "basis_length": 200,
+        "polynomial_terms": 2000,
+        "coefficient_bits": 512
+      },
+      "completed_Groebner_basis": false,
+      "returned_basis_length": 57,
+      "elapsed_seconds": 0.027572040000450215,
+      "scope": "Unsaturated ideal; an incomplete generating set is not a Groebner basis or a trace computation."
+    },
+    {
+      "algorithm": "FLINT integer-polynomial Buchberger",
+      "limits": [
+        1000,
+        50000,
+        4096
+      ],
+      "external_timeout_seconds": 60,
+      "exit_code": 124,
+      "completed_Groebner_basis": false
+    }
+  ],
+  "runner_smoke_test": "one-second parent timeout passed",
+  "scope": "Measured prototype runs; packaged runner provides matching algorithm and budget controls. None produced a complete basis or trace."
+}
