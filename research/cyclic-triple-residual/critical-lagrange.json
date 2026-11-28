@@ -1,0 +1,59 @@
+{
+  "incidence_degrees": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+  ],
+  "variables": {
+    "curve_coordinates": 8,
+    "multipliers": 7,
+    "tangent_coordinates": 8,
+    "total": 23
+  },
+  "equations": {
+    "incidence": 7,
+    "stationarity": 8,
+    "tangent": 7,
+    "normalization": 1,
+    "total": 23
+  },
+  "maximum_equation_degree_bound": 6,
+  "witness": {
+    "prime": 13,
+    "point": [
+      9,
+      10,
+      12,
+      3,
+      6,
+      8,
+      3,
+      1,
+      1,
+      2,
+      1
+    ],
+    "lambda": [
+      2,
+      3,
+      0,
+      10,
+      9,
+      4,
+      3
+    ],
+    "Delta_xi": 4,
+    "Delta_xixi": 4,
+    "Delta_dot": 4
+  },
+  "checks": {
+    "source_multiplier_identity": "PASS",
+    "Hessian_second_derivative": "PASS",
+    "tangent_normalization": "PASS"
+  },
+  "scope": "The witness is deliberately not critical (Delta_xi=4); it verifies the general identities. No critical-point enumeration or global trace evaluation."
+}
