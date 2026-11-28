@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "exact_discriminant_pole_subtraction": "PASS",
+    "simple_zero_pairing": "PASS",
+    "critical_point_pairing": "PASS",
+    "endpoint_pairing": "PASS",
+    "audited_boundary_chi_regularity": "PASS",
+    "previous_actual_source_witness": "PASS"
+  },
+  "regularized_density": "(12*Ds*Dx*x**5 - Ds*Dxx*w**2 + Dsx*Dx*w**2 + 2*Dx**2*K**3*x**3)/(3*Dx**2*w**3)",
+  "simple_zero_pairing": "-2*Ds/(Dx**2*w**2)",
+  "six_sheet_critical_residue": "-2*Ds/(D*Dxx*w**2)",
+  "six_sheet_endpoint_residue": "-K**3/(36*D*x**7)",
+  "boundary_orders": [
+    {
+      "branch": "infinity excess family",
+      "chi_order_lower_bound": 15
+    },
+    {
+      "branch": "infinity c=0",
+      "chi_order_lower_bound": 36
+    },
+    {
+      "branch": "infinity b=0",
+      "chi_order_lower_bound": 28
+    },
+    {
+      "branch": "finite constant cubic",
+      "chi_order_lower_bound": 24
+    },
+    {
+      "branch": "finite translated cubic",
+      "chi_order_lower_bound": 27
+    }
+  ],
+  "cofactor_critical_trace_summand": "Ns*T/(18*D*LN*x**10)",
+  "scope": "Conditional residue-duality reduction. Remaining boundary terms and global regularity of theta are not established; the critical trace has not been evaluated."
+}

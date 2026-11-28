@@ -8,6 +8,16 @@ claimed. Nine universal reduction lemmas now compile and pass independent
 kernel replay under the pinned Lean 4.36.0 toolchain; target binding and the
 scalar primitive remain open.
 
+**Principal-parts continuation (2026-11-28):**
+[the global-test reduction](principal-parts.md) converts one conditional
+Serre-duality pairing into a trace on the ordinary critical locus of the
+discriminant. Its summand is expressed using polynomial incidence
+cofactors, avoiding second implicit source derivatives. All five audited
+boundary types contribute zero. The critical trace, remaining boundary
+corrections, and global holomorphy of the test differential still need
+computation. Matching principal parts must also be followed by checking
+the holomorphic remainder; pole cancellation alone is not exactness.
+
 **Latest field and boundary results (2026-11-27):**
 [the irreducibility argument](incidence-irreducibility.md) identifies the
 generic 120-sheet algebra with the selected incidence field, proves that
